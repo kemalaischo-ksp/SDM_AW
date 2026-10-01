@@ -31,15 +31,32 @@ export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
     await next();
   });
 
-  // Header keamanan dasar
+  // Header keamanan dasar — dipasang SETELAH handler pada respons akhir, karena
+  // c.header() tidak ikut ke Response mentah (aset statik / index.html).
+  // script-src perlu 'unsafe-inline': frontend memakai skrip inline & ±170 onclick.
+  const CSP = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com",
+    "worker-src 'self' blob: https://cdnjs.cloudflare.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "img-src 'self' data: blob: https:",
+    "connect-src 'self' https://cdnjs.cloudflare.com",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+  ].join("; ");
   app.use("*", async (c, next) => {
-    c.header("X-Content-Type-Options", "nosniff");
-    c.header("Referrer-Policy", "strict-origin-when-cross-origin");
-    c.header("X-Frame-Options", "DENY");
-    c.header("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
-    c.header("Content-Security-Policy", "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com; connect-src 'self'; frame-ancestors 'none'");
-    if (secure) c.header("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     await next();
+    c.res = new Response(c.res.body, c.res); // salin agar header bisa diubah
+    const h = c.res.headers;
+    h.set("X-Content-Type-Options", "nosniff");
+    h.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    h.set("X-Frame-Options", "DENY");
+    h.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+    h.set("Content-Security-Policy", CSP);
+    if (secure) h.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   });
 
   // Anti-CSRF: semua mutasi wajib Origin/Referer yang bertepatan dgn Host (atau allowlist).
