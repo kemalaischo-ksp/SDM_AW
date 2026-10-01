@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* White Dashboard (Creative Tim) — pink primary + blue info */
+  --color-primary: #e14eca;
+  --color-primary-foreground: #ffffff;
+  --color-info: #1d8cf8;
+  --color-navy: #1f2251;
+  --color-navy-foreground: #9a9eb5;
+
+  --color-background: #f5f6fa;
+  --color-foreground: #1f2251;
+  --color-card: #ffffff;
+  --color-card-foreground: #1f2251;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1f2251;
+  --color-secondary: #eef1f8;
+  --color-secondary-foreground: #344675;
+  --color-muted: #f0f2f7;
+  --color-muted-foreground: #8392ab;
+  --color-accent: #e9edf7;
+  --color-accent-foreground: #344675;
+  --color-destructive: #fd5d93;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #00bf9a;
+  --color-warning: #ff8d72;
+  --color-border: #e3e6f0;
+  --color-input: #d7dce8;
+  --color-ring: #e14eca;
+
+  --color-sidebar: #ffffff;
+  --color-sidebar-foreground: #525f7f;
+  --color-sidebar-primary: #e14eca;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: rgba(225, 78, 202, 0.1);
+  --color-sidebar-accent-foreground: #e14eca;
+  --color-sidebar-border: #e9edf5;
+
+  --radius-lg: 0.875rem;
+  --radius-md: 0.625rem;
+  --radius-sm: 0.375rem;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+/* White Dashboard card: putih, border tipis, shadow halus */
+.wd-card {
+  @apply rounded-xl border border-border bg-white;
+  box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.06);
+}
+
+.wd-gradient-header {
+  background: linear-gradient(135deg, #e14eca 0%, #9b27b0 45%, #1d8cf8 100%);
+}
+
+.wd-input-icon {
+  @apply pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Teks brand glowing — gradien pink→biru + cahaya lembut */
+.glow-brand {
+  background: linear-gradient(90deg, #e14eca 0%, #9b27b0 50%, #1d8cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  filter: drop-shadow(0 0 5px rgba(225, 78, 202, 0.55));
+}
+
+/* Cetak slip: hanya kartu slip, tanpa navigasi/tombol */
+@media print {
+  header,
+  aside,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+}

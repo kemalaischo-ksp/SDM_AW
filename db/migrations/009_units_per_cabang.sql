@@ -1,0 +1,93 @@
+-- ============================================================
+-- HR 3.0 — Migrasi 009: unit per cabang sesuai sebaran program TIC
+-- + kolom employees.cabang_lainnya (keterangan bila cabang = LAINNYA).
+-- Idempoten: ON CONFLICT (kode) DO NOTHING.
+-- Catatan: AW18 default SD/SMP/SMA; AW9/AW24 ikut SD (perlu verifikasi).
+-- ============================================================
+ALTER TABLE employees ADD COLUMN IF NOT EXISTS cabang_lainnya TEXT;
+
+INSERT INTO units (nama, kode, cabang_id) VALUES ('TK AL-WILDAN 1', 'AW1-TK', (SELECT id FROM cabangs WHERE kode='AW1')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 1', 'AW1-SD', (SELECT id FROM cabangs WHERE kode='AW1')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 1', 'AW1-SMP', (SELECT id FROM cabangs WHERE kode='AW1')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 1', 'AW1-SMA', (SELECT id FROM cabangs WHERE kode='AW1')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('TK AL-WILDAN 2', 'AW2-TK', (SELECT id FROM cabangs WHERE kode='AW2')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 2', 'AW2-SD', (SELECT id FROM cabangs WHERE kode='AW2')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 2', 'AW2-SMP', (SELECT id FROM cabangs WHERE kode='AW2')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 2', 'AW2-SMA', (SELECT id FROM cabangs WHERE kode='AW2')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 3', 'AW3-SMP', (SELECT id FROM cabangs WHERE kode='AW3')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 3', 'AW3-SMA', (SELECT id FROM cabangs WHERE kode='AW3')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 4', 'AW4-SD', (SELECT id FROM cabangs WHERE kode='AW4')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 4', 'AW4-SMP', (SELECT id FROM cabangs WHERE kode='AW4')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 4', 'AW4-SMA', (SELECT id FROM cabangs WHERE kode='AW4')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 5', 'AW5-SD', (SELECT id FROM cabangs WHERE kode='AW5')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 5', 'AW5-SMP', (SELECT id FROM cabangs WHERE kode='AW5')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 5', 'AW5-SMA', (SELECT id FROM cabangs WHERE kode='AW5')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 7', 'AW7-SD', (SELECT id FROM cabangs WHERE kode='AW7')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 7', 'AW7-SMP', (SELECT id FROM cabangs WHERE kode='AW7')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 7', 'AW7-SMA', (SELECT id FROM cabangs WHERE kode='AW7')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 8', 'AW8-SD', (SELECT id FROM cabangs WHERE kode='AW8')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 8', 'AW8-SMP', (SELECT id FROM cabangs WHERE kode='AW8')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 8', 'AW8-SMA', (SELECT id FROM cabangs WHERE kode='AW8')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 9', 'AW9-SD', (SELECT id FROM cabangs WHERE kode='AW9')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 9', 'AW9-SMP', (SELECT id FROM cabangs WHERE kode='AW9')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 9', 'AW9-SMA', (SELECT id FROM cabangs WHERE kode='AW9')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 10', 'AW10-SD', (SELECT id FROM cabangs WHERE kode='AW10')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 10', 'AW10-SMP', (SELECT id FROM cabangs WHERE kode='AW10')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 10', 'AW10-SMA', (SELECT id FROM cabangs WHERE kode='AW10')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 11', 'AW11-SD', (SELECT id FROM cabangs WHERE kode='AW11')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 11', 'AW11-SMP', (SELECT id FROM cabangs WHERE kode='AW11')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 11', 'AW11-SMA', (SELECT id FROM cabangs WHERE kode='AW11')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 12', 'AW12-SD', (SELECT id FROM cabangs WHERE kode='AW12')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 12', 'AW12-SMP', (SELECT id FROM cabangs WHERE kode='AW12')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 12', 'AW12-SMA', (SELECT id FROM cabangs WHERE kode='AW12')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 13', 'AW13-SMP', (SELECT id FROM cabangs WHERE kode='AW13')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 13', 'AW13-SMA', (SELECT id FROM cabangs WHERE kode='AW13')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 14', 'AW14-SD', (SELECT id FROM cabangs WHERE kode='AW14')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 14', 'AW14-SMP', (SELECT id FROM cabangs WHERE kode='AW14')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 14', 'AW14-SMA', (SELECT id FROM cabangs WHERE kode='AW14')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 15', 'AW15-SD', (SELECT id FROM cabangs WHERE kode='AW15')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 15', 'AW15-SMP', (SELECT id FROM cabangs WHERE kode='AW15')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 15', 'AW15-SMA', (SELECT id FROM cabangs WHERE kode='AW15')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 16', 'AW16-SD', (SELECT id FROM cabangs WHERE kode='AW16')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 16', 'AW16-SMP', (SELECT id FROM cabangs WHERE kode='AW16')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 16', 'AW16-SMA', (SELECT id FROM cabangs WHERE kode='AW16')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 18', 'AW18-SD', (SELECT id FROM cabangs WHERE kode='AW18')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 18', 'AW18-SMP', (SELECT id FROM cabangs WHERE kode='AW18')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 18', 'AW18-SMA', (SELECT id FROM cabangs WHERE kode='AW18')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 19', 'AW19-SD', (SELECT id FROM cabangs WHERE kode='AW19')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 19', 'AW19-SMP', (SELECT id FROM cabangs WHERE kode='AW19')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 20', 'AW20-SD', (SELECT id FROM cabangs WHERE kode='AW20')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 20', 'AW20-SMP', (SELECT id FROM cabangs WHERE kode='AW20')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 20', 'AW20-SMA', (SELECT id FROM cabangs WHERE kode='AW20')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 21', 'AW21-SD', (SELECT id FROM cabangs WHERE kode='AW21')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 21', 'AW21-SMP', (SELECT id FROM cabangs WHERE kode='AW21')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 21', 'AW21-SMA', (SELECT id FROM cabangs WHERE kode='AW21')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 22', 'AW22-SD', (SELECT id FROM cabangs WHERE kode='AW22')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 22', 'AW22-SMP', (SELECT id FROM cabangs WHERE kode='AW22')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 22', 'AW22-SMA', (SELECT id FROM cabangs WHERE kode='AW22')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 23', 'AW23-SD', (SELECT id FROM cabangs WHERE kode='AW23')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 23', 'AW23-SMP', (SELECT id FROM cabangs WHERE kode='AW23')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 23', 'AW23-SMA', (SELECT id FROM cabangs WHERE kode='AW23')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 24', 'AW24-SD', (SELECT id FROM cabangs WHERE kode='AW24')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 24', 'AW24-SMP', (SELECT id FROM cabangs WHERE kode='AW24')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 24', 'AW24-SMA', (SELECT id FROM cabangs WHERE kode='AW24')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 27', 'AW27-SMP', (SELECT id FROM cabangs WHERE kode='AW27')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 27', 'AW27-SMA', (SELECT id FROM cabangs WHERE kode='AW27')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 28', 'AW28-SD', (SELECT id FROM cabangs WHERE kode='AW28')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 28', 'AW28-SMP', (SELECT id FROM cabangs WHERE kode='AW28')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 28', 'AW28-SMA', (SELECT id FROM cabangs WHERE kode='AW28')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 29', 'AW29-SD', (SELECT id FROM cabangs WHERE kode='AW29')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 29', 'AW29-SMP', (SELECT id FROM cabangs WHERE kode='AW29')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 29', 'AW29-SMA', (SELECT id FROM cabangs WHERE kode='AW29')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 30', 'AW30-SD', (SELECT id FROM cabangs WHERE kode='AW30')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 30', 'AW30-SMP', (SELECT id FROM cabangs WHERE kode='AW30')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 30', 'AW30-SMA', (SELECT id FROM cabangs WHERE kode='AW30')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 31', 'AW31-SD', (SELECT id FROM cabangs WHERE kode='AW31')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 31', 'AW31-SMP', (SELECT id FROM cabangs WHERE kode='AW31')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 31', 'AW31-SMA', (SELECT id FROM cabangs WHERE kode='AW31')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SD AL-WILDAN 32', 'AW32-SD', (SELECT id FROM cabangs WHERE kode='AW32')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMP AL-WILDAN 32', 'AW32-SMP', (SELECT id FROM cabangs WHERE kode='AW32')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('SMA AL-WILDAN 32', 'AW32-SMA', (SELECT id FROM cabangs WHERE kode='AW32')) ON CONFLICT (kode) DO NOTHING;
+INSERT INTO units (nama, kode, cabang_id) VALUES ('Umum Lainnya', 'LAIN-UMUM', (SELECT id FROM cabangs WHERE kode='LAIN')) ON CONFLICT (kode) DO NOTHING;
+
+SELECT setval(pg_get_serial_sequence('units','id'), (SELECT max(id) FROM units));

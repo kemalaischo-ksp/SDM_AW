@@ -1,0 +1,35 @@
+# SDM_AW — jangan commit secret, PII, & artefak lokal
+.env
+.env.prod
+.env.local
+*.log
+.DS_Store
+.claude/
+node_modules/
+dist/
+build/
+backup/
+data/
+api/data/
+api/backup/
+db/backup/
+data/pg/
+
+# PII SDM — JANGAN commit (transfer ke VPS via scp/rsync saja).
+# data.js/recruit.js memuat NIK KTP, alamat, THP, rekening.
+**/data.js
+sdm-v31/recruit.js
+5.1_updatev3.2/recruit.js
+z_info/**/recruit.js
+z_info/4. DATA/DB_KSP*.xlsx
+z_info/1. SAMPLE KARYAWAN/*.pdf
+z_info/3. REV/perlu_review_manual_enrichment.csv
+z_info/3. REV/9.1. NAMA ATASAN.pdf
+# screenshot berisi data pribadi karyawan (NIK)
+2. troubleshooting/3.jpg
+
+# Folder staging update — diterapkan via ./sync-update.sh
+1. UPD/
+# berisi NIK/HP/alamat karyawan nyata
+db/scripts/biodata_template.csv
+db/seeds/aw3_pilot.sql

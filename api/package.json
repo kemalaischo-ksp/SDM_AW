@@ -1,0 +1,20 @@
+{
+  "name": "hr30-api-v31",
+  "version": "3.1.0",
+  "private": true,
+  "type": "module",
+  "description": "HRIS SDM AL-WILDAN v3.1 — API (Hono + PostgreSQL) salah satu sumber UI sdm-v31",
+  "scripts": {
+    "migrate": "node migrate.js",
+    "seed": "node seed.js",
+    "import": "node db/scripts/import_v31.js",
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.0",
+    "hono": "^4.6.0",
+    "pdf-parse": "^2.4.5",
+    "pg": "^8.13.0"
+  }
+}

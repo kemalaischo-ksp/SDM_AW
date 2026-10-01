@@ -1,0 +1,40 @@
+# HRIS SDM AL-WILDAN v3.1 — PostgreSQL khusus + API (serve frontend sdm-v31).
+# Pakai: cp .env.prod.example .env && docker compose up -d --build
+services:
+  hr30-db:
+    image: postgres:16
+    container_name: hr30-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=hr30_v31
+      - POSTGRES_USER=hr30
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hr30 -d hr30_v31"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  hr30:
+    build: .
+    container_name: hr30
+    restart: unless-stopped
+    depends_on:
+      hr30-db:
+        condition: service_healthy
+    volumes:
+      - ./sdm-v31:/app/sdm-v31:ro
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - PORT=3000
+      - DATABASE_URL=postgres://hr30:${DB_PASSWORD}@hr30-db:5432/hr30_v31
+      - AUTH_SECRET=${AUTH_SECRET}
+      - COOKIE_SECURE=1
+      - CORS_ORIGIN=${CORS_ORIGIN:-}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI:-}
+      - PUBLIC_DOMAIN=${PUBLIC_DOMAIN:-}
