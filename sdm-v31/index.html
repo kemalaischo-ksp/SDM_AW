@@ -287,19 +287,41 @@ tbody tr:last-child td{border-bottom:0}
 .prio{width:7px;height:7px;border-radius:50%;flex:none}
 
 /* ===== LOGIN ===== */
-.login-wrap{min-height:100dvh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 30% 20%,#eaf1fb,#dde7f4 55%,#cdd9ea)}
-.login-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 70px rgba(16,32,45,.18);width:100%;max-width:400px;overflow:hidden}
-.login-head{background:linear-gradient(135deg,#1F4E79,#2f6cb0);color:#fff;padding:26px 26px 22px;text-align:center}
-.login-head img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:12px;padding:5px}
-.login-head .t{font-weight:800;font-size:17px;margin-top:12px}
-.login-head .s{font-size:12px;opacity:.85;margin-top:3px}
-.login-body{padding:24px}
-.login-body .field{margin-bottom:14px}
-.login-body .btn{width:100%;justify-content:center;padding:12px}
-.login-err{background:var(--neg-bg);color:var(--neg);border-radius:9px;padding:9px 12px;font-size:12.5px;font-weight:600;margin-bottom:14px;display:flex;gap:8px;align-items:center}
-.login-demo{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.7}
-.login-demo b{color:var(--ink-2)}
-.login-demo code{background:var(--surface-3);padding:1px 6px;border-radius:5px;font-size:11px;cursor:pointer}
+.login-wrap{min-height:100dvh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);background:#fff;color:#0f172a}
+.lg-form{display:flex;flex-direction:column;padding:32px clamp(20px,6vw,72px)}
+.lg-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:14.5px;letter-spacing:-.2px;color:#0f172a}
+.lg-brand img{width:38px;height:38px;object-fit:contain;border-radius:10px;border:1px solid #eef0f3;background:#fff;padding:3px}
+.lg-brand small{display:block;font-size:11px;font-weight:500;color:#64748b;letter-spacing:0}
+.lg-inner{width:100%;max-width:380px;margin:auto;padding:40px 0}
+.lg-inner h1{font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.6px;margin:0}
+.lg-inner .lead{color:#64748b;font-size:14px;margin:8px 0 28px}
+.lg-field{margin-bottom:16px}
+.lg-field label{display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:6px}
+.lg-field input{width:100%;height:46px;border:1px solid #e2e8f0;border-radius:11px;padding:0 14px;font-size:14px;font-family:inherit;color:#0f172a;background:#fff;transition:border-color .15s,box-shadow .15s}
+.lg-field input::placeholder{color:#94a3b8}
+.lg-field input:focus{outline:0;border-color:#1F4E79;box-shadow:0 0 0 4px rgba(31,78,121,.12)}
+.lg-pw{position:relative}.lg-pw input{padding-right:64px}
+.lg-pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:#f1f5f9;color:#475569;border-radius:8px;padding:6px 10px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.lg-pw button:hover{background:#e2e8f0}
+.lg-submit{width:100%;height:46px;margin-top:8px;border:0;border-radius:11px;background:#1F4E79;color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 1px 2px rgba(15,23,42,.08),0 8px 20px -8px rgba(31,78,121,.55);transition:background .15s,transform .05s}
+.lg-submit:hover{background:#183f63}.lg-submit:active{transform:translateY(1px)}
+.lg-submit svg{width:16px;height:16px}
+.lg-note{margin-top:22px;font-size:12px;color:#94a3b8;text-align:center}
+.lg-foot{font-size:11.5px;color:#94a3b8}
+.login-err{background:#fef2f2;color:#b91c1c;border:1px solid #fee2e2;border-radius:11px;padding:10px 12px;font-size:12.5px;font-weight:600;margin-bottom:18px}
+.lg-side{margin:12px;border-radius:24px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px;
+ background:radial-gradient(circle at 1px 1px,rgba(31,78,121,.09) 1px,transparent 0) 0 0/22px 22px,linear-gradient(160deg,#f8fafc 0%,#eef4fa 55%,#e6eef7 100%);border:1px solid #eef2f7}
+.lg-side::after{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,0) 65%);top:50%;left:50%;transform:translate(-50%,-62%);pointer-events:none}
+.lg-side>*{position:relative;z-index:1}
+.lg-logo{width:132px;height:132px;border-radius:32px;background:#fff;display:grid;place-items:center;box-shadow:0 1px 2px rgba(15,23,42,.06),0 24px 48px -16px rgba(31,78,121,.28);border:1px solid #eef2f7}
+.lg-logo img{width:104px;height:104px;object-fit:contain}
+.lg-side h2{font-size:24px;line-height:1.3;font-weight:800;letter-spacing:-.4px;margin:28px 0 8px;max-width:420px;color:#0f172a}
+.lg-side p{color:#64748b;font-size:14px;margin:0;max-width:400px}
+.lg-feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:32px;width:100%;max-width:480px}
+.lg-feat{background:rgba(255,255,255,.85);border:1px solid #e8eef5;border-radius:14px;padding:14px 10px;font-size:12px;font-weight:600;color:#334155;backdrop-filter:blur(4px)}
+.lg-feat span{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#eef4fa;color:#1F4E79;margin:0 auto 8px}
+.lg-feat svg{width:16px;height:16px}
+@media(max-width:900px){.login-wrap{grid-template-columns:1fr}.lg-side{display:none}.lg-inner{padding:28px 0}}
 .pw-wrap{position:relative}
 .pw-wrap button{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--ink-3);cursor:pointer;font-size:11px}
 /* employee landing */
@@ -1946,15 +1968,27 @@ function renderLogin(err){
  document.querySelector('.app').style.display='none';
  document.getElementById('topbar')&&(document.getElementById('topbar').style.display='none');
  let root=document.getElementById('loginRoot');if(!root){root=document.createElement('div');root.id='loginRoot';document.body.appendChild(root);}
- root.innerHTML=`<div class="login-wrap"><div class="login-card">
-   <div class="login-head"><img src="logo.png" alt="AL-WILDAN" onerror="this.style.display='none'"><div class="t">SDM AL-WILDAN</div><div class="s">Portal HRIS · Holding & Karyawan</div></div>
-   <form class="login-body" onsubmit="doLogin(event);return false">
-     ${err?`<div class="login-err">⚠ ${esc(err)}</div>`:''}
-     <div class="field"><label>Username / Email</label><input id="lg_u" autocomplete="username" placeholder="username atau email" required></div>
-     <div class="field"><label>Kata Sandi</label><div class="pw-wrap"><input id="lg_p" type="password" autocomplete="current-password" placeholder="••••••••" required><button type="button" onclick="const p=document.getElementById('lg_p');p.type=p.type==='password'?'text':'password';this.textContent=p.type==='password'?'Lihat':'Tutup'">Lihat</button></div></div>
-     <button class="btn" type="submit">${ic('lock')} Masuk</button>
-     <div class="login-demo"><b>Akun demo:</b><br>Admin Holding → <code onclick="fillLogin('admin','alwildan2026')">admin / alwildan2026</code><br>Karyawan → username = <b>NIP</b> (dibuat di panel Akun), sandi awal <code>aw2026</code>. Buat akun massal dulu di menu Manajemen Akun untuk mendapatkan NIP tiap karyawan.</div>
-   </form></div></div>`;
+ root.innerHTML=`<div class="login-wrap">
+   <div class="lg-form">
+     <div class="lg-brand"><img src="logo.png" alt="AL-WILDAN" onerror="this.style.display='none'"><div>SDM AL-WILDAN<small>Portal HRIS</small></div></div>
+     <form class="lg-inner" onsubmit="doLogin(event);return false">
+       <h1>Selamat datang kembali</h1>
+       <p class="lead">Masuk untuk mengelola data SDM, presensi, dan layanan karyawan.</p>
+       ${err?`<div class="login-err">${esc(err)}</div>`:''}
+       <div class="lg-field"><label for="lg_u">Username / Email</label><input id="lg_u" autocomplete="username" placeholder="nama@alwildan.sch.id atau NIP" required></div>
+       <div class="lg-field"><label for="lg_p">Kata sandi</label><div class="lg-pw"><input id="lg_p" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required><button type="button" onclick="const p=document.getElementById('lg_p');p.type=p.type==='password'?'text':'password';this.textContent=p.type==='password'?'Lihat':'Tutup'">Lihat</button></div></div>
+       <button class="lg-submit" type="submit">${ic('lock')} Masuk</button>
+       <div class="lg-note">Lupa kata sandi? Hubungi Admin HR Holding.</div>
+     </form>
+     <div class="lg-foot">© ${new Date().getFullYear()} AL-WILDAN Islamic School Holding</div>
+   </div>
+   <aside class="lg-side">
+     <div class="lg-logo"><img src="logo.png" alt="" onerror="this.parentNode.style.display='none'"></div>
+     <h2>Satu portal untuk seluruh SDM AL-WILDAN</h2>
+     <p>Data karyawan, presensi, cuti, payroll, dan rekrutmen lintas cabang — rapi dalam satu tempat.</p>
+     <div class="lg-feats"><div class="lg-feat"><span>${ic('users')}</span>Data Karyawan</div><div class="lg-feat"><span>${ic('clock')}</span>Presensi & Cuti</div><div class="lg-feat"><span>${ic('wallet')}</span>Payroll</div></div>
+   </aside>
+ </div>`;
 }
 function fillLogin(u,p){document.getElementById('lg_u').value=u;document.getElementById('lg_p').value=p;}
 function lockInfo(){try{return JSON.parse(sessionStorage.getItem('sdm-lock'))||{n:0,until:0}}catch(e){return{n:0,until:0}}}
