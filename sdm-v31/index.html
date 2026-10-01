@@ -238,6 +238,31 @@ tbody tr:last-child td{border-bottom:0}
 .kv .k{background:var(--surface);padding:10px 13px}
 .kv .k .l{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
 .kv .k .v{font-size:13px;font-weight:600;margin-top:3px;word-break:break-word;color:var(--ink)}
+/* data kesehatan (form) */
+.hk-src{font-size:10.5px;font-weight:600;color:var(--ink-3);text-transform:none;letter-spacing:0;margin-left:8px}
+.hk-sub{color:var(--ink-3);font-weight:500}
+.hk-chips{display:flex;flex-wrap:wrap;gap:5px}
+.hk-chip{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--neg-bg);color:var(--neg);border:1px solid color-mix(in srgb,var(--neg) 25%,transparent)}
+.hk-chip.ok{background:var(--pos-bg);color:var(--pos);border-color:color-mix(in srgb,var(--pos) 25%,transparent)}
+.hk-chip.more{background:var(--surface-2);color:var(--ink-2);border-color:var(--line)}
+.hk-more{padding:0 18px 12px}
+.hk-more summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--brand);padding:10px 0;list-style:none}
+.hk-more summary::-webkit-details-marker{display:none}
+.hk-more summary::before{content:'▸ ';}.hk-more[open] summary::before{content:'▾ ';}
+.hk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px}
+.hk-q{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:6px 9px;border-radius:7px;background:var(--surface-2);color:var(--ink-2)}
+.hk-q b{font-weight:700;color:var(--ink-3)}
+.hk-q.yes{background:var(--neg-bg);color:var(--ink)}.hk-q.yes b{color:var(--neg)}
+.hk-row{display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:14px;padding:12px 14px;border-bottom:1px solid var(--line-2);align-items:start}
+.hk-row:last-child{border-bottom:0}
+.hk-row .nm{font-weight:700;font-size:13px}.hk-row .sm{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.hk-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.hk-cand{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;text-align:left;color:var(--ink)}
+.hk-cand:hover{border-color:var(--brand);background:var(--info-bg)}
+.hk-cand .pc{font-weight:700;color:var(--brand);margin-left:6px}.hk-cand .hk-tk{color:var(--warn);font-size:10.5px;display:block}
+.hk-pick{border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px;min-width:200px;background:var(--surface);color:var(--ink)}
+.hk-ok{color:var(--pos);font-weight:700;font-size:12.5px}
+@media(max-width:700px){.hk-row{grid-template-columns:1fr}}
 .modal-sec{padding:8px 18px;font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--brand);font-weight:800;background:var(--surface-2)}
 
 /* payslip */
@@ -566,6 +591,7 @@ tbody tr:last-child td{border-bottom:0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="kaldik.js"></script>
 <script src="data.js"></script>
+<script src="kesehatan.js" onerror="window.HEALTH_DATA=[]"></script>
 <script src="recruit.js"></script>
 <script>
 /* ---------- icons ---------- */
@@ -609,6 +635,19 @@ const LS_KEY='sdm-alwildan-emps';
 function loadLocal(){try{const j=localStorage.getItem(LS_KEY);if(j){const arr=JSON.parse(j);if(Array.isArray(arr)){arr.forEach(e=>{e._local=true;const i=DATA.findIndex(x=>x.id===e.id);if(i>=0)DATA[i]=e;else DATA.push(e);});}}}catch(e){}}
 function saveLocal(rec){try{let arr=[];const j=localStorage.getItem(LS_KEY);if(j)arr=JSON.parse(j)||[];const i=arr.findIndex(x=>x.id===rec.id);if(i>=0)arr[i]=rec;else arr.push(rec);localStorage.setItem(LS_KEY,JSON.stringify(arr));return true;}catch(e){return false;}}
 loadLocal();
+/* ===== DATA KESEHATAN — kesehatan.js (Google Form, dibuat db/scripts/build_kesehatan.py) =====
+   Pencocokan manual disimpan per browser di localStorage: {hid: empId | 'skip'} */
+const HEALTH=window.HEALTH_DATA||[];const HQ=window.HEALTH_Q||[];const HQI=window.HEALTH_QI||{alergi:1,keluarga:0};
+const HM_KEY='sdm-health-match';
+let HMATCH=(()=>{try{return JSON.parse(localStorage.getItem(HM_KEY))||{};}catch(e){return {};}})();
+function saveHM(){try{localStorage.setItem(HM_KEY,JSON.stringify(HMATCH));}catch(e){}}
+function hStatus(h){const m=HMATCH[h.hid];if(m==='skip')return 'skip';if(m)return 'manual';return (h.match!=='review'&&h.empId)?'auto':'review';}
+function hEmpId(h){const m=HMATCH[h.hid];if(m==='skip')return '';if(m)return m;return h.match!=='review'?h.empId:'';}
+let _hIdx=null;
+function healthIndex(){if(_hIdx)return _hIdx;_hIdx={};HEALTH.forEach(h=>{const id=hEmpId(h);if(id&&(!_hIdx[id]||h.ts>_hIdx[id].ts))_hIdx[id]=h;});return _hIdx;}
+function healthFor(e){return e?(healthIndex()[String(e.id)]||null):null;}
+function setHM(hid,v){if(v)HMATCH[hid]=v;else delete HMATCH[hid];saveHM();_hIdx=null;}
+function fmtTglId(ts){const d=new Date(ts);return isNaN(d)?(ts||''):d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});}
 function toast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(err?' err':'');setTimeout(()=>t.className='toast',2600);}
 function newId(){return 'NEW-'+Date.now().toString(36)+Math.floor(Math.random()*900+100);}
 function driveThumb(u){u=String(u||'');const m=u.match(/\/d\/([A-Za-z0-9_-]+)/)||u.match(/[?&]id=([A-Za-z0-9_-]+)/);return m?`https://drive.google.com/thumbnail?id=${m[1]}&sz=w400`:u;}
@@ -710,7 +749,7 @@ const thpVals=DATA.map(e=>e.thp).filter(v=>v>0);
 const thpSum=thpVals.reduce((a,b)=>a+b,0);
 const thpAvg=thpVals.length?thpSum/thpVals.length:0;
 const withPhoto=DATA.filter(e=>e.photo).length;
-const withHealth=DATA.filter(e=>e.linkKesehatan).length;
+const withHealth=DATA.filter(e=>e.linkKesehatan||healthFor(e)).length;
 const withRek=DATA.filter(e=>e.rekBSI||e.rekLain).length;
 const withNik=DATA.filter(e=>e.nikKtp).length;
 const withEmail=DATA.filter(e=>e.email).length;
@@ -751,6 +790,7 @@ const VIEWS={
  email:{crumb:'Apps',title:'Email · Inbox Holding',sub:'Gmail HR & aktivasi pengajuan via email',render:renderEmail},
  chat:{crumb:'Apps',title:'Diskusi Tim HR',sub:'Chat Admin ⇄ Kadiv HR ⇄ Staff HR',render:renderChat},
  calendar:{crumb:'Apps',title:'Calendar',sub:'Proses rekrutmen & kaldik AL-WILDAN',render:renderCalendar},
+ health:{crumb:'Sistem',title:'Pencocokan Kesehatan',sub:'Cocokkan respons form kesehatan dengan data SDM',render:renderHealth},
  accounts:{crumb:'Sistem',title:'Manajemen Akun',sub:'Buat akun & atur hak akses berlapis',render:renderAccounts},
  profile:{crumb:'Akun Saya',title:'Profil Saya',sub:'Info akun & ganti kata sandi',render:renderProfile},
  me:{crumb:'Portal Saya',title:'Portal Karyawan',sub:'Presensi, slip gaji, profil & layanan',render:renderMe},
@@ -1258,7 +1298,7 @@ function renderEmployees(){const r=filteredEmps();const per=25,pages=Math.max(1,
  <div class="paginate"><span>Hal ${state.empPage} / ${pages}</span>
    <button ${state.empPage<=1?'disabled':''} onclick="state.empPage--;paint()">‹ Sebelumnya</button>
    <button ${state.empPage>=pages?'disabled':''} onclick="state.empPage++;paint()">Berikutnya ›</button></div>`;}
-function completeDots(e){const items=[['Foto',!!e.photo],['Rekening',!!(e.rekBSI||e.rekLain)],['Kesehatan',!!e.linkKesehatan],['Email',!!e.email],['Pendidikan',!!e.s1univ]];
+function completeDots(e){const items=[['Foto',!!e.photo],['Rekening',!!(e.rekBSI||e.rekLain)],['Kesehatan',!!(e.linkKesehatan||healthFor(e))],['Email',!!e.email],['Pendidikan',!!e.s1univ]];
  return `<div style="display:flex;gap:4px">`+items.map(([l,ok])=>`<span title="${l}: ${ok?'ada':'kosong'}" style="width:8px;height:8px;border-radius:50%;background:${ok?'var(--pos)':'var(--line)'}"></span>`).join('')+`</div>`;}
 function sortEmp(k){if(state.empSort.k===k)state.empSort.dir*=-1;else state.empSort={k,dir:1};paint();}
 
@@ -1643,7 +1683,7 @@ function openEmp(id){const e=DATA.find(x=>x.id==id);if(!e)return;
        if(baseYr&&!rj.some(r=>r.thn===baseYr))rj.push({thn:baseYr,jabatan:e.jabatan||'—',unit:e.unit||'—',aksi:'Bergabung'});
        rj.sort((a,b)=>b.thn-a.thn);if(!rj.length)return '';
        return `<div class="modal-sec">Riwayat Jabatan (per tahun)</div><div style="padding:12px 18px"><div class="jtl">${rj.map(r=>`<div class="jtl-item"><div class="jtl-yr">${esc(r.thn)}</div><div class="jtl-body"><div class="jtl-jab">${esc(r.jabatan||'—')}</div><div class="jtl-sub">${esc(r.unit||'')}${r.aksi?' · '+esc(r.aksi):''}</div></div></div>`).join('')}</div></div>`;})()}
-     <div class="modal-sec">Data Kesehatan</div><div class="kv">${kv('Golongan Darah',e.golDarah)}${kv('Kontak Darurat',e.kontakDarurat)}${kv('Alergi',e.alergi)}${kv('Riwayat Penyakit',e.riwayatSakit)}<div class="k" style="grid-column:1/-1"><div class="l">Dokumen Kesehatan</div><div class="v">${e.linkKesehatan?`<a href="${esc(e.linkKesehatan)}" target="_blank" rel="noopener">Buka riwayat kesehatan lengkap ↗</a>`:'<span style=\"color:var(--ink-3);font-weight:400\">Belum ada dokumen — tambahkan via menu Tambah/Update SDM</span>'}</div></div></div>
+     ${healthSection(e)}
      ${can('accounts')?acctSection(e):''}
      <div class="modal-sec">Payroll & Dokumen</div><div class="kv">${kv('Bank',e.namaBank)}${kv('No. Rekening',e.rekBSI||e.rekLain)}${e.thpKotor?kv('THP Kotor',rp(e.thpKotor)):''}${e.thr?kv('THR / bulan',rp(e.thr)):''}<div class="k"><div class="l">No. HP / WA</div><div class="v">${e.noHp?esc(e.noHp):'<span style=\"color:var(--ink-3);font-weight:400\">—</span>'}</div></div><div class="k"><div class="l">ID Karyawan</div><div class="v tnum">#${esc(e.id)}${e._local?' <span class=\"badge-new\">BARU</span>':''}</div></div></div>
      <div style="padding:12px 18px"><div class="doc-links">
@@ -1663,6 +1703,74 @@ function viewPhoto(id){const e=DATA.find(x=>x.id==id);if(!e||!e.photo)return;clo
  d.innerHTML=`<button class="x" title="Tutup">×</button><figure><img src="${esc(big)}" alt="${esc(e.nama)}" referrerpolicy="no-referrer" onclick="event.stopPropagation()" onerror="this.onerror=null;this.src='${esc(photoURL(e.photo))}'"><figcaption>${esc(e.nama)}<span>${esc(e.jabatan||'')}${e.unit?' · '+esc(e.unit):''}</span></figcaption></figure>`;
  document.body.appendChild(d);}
 function closePhoto(){const p=document.getElementById('photoLB');if(p){p.remove();return true;}return false;}
+function healthSection(e){
+ const h=healthFor(e);const dash='<span style="color:var(--ink-3);font-weight:400">—</span>';
+ const cell=(l,v,full)=>`<div class="k"${full?' style="grid-column:1/-1"':''}><div class="l">${l}</div><div class="v">${v||dash}</div></div>`;
+ if(!h){
+  const hint=(can('accounts')&&HEALTH.length)?` — <a href="#" onclick="closeModal();state.view='health';paint();return false">cocokkan di Pencocokan Kesehatan</a>`:'';
+  return `<div class="modal-sec">Data Kesehatan</div><div class="kv">${cell('Golongan Darah',esc(e.golDarah||''))}${cell('Kontak Darurat',esc(e.kontakDarurat||''))}${cell('Alergi',esc(e.alergi||''))}${cell('Riwayat Penyakit',esc(e.riwayatSakit||''))}
+   ${cell('Dokumen Kesehatan',e.linkKesehatan?`<a href="${esc(e.linkKesehatan)}" target="_blank" rel="noopener">Buka riwayat kesehatan lengkap ↗</a>`:`<span style="color:var(--ink-3);font-weight:400">Belum ada data form kesehatan${hint}</span>`,true)}</div>`;}
+ const kd=h.kd||{};const telp=String(kd.telp||'').replace(/[^\d+]/g,'');
+ const kdHtml=kd.nama?`${esc(kd.nama)}${kd.hub?` <span class="hk-sub">(${esc(kd.hub)})</span>`:''}${telp?`<br><a href="tel:${esc(telp)}">${esc(kd.telp)}</a>`:''}`:esc(e.kontakDarurat||'');
+ const ya=h.y||[];const hasAl=ya.includes(HQI.alergi),hasKel=ya.includes(HQI.keluarga);
+ const kond=ya.filter(i=>i!==HQI.alergi&&i!==HQI.keluarga).map(i=>HQ[i]).filter(Boolean);
+ const chips=kond.length?`<div class="hk-chips">${kond.slice(0,6).map(t=>`<span class="hk-chip">${esc(t)}</span>`).join('')}${kond.length>6?`<span class="hk-chip more">+${kond.length-6} lainnya</span>`:''}</div>`:`<span class="hk-chip ok">Tidak ada keluhan tercatat</span>`;
+ const bbtb=[h.tb&&h.tb+' cm',h.bb&&h.bb+' kg'].filter(Boolean).join(' / ');
+ const src=`<span class="hk-src">Form · diisi ${esc(fmtTglId(h.ts))}${hStatus(h)==='auto'?' · dicocokkan otomatis':' · dicocokkan manual'}</span>`;
+ return `<div class="modal-sec">Data Kesehatan${src}</div><div class="kv">
+   ${cell('Kontak Darurat',kdHtml)}${cell('Golongan Darah',esc(e.golDarah||''))}
+   ${cell('Alergi obat/makanan',hasAl?'<span style="color:var(--neg)">Ada</span> <span class="hk-sub">— lihat keterangan</span>':(esc(e.alergi||'')||'Tidak ada'))}${cell('Penyakit keluarga',hasKel?'<span style="color:var(--neg)">Ada</span> <span class="hk-sub">— lihat keterangan</span>':'Tidak ada')}
+   ${cell('Tinggi / Berat (form)',esc(bbtb))}${cell('Dokumen Riwayat',h.doc?`<a href="${esc(h.doc)}" target="_blank" rel="noopener">Buka dokumen ↗</a>`:(e.linkKesehatan?`<a href="${esc(e.linkKesehatan)}" target="_blank" rel="noopener">Buka ↗</a>`:''))}
+   ${cell(`Kondisi tercatat (${kond.length})`,chips,true)}
+   ${h.ket?cell('Keterangan',esc(h.ket),true):''}${e.riwayatSakit?cell('Catatan HR',esc(e.riwayatSakit),true):''}
+ </div>
+ <details class="hk-more"><summary>Lihat semua jawaban (${HQ.length})</summary><div class="hk-grid">${HQ.map((q,i)=>`<div class="hk-q${ya.includes(i)?' yes':''}"><span>${esc(q)}</span><b>${ya.includes(i)?'YA':'Tidak'}</b></div>`).join('')}</div></details>`;}
+
+/* ===== Halaman Pencocokan Kesehatan (Master Admin) ===== */
+function renderHealth(){
+ if(!HEALTH.length)return `<div class="card"><div class="empty">File <code>kesehatan.js</code> belum ada.<br>Jalankan <code>python3 db/scripts/build_kesehatan.py</code> lalu muat ulang halaman.</div></div>`;
+ const tabs=[['review','Perlu review'],['auto','Cocok otomatis'],['manual','Dicocokkan manual'],['skip','Dilewati']];
+ const cnt={review:0,auto:0,manual:0,skip:0};HEALTH.forEach(h=>cnt[hStatus(h)]++);
+ const tab=state.hTab||'review';const q=(state.hQ||'').toLowerCase().trim();
+ const byId={};DATA.forEach(e=>byId[String(e.id)]=e);const idx=healthIndex();
+ let list=HEALTH.filter(h=>hStatus(h)===tab||(state.hEdit===h.hid));
+ if(q)list=list.filter(h=>h.nama.toLowerCase().includes(q)||((byId[hEmpId(h)]||{}).nama||'').toLowerCase().includes(q));
+ const per=25,pages=Math.max(1,Math.ceil(list.length/per));state.hPage=Math.min(Math.max(1,state.hPage||1),pages);
+ const rows=list.slice((state.hPage-1)*per,state.hPage*per).map(h=>{
+  const st=hStatus(h);const cur=byId[hEmpId(h)];const edit=state.hEdit===h.hid||st==='review'||st==='skip';
+  const left=`<div><div class="nm">${esc(h.nama)}</div><div class="sm">${h.gender==='L'?'Laki-laki':h.gender==='P'?'Perempuan':'—'} · diisi ${esc(fmtTglId(h.ts))}${h.tb||h.bb?' · '+esc([h.tb&&h.tb+' cm',h.bb&&h.bb+' kg'].filter(Boolean).join(' / ')):''} · ${(h.y||[]).length} jawaban YA</div></div>`;
+  let right;
+  if(!edit&&cur){right=`<div class="hk-acts"><span class="hk-ok">${ic('check')} ${esc(cur.nama)}</span><span class="sm" style="color:var(--ink-3);font-size:11.5px">${esc(cur.unit||'')}</span>
+     <button class="btn ghost" style="padding:5px 10px;font-size:12px" onclick="openEmp('${esc(cur.id)}')">Lihat</button>
+     <button class="btn ghost" style="padding:5px 10px;font-size:12px" onclick="state.hEdit='${h.hid}';paint()">Ubah</button>
+     <button class="btn ghost" style="padding:5px 10px;font-size:12px" onclick="hSet('${h.hid}','skip')">Batalkan</button></div>`;}
+  else{
+   const cands=(h.cands||[]).map(c=>{const e=byId[c.id];if(!e)return '';const taken=idx[c.id]&&idx[c.id].hid!==h.hid;
+     return `<button class="hk-cand" onclick="hSet('${h.hid}','${esc(c.id)}')">${esc(e.nama)} <span class="hk-sub">· ${esc(e.unit||'')}</span><span class="pc">${Math.round(c.s*100)}%</span>${taken?'<span class="hk-tk">sudah punya data form lain</span>':''}</button>`;}).join('');
+   right=`<div class="hk-acts">${cands||'<span class="hk-sub" style="font-size:12px">Tidak ada kandidat mirip</span>'}
+     <input class="hk-pick" list="hkEmpList" placeholder="Cari SDM lain…" onchange="hPick('${h.hid}',this.value)">
+     ${st!=='skip'?`<button class="btn ghost" style="padding:5px 10px;font-size:12px" onclick="hSet('${h.hid}','skip')">Lewati</button>`:`<button class="btn ghost" style="padding:5px 10px;font-size:12px" onclick="hSet('${h.hid}','')">Kembalikan</button>`}
+     ${state.hEdit===h.hid?`<button class="btn ghost" style="padding:5px 10px;font-size:12px" onclick="state.hEdit=null;paint()">Batal</button>`:''}</div>`;}
+  return `<div class="hk-row">${left}${right}</div>`;}).join('');
+ return `<div class="card" style="padding:12px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+   <div class="seg">${tabs.map(([k,l])=>`<button class="${tab===k?'on':''}" onclick="state.hTab='${k}';state.hPage=1;state.hEdit=null;paint()">${l} (${cnt[k]})</button>`).join('')}</div>
+   <input id="hkSearch" type="search" placeholder="Cari nama…" value="${esc(state.hQ||'')}" style="flex:1;min-width:180px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12.5px;background:var(--surface);color:var(--ink)" onkeydown="if(event.key==='Enter'){state.hQ=this.value;state.hPage=1;paint()}">
+   <button class="btn ghost" style="padding:7px 11px;font-size:12px" onclick="hExport()">Ekspor hasil</button>
+   <label class="btn ghost" style="padding:7px 11px;font-size:12px;cursor:pointer">Impor hasil<input type="file" accept=".json" hidden onchange="hImport(this.files[0])"></label>
+ </div>
+ <div class="card"><div style="padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--ink-3)">${HEALTH.length} respons form kesehatan (terbaru per nama) · ${Object.keys(idx).length} karyawan sudah punya data kesehatan. Hasil manual tersimpan di browser ini — pakai Ekspor/Impor untuk memindahkan.</div>
+   ${rows||'<div class="empty">Tidak ada data di tab ini.</div>'}
+   ${pages>1?`<div style="display:flex;gap:8px;justify-content:center;align-items:center;padding:12px;font-size:12px"><button class="btn ghost" style="padding:5px 10px" ${state.hPage<=1?'disabled':''} onclick="state.hPage--;paint()">‹</button>Hal ${state.hPage} / ${pages}<button class="btn ghost" style="padding:5px 10px" ${state.hPage>=pages?'disabled':''} onclick="state.hPage++;paint()">›</button></div>`:''}
+ </div>
+ <datalist id="hkEmpList">${DATA.map(e=>`<option value="${esc(e.nama)} — ${esc(e.unit||'')} #${esc(e.id)}">`).join('')}</datalist>`;}
+function hSet(hid,v){const h=HEALTH.find(x=>x.hid===hid);if(!h)return;
+ // 'Batalkan' pada hasil otomatis = lewati; mengosongkan = kembali ke saran otomatis
+ setHM(hid,v);state.hEdit=null;toast(v==='skip'?'Dilewati':v?'✓ Dicocokkan':'Dikembalikan');paint();}
+function hPick(hid,val){const m=String(val||'').match(/#([^#\s]+)\s*$/);if(!m||!DATA.find(e=>String(e.id)===m[1])){toast('Pilih nama dari daftar',true);return;}hSet(hid,m[1]);}
+function hExport(){const blob=new Blob([JSON.stringify({type:'sdm-health-match',at:new Date().toISOString(),match:HMATCH},null,1)],{type:'application/json'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pencocokan-kesehatan.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+function hImport(file){if(!file)return;file.text().then(t=>{const j=JSON.parse(t);if(!j||j.type!=='sdm-health-match'||typeof j.match!=='object')throw new Error('Format file tidak dikenal');
+ HMATCH=Object.assign(HMATCH,j.match);saveHM();_hIdx=null;toast('✓ '+Object.keys(j.match).length+' pencocokan diimpor');paint();}).catch(e=>toast('⚠ '+e.message,true));}
 function closeModal(){closePhoto();const m=document.getElementById('modalRoot');if(m)m.remove();document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!closePhoto())closeModal();}});
 
@@ -1674,7 +1782,7 @@ function buildNav(){let nav;
    const op=[];if(can('attendance'))op.push(['attendance','clock','Presensi']);if(can('leave.view'))op.push(['leave','calendar','Cuti & Izin']);if(can('payroll'))op.push(['payroll','wallet','Slip Gaji']);if(can('ticketing.view'))op.push(['ticketing','ticket','Ticketing']);
    const rec=[];if(can('recruitment.view'))rec.push(['recruitment','userplus','Rekrutmen']);
    const apps=[];if(can('apps.email'))apps.push(['email','mail','Email']);if(can('apps.chat'))apps.push(['chat','chat','Diskusi']);if(can('apps.calendar'))apps.push(['calendar','calendar','Calendar']);
-   const sys=[];if(can('accounts'))sys.push(['accounts','lock','Manajemen Akun']);
+   const sys=[];if(can('accounts'))sys.push(['accounts','lock','Manajemen Akun']);if(can('accounts'))sys.push(['health','heart','Pencocokan Kesehatan']);
    nav=[];if(utama.length)nav.push(['Utama',utama]);if(op.length)nav.push(['Operasional',op]);if(rec.length)nav.push(['Rekrutmen',rec]);if(apps.length)nav.push(['Apps',apps]);nav.push(['Akun',[['profile','user','Profil Saya']]]);if(sys.length)nav.push(['Sistem',sys]);
  }
  const foot=SESSION?`<div style="margin-top:10px;padding:10px 12px;border-top:1px solid var(--line)"><div style="font-size:11px;color:var(--ink-3)">Masuk sebagai</div><div style="font-size:12.5px;font-weight:700;margin:2px 0">${esc((SESSION.nama||'').split(',')[0])}</div><div style="font-size:11px;color:var(--ink-3);margin-bottom:8px">${roleLabelFull(SESSION.role)}</div><button class="btn ghost" style="width:100%;justify-content:center;padding:8px;font-size:12px" onclick="logout()">${ic('lock')} Keluar</button></div>`:'';
@@ -1698,7 +1806,7 @@ function paint(){if(!SESSION)return; // belum login, jangan render app
  if(RECNET){RECNET.stop=true;try{window.removeEventListener('mousemove',RECNET.mm);window.removeEventListener('mouseup',RECNET.mu);}catch(e){}RECNET=null;}
  // guard akses per role
  if(SESSION&&SESSION.role==='karyawan'&&state.view!=='me'&&state.view!=='profile')state.view='me';
- const need={dashboard:'dashboard',analytics:'analytics',network:'network',employees:'employees.view',manage:'employees.edit',attendance:'attendance',leave:'leave.view',payroll:'payroll',ticketing:'ticketing.view',recruitment:'recruitment.view',email:'apps.email',chat:'apps.chat',calendar:'apps.calendar',accounts:'accounts'};
+ const need={dashboard:'dashboard',analytics:'analytics',network:'network',employees:'employees.view',manage:'employees.edit',attendance:'attendance',leave:'leave.view',payroll:'payroll',ticketing:'ticketing.view',recruitment:'recruitment.view',email:'apps.email',chat:'apps.chat',calendar:'apps.calendar',accounts:'accounts',health:'accounts'};
  if(SESSION&&SESSION.role!=='karyawan'&&need[state.view]&&!can(need[state.view]))state.view=firstAllowedView();
  if(!VIEWS[state.view])state.view=firstAllowedView();
  const v=VIEWS[state.view];document.getElementById('content').innerHTML=v.render();

@@ -33,3 +33,7 @@ z_info/3. REV/9.1. NAMA ATASAN.pdf
 # berisi NIK/HP/alamat karyawan nyata
 db/scripts/biodata_template.csv
 db/seeds/aw3_pilot.sql
+
+# data kesehatan (PII) — hasil db/scripts/build_kesehatan.py & sumber xlsx form
+sdm-v31/kesehatan.js
+2. troubleshooting/*.xlsx

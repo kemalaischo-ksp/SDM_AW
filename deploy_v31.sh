@@ -25,6 +25,11 @@ if [ ! -f "sdm-v31/data.js" ] || [ ! -f "sdm-v31/recruit.js" ]; then
     scp '5. updatev3.1_SDM-ALWILDAN-deploy/data.js'    ubuntu@IP:~/hr30/sdm-v31/
     scp '5. updatev3.1_SDM-ALWILDAN-deploy/recruit.js' ubuntu@IP:~/hr30/sdm-v31/"
 fi
+# data kesehatan opsional (hasil db/scripts/build_kesehatan.py di laptop)
+if [ ! -f "sdm-v31/kesehatan.js" ]; then
+  LOG "info: sdm-v31/kesehatan.js belum ada — Data Kesehatan tampil kosong.
+  Kirim dari laptop: scp sdm-v31/kesehatan.js ubuntu@IP:~/hr30/sdm-v31/"
+fi
 
 # 3) env produksi
 if [ ! -f ".env" ]; then
