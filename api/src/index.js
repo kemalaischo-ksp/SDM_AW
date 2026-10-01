@@ -7,6 +7,7 @@
 import { Hono } from "hono";
 import { posix } from "node:path";
 import { getUserBySession, cookieName } from "./sessions.js";
+import { effPerms } from "./rbac.js";
 import { authRoutes } from "./routes/auth.js";
 import { employeesRoutes } from "./routes/employees.js";
 import { attendanceRoutes } from "./routes/attendance.js";
@@ -95,19 +96,26 @@ export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
   app.get("/api/health", (c) => c.json({ ok: true, service: "hr30-v31", time: new Date().toISOString() }));
 
   // ===== data SDM (PII) — hanya untuk sesi yang sudah login =====
-  // data.js (NIK, alamat, gaji, rekening), recruit.js, kesehatan.js tidak boleh publik.
-  const PII_FILES = new Set(["/data.js", "/recruit.js", "/kesehatan.js"]);
+  // data.js (NIK, alamat, gaji, rekening), recruit.js, kesehatan.js tidak boleh publik,
+  // dan hanya untuk pengguna dengan izin terkait (preset: master & kadiv_hr; karyawan tidak).
+  const PII_FILES = new Map([
+    ["/data.js", "employees.view"],
+    ["/kesehatan.js", "employees.view"],
+    ["/recruit.js", "recruitment.view"],
+  ]);
   app.use("*", async (c, next) => {
     // normalisasi spt adapter aset (decode %xx, //, ../) agar tidak bisa dilewati
     let p = c.req.path;
     try { p = decodeURIComponent(new URL(c.req.url).pathname); } catch { return c.text("Bad request", 400); }
-    if (!PII_FILES.has(posix.normalize(p))) return next();
-    if (!c.get("user")) {
-      return c.text("/* 401: login diperlukan */", 401, {
-        "content-type": "text/javascript; charset=utf-8",
-        "cache-control": "no-store",
-      });
-    }
+    const perm = PII_FILES.get(posix.normalize(p));
+    if (!perm) return next();
+    const user = c.get("user");
+    const deny = (status, msg) => c.text(`/* ${status}: ${msg} */`, status, {
+      "content-type": "text/javascript; charset=utf-8",
+      "cache-control": "no-store",
+    });
+    if (!user) return deny(401, "login diperlukan");
+    if (!(await effPerms(pool, user)).has(perm)) return deny(403, "akses ditolak");
     const res = await c.env.ASSETS.fetch(c.req.raw);
     const headers = new Headers(res.headers);
     headers.set("cache-control", "private, no-store");
