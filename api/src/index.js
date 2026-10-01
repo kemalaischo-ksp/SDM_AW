@@ -5,6 +5,7 @@
 // anti-CSRF (Origin check), header keamanan, lockout brute-force, rate-limit.
 // ============================================================
 import { Hono } from "hono";
+import { posix } from "node:path";
 import { getUserBySession, cookieName } from "./sessions.js";
 import { authRoutes } from "./routes/auth.js";
 import { employeesRoutes } from "./routes/employees.js";
@@ -75,6 +76,26 @@ export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
   app.route("/", chatRoutes(pool));
 
   app.get("/api/health", (c) => c.json({ ok: true, service: "hr30-v31", time: new Date().toISOString() }));
+
+  // ===== data SDM (PII) — hanya untuk sesi yang sudah login =====
+  // data.js (NIK, alamat, gaji, rekening), recruit.js, kesehatan.js tidak boleh publik.
+  const PII_FILES = new Set(["/data.js", "/recruit.js", "/kesehatan.js"]);
+  app.use("*", async (c, next) => {
+    // normalisasi spt adapter aset (decode %xx, //, ../) agar tidak bisa dilewati
+    let p = c.req.path;
+    try { p = decodeURIComponent(new URL(c.req.url).pathname); } catch { return c.text("Bad request", 400); }
+    if (!PII_FILES.has(posix.normalize(p))) return next();
+    if (!c.get("user")) {
+      return c.text("/* 401: login diperlukan */", 401, {
+        "content-type": "text/javascript; charset=utf-8",
+        "cache-control": "no-store",
+      });
+    }
+    const res = await c.env.ASSETS.fetch(c.req.raw);
+    const headers = new Headers(res.headers);
+    headers.set("cache-control", "private, no-store");
+    return new Response(res.body, { status: res.status, headers });
+  });
 
   // ===== statik: sdm-v31 (index.html + assets), SPA fallback =====
   app.all("*", (c) => c.env.ASSETS.fetch(c.req.raw));

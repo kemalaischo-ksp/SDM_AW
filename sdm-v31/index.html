@@ -612,10 +612,27 @@ tbody tr:last-child td{border-bottom:0}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="kaldik.js"></script>
-<script src="data.js"></script>
-<script src="kesehatan.js" onerror="window.HEALTH_DATA=[]"></script>
-<script src="recruit.js"></script>
 <script>
+/* Pemuat data SDM. data.js / recruit.js / kesehatan.js berisi PII → server hanya
+   mengirimnya ke sesi yang sudah login (cookie). Urutan: cek /api/me → muat data →
+   jalankan aplikasi (#appMain). Tanpa sesi: aplikasi jalan dgn data kosong & tampil login.
+   Mode statik (file:// atau server tanpa /api): data dimuat langsung seperti dulu. */
+(function(){
+ function load(src){return new Promise(function(res){var s=document.createElement('script');s.src=src;s.onload=function(){res(true);};s.onerror=function(){res(false);};document.head.appendChild(s);});}
+ function runApp(){var s=document.createElement('script');s.textContent=document.getElementById('appMain').textContent;document.body.appendChild(s);}
+ async function boot(){
+  var need=false;
+  if(location.protocol==='http:'||location.protocol==='https:'){
+   try{var r=await fetch('/api/me',{credentials:'same-origin',cache:'no-store'});need=(r.status===401);}catch(_){}
+  }
+  window.__NEED_LOGIN=need;
+  if(!need){await load('data.js');await load('recruit.js');await load('kesehatan.js');}
+  window.EMP_DATA=window.EMP_DATA||[];window.RECRUIT_DATA=window.RECRUIT_DATA||[];window.HEALTH_DATA=window.HEALTH_DATA||[];
+  runApp();}
+ boot();
+})();
+</script>
+<script type="text/plain" id="appMain">
 /* ---------- icons ---------- */
 function ic(n){const p={
  grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -1996,6 +2013,16 @@ function setLock(o){try{sessionStorage.setItem('sdm-lock',JSON.stringify(o))}cat
 async function doLogin(ev){ev.preventDefault();const lk=lockInfo();
  if(lk.until>Date.now()){renderLogin('Terlalu banyak percobaan. Coba lagi dalam '+Math.ceil((lk.until-Date.now())/1000)+' detik.');return false;}
  const u=document.getElementById('lg_u').value.trim().toLowerCase();const p=document.getElementById('lg_p').value;
+ // Mode server: akun server yang menentukan (data SDM hanya dikirim ke sesi server).
+ if(hasBackend()){
+  try{const r=await apiPost('/api/login',{username:u,password:p});const su=(r&&r.user)||{};
+    setLock({n:0,until:0});SESSION={u:su.username||u,role:su.role,nama:su.nama,unit:su.unit,empId:su.empId};
+    try{sessionStorage.setItem(SESS_KEY,JSON.stringify(SESSION))}catch(e){}
+    if(window.__NEED_LOGIN){location.reload();return false;} // muat ulang → data diambil dgn sesi baru
+    bootApp();return false;}
+  catch(e){const n=(lk.n||0)+1;setLock({n,until:n>=5?Date.now()+60000:0});
+    renderLogin(e&&e.status===401?'Username atau kata sandi salah. ('+n+'/5)':((e&&e.message)||'Gagal masuk'));return false;}
+ }
  const accs=loadAccts();let acc=accs.find(a=>a.u===u);
  // fallback: match employee by NIP (username) or email with default password if account not yet generated
  if(!acc){const emp=DATA.find(e=>(e.nip&&e.nip.toLowerCase()===u)||slugUser(e)===u);if(emp&&p==='aw2026'){acc={u,ph:await sha256('aw2026'),role:'karyawan',nama:emp.nama,unit:emp.unit,empId:emp.id,nip:emp.nip};}}
@@ -2009,7 +2036,9 @@ async function doLogin(ev){ev.preventDefault();const lk=lockInfo();
    bootApp();return false;}
  const n=(lk.n||0)+1;setLock({n,until:n>=5?Date.now()+60000:0});
  renderLogin(n>=5?'Akun terkunci sementara 60 detik karena 5 kali gagal.':'Username atau kata sandi salah. ('+n+'/5)');return false;}
-function logout(){if(hasBackend())apiPost('/api/logout').catch(()=>{});SESSION=null;try{sessionStorage.removeItem(SESS_KEY)}catch(e){}location.hash='';const lr=document.getElementById('loginRoot');renderLogin();}
+async function logout(){SESSION=null;try{sessionStorage.removeItem(SESS_KEY)}catch(e){}location.hash='';
+ if(hasBackend()){try{await apiPost('/api/logout');}catch(_){}location.reload();return;} // buang data SDM dari memori
+ renderLogin();}
 
 function bootApp(){const lr=document.getElementById('loginRoot');if(lr)lr.remove();
  document.querySelector('.app').style.display='';document.getElementById('topbar')&&(document.getElementById('topbar').style.display='');
@@ -2966,6 +2995,7 @@ function copyOneAcct(u){if(!can('accounts')){toast('Hanya admin pusat yang dapat
 (async function(){await ensureSeedAccounts();
  try{await probeBackend();}catch(_){}
  try{const j=sessionStorage.getItem(SESS_KEY);if(j)SESSION=JSON.parse(j);}catch(e){}
+ if(window.__NEED_LOGIN){SESSION=null;try{sessionStorage.removeItem(SESS_KEY)}catch(e){}} // sesi server habis → data tidak dimuat
  if(SESSION){bootApp();}else{renderLogin();}
  // jika halaman dibuka setelah OAuth callback (?mail=connected) → segarkan status Gmail
  try{const q=new URLSearchParams(location.search);if(q.get('mail')&&hasBackend()){refreshGmailStatus();if(q.get('mail')==='connected'){toast('✓ Gmail tersambung');}else if(q.get('mail')==='oauth-err'){const w=q.get('why')||'';const map={no_secret:'GOOGLE_CLIENT_SECRET belum diisi di .env server',state_expired:'sesi login Google kedaluwarsa — ulangi',no_refresh_token:'Google tidak memberi refresh token — ulangi Sambungkan','google:access_denied':'akses ditolak (akun belum jadi Test user di consent screen?)','exchange:invalid_client':'Client ID/Secret di .env server tidak cocok','exchange:redirect_uri_mismatch':'GOOGLE_REDIRECT_URI tidak sama dengan yang terdaftar','exchange:invalid_grant':'kode OAuth kedaluwarsa/dipakai — ulangi'};toast('⚠ Gmail gagal tersambung: '+(map[w]||w||'cek Client ID/Secret & redirect URI'),true);}history.replaceState({},'',location.pathname);}}catch(_){}
