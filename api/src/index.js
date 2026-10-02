@@ -16,8 +16,8 @@ import { recruitRoutes } from "./routes/recruit.js";
 import { activityRoutes } from "./routes/activity.js";
 import { accountsRoutes } from "./routes/accounts.js";
 import { rolesRoutes } from "./routes/roles.js";
-import { mailRoutes } from "./routes/mail.js";
 import { chatRoutes } from "./routes/chat.js";
+import { calendarRoutes } from "./routes/calendar.js";
 
 export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
   const app = new Hono();
@@ -90,8 +90,8 @@ export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
   app.route("/", activityRoutes(pool));
   app.route("/", accountsRoutes(pool));
   app.route("/", rolesRoutes(pool));
-  app.route("/", mailRoutes(pool, { secure }));
   app.route("/", chatRoutes(pool));
+  app.route("/", calendarRoutes(pool));
 
   app.get("/api/health", (c) => c.json({ ok: true, service: "hr30-v31", time: new Date().toISOString() }));
 

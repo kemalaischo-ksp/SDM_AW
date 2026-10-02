@@ -7,6 +7,11 @@ import { logActivity, logAudit } from "../audit.js";
 
 const now = () => Date.now();
 
+// Anti eskalasi hak akses: hanya Master yang boleh membuat/menaikkan akun ke Master
+// atau mengutak-atik akun Master; non-master hanya boleh memberi izin yang ia miliki sendiri.
+const isMaster = (u) => u && u.role === "master";
+const ESKALASI = { error: "Hanya Master Admin yang boleh mengelola akun berperan Master." };
+
 async function requireAccountPerm(user, perms, c) {
   if (user.role !== "master" && !perms.has("accounts")) {
     return c.json({ error: "Akses ditolak." }, 403);
@@ -45,6 +50,7 @@ export function accountsRoutes(pool) {
         return c.json({ error: "Username sudah dipakai." }, 400);
       }
       const role = ["master", "kadiv_hr", "staff_hr", "karyawan"].includes(body.role) ? body.role : "staff_hr";
+      if (role === "master" && !isMaster(user)) return c.json(ESKALASI, 403);
       const unit = String(body.unit || "Holding");
       const pw = randPassword(12);
       const ph = await hashPassword(pw);
@@ -57,6 +63,7 @@ export function accountsRoutes(pool) {
       if (Array.isArray(body.perms)) {
         for (const key of body.perms) {
           if (!PERM_KEYS.includes(key)) continue;
+          if (!isMaster(user) && !perms.has(key)) continue; // tak bisa memberi izin yg tak dimiliki
           await pool.query("INSERT INTO user_perms (user_id, perm_key, allowed) VALUES ($1,$2,1)", [uid, key]);
         }
       }
@@ -100,12 +107,21 @@ export function accountsRoutes(pool) {
       unitFilter ? [unitFilter] : []
     )).rows;
     const creds = [];
+    // hash PBKDF2 600rb iterasi ±60 ms/akun → dihitung paralel per 8 agar massal tetap cepat
+    const BATCH = 8;
+    const plan = [];
     for (const emp of target) {
       let nip = emp.nip;
       if (!nip) { nip = await genNIP(pool, emp); await pool.query("UPDATE employees SET nip=$2 WHERE id=$1", [emp.id, nip]); }
       if ((await pool.query("SELECT 1 FROM users WHERE username=$1", [nip])).rowCount) continue;
-      const pw = randPassword(12);
-      const ph = await hashPassword(pw);
+      plan.push({ emp, nip, pw: randPassword(12) });
+    }
+    for (let i = 0; i < plan.length; i += BATCH) {
+      const chunk = plan.slice(i, i + BATCH);
+      const hashes = await Promise.all(chunk.map((x) => hashPassword(x.pw)));
+      chunk.forEach((x, j) => { x.ph = hashes[j]; });
+    }
+    for (const { emp, nip, pw, ph } of plan) {
       await pool.query(
         `INSERT INTO users (id, username, password_hash, role, nama, unit, emp_id, nip, must_change, aktif, created_at, updated_at)
          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,1,1,$9,$9)`,
@@ -132,6 +148,8 @@ export function accountsRoutes(pool) {
     if (deny) return deny;
     const { user, username } = await findUser(c);
     if (!user) return c.json({ error: "Akun tidak ditemukan." }, 404);
+    if (user.role === "master" && !isMaster(me)) return c.json(ESKALASI, 403);
+    if (user.id === me.id) return c.json({ error: "Ganti sandi akun sendiri lewat Profil Saya." }, 400);
     const pw = randPassword(12);
     const ph = await hashPassword(pw);
     await pool.query("UPDATE users SET password_hash=$2, must_change=1, failed_attempts=0, locked_until=NULL, updated_at=$3 WHERE id=$1", [user.id, ph, now()]);
@@ -168,6 +186,7 @@ export function accountsRoutes(pool) {
     const body = await c.req.json().catch(() => ({}));
     const role = ["master", "kadiv_hr", "staff_hr", "karyawan"].includes(body.role) ? body.role : null;
     if (!role) return c.json({ error: "Peran tidak valid." }, 400);
+    if (role === "master" && !isMaster(me)) return c.json(ESKALASI, 403);
     if (user.role === "master" || me.id === user.id) return c.json({ error: "Peran akun utama tidak bisa diubah." }, 400);
     await pool.query("UPDATE users SET role=$2, updated_at=$3 WHERE id=$1", [user.id, role, now()]);
     await logAudit(pool, { userId: me.id, username: me.username, aksi: "set_role", rincian: username + " → " + role });
@@ -188,6 +207,7 @@ export function accountsRoutes(pool) {
     const key = String(body.perm_key || "");
     if (!PERM_KEYS.includes(key)) return c.json({ error: "Izin tidak dikenal." }, 400);
     const allowed = body.allowed ? 1 : 0;
+    if (allowed && !isMaster(me) && !perms.has(key)) return c.json({ error: "Tidak bisa memberi izin yang tidak Anda miliki." }, 403);
     await pool.query(
       `INSERT INTO user_perms (user_id, perm_key, allowed) VALUES ($1,$2,$3)
        ON CONFLICT (user_id, perm_key) DO UPDATE SET allowed=$3`,

@@ -1,4 +1,7 @@
-// Sesi server-side — cookie httpOnly, token acak tersimpan di DB.
+// Sesi server-side — cookie httpOnly. Token mentah HANYA ada di cookie browser;
+// DB menyimpan SHA-256 dari token, jadi bocornya DB tidak bisa dipakai membajak sesi.
+import { sha256Hex } from "./pbkdf2.js";
+
 export const SESSION_HOURS = 8;
 
 const b64url = (bytes) =>
@@ -24,19 +27,19 @@ export async function createSession(pool, user, ip, ua) {
   const expires = Date.now() + SESSION_HOURS * 3600 * 1000;
   await pool.query(
     "INSERT INTO sessions (id, user_id, token, expires_at, created_at, ip, ua) VALUES ($1,$2,$3,$4,$5,$6,$7)",
-    [newToken(), user.id, token, expires, Date.now(), ip || null, ua || null]
+    [newToken(), user.id, await sha256Hex(token), expires, Date.now(), ip || null, ua || null]
   );
   return { token, expires };
 }
 
 export async function destroySession(pool, token) {
   if (!token) return;
-  await pool.query("DELETE FROM sessions WHERE token=$1", [token]);
+  await pool.query("DELETE FROM sessions WHERE token=$1", [await sha256Hex(token)]);
 }
 
 export async function destroyUserSessions(pool, userId, exceptToken = null) {
   if (exceptToken) {
-    await pool.query("DELETE FROM sessions WHERE user_id=$1 AND token<>$2", [userId, exceptToken]);
+    await pool.query("DELETE FROM sessions WHERE user_id=$1 AND token<>$2", [userId, await sha256Hex(exceptToken)]);
   } else {
     await pool.query("DELETE FROM sessions WHERE user_id=$1", [userId]);
   }
@@ -62,11 +65,13 @@ export async function getUserBySession(pool, token) {
   // hapus sesi kedaluwarsa (sekali jalan)
   await pool.query("DELETE FROM sessions WHERE expires_at < $1", [now]);
   const res = await pool.query(
-    `SELECT u.*, s.token FROM sessions s
+    `SELECT u.*, s.id AS session_id FROM sessions s
        JOIN users u ON u.id = s.user_id
       WHERE s.token=$1 AND s.expires_at>$2 AND u.aktif=1`,
-    [token, now]
+    [await sha256Hex(token), now]
   );
   if (!res.rowCount) return null;
-  return userFromRow(res.rows[0]);
+  const u = userFromRow(res.rows[0]);
+  u.sessionId = res.rows[0].session_id;
+  return u;
 }

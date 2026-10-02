@@ -281,3 +281,31 @@ CREATE TABLE IF NOT EXISTS chat_messages (
   ts      BIGINT NOT NULL DEFAULT 0
 );
 CREATE INDEX IF NOT EXISTS idx_chat_room_ts ON chat_messages(room, ts);
+
+-- Chat interaktif: pengirim (username), balasan, edit, hapus (soft), reaksi.
+ALTER TABLE chat_messages ADD COLUMN IF NOT EXISTS by_username TEXT;
+ALTER TABLE chat_messages ADD COLUMN IF NOT EXISTS reply_to    BIGINT;
+ALTER TABLE chat_messages ADD COLUMN IF NOT EXISTS edited_at   BIGINT;
+ALTER TABLE chat_messages ADD COLUMN IF NOT EXISTS deleted     INTEGER NOT NULL DEFAULT 0;
+CREATE TABLE IF NOT EXISTS chat_reactions (
+  msg_id   BIGINT NOT NULL REFERENCES chat_messages(id) ON DELETE CASCADE,
+  username TEXT   NOT NULL,
+  emoji    TEXT   NOT NULL,
+  PRIMARY KEY (msg_id, username, emoji)
+);
+
+-- ============ CALENDAR tim HR (server-sync, gantikan agenda localStorage) ============
+CREATE TABLE IF NOT EXISTS calendar_events (
+  id          TEXT PRIMARY KEY,
+  tgl         TEXT NOT NULL,              -- YYYY-MM-DD (mulai)
+  tgl_akhir   TEXT,                       -- YYYY-MM-DD (opsional, multi-hari)
+  jam         TEXT,                       -- HH:MM (opsional)
+  judul       TEXT NOT NULL,
+  kategori    TEXT NOT NULL DEFAULT 'agenda',
+  catatan     TEXT,
+  created_by  TEXT,                       -- username
+  by_nama     TEXT,
+  created_at  BIGINT NOT NULL DEFAULT 0,
+  updated_at  BIGINT NOT NULL DEFAULT 0
+);
+CREATE INDEX IF NOT EXISTS idx_cal_tgl ON calendar_events(tgl);

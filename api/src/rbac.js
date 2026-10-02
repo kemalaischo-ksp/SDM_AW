@@ -6,7 +6,7 @@ export const PERM_KEYS = [
   "attendance", "leave.view", "leave.approve",
   "payroll", "ticketing.view", "ticketing.respond",
   "recruitment.view", "recruitment.edit", "recruitment.interview", "recruitment.approve",
-  "apps.email", "apps.chat", "apps.calendar",
+  "apps.chat", "apps.calendar",
   "accounts",
 ];
 
@@ -26,7 +26,6 @@ export const PERM_CATALOG = [
   { key: "recruitment.edit", label: "Edit Rekrutmen", desc: "Kelola kandidat, set gaji, ajukan aktivasi" },
   { key: "recruitment.interview", label: "Update Interview Akhir", desc: "Tetapkan hasil interview: Lanjut / Hold (nego) / Batal" },
   { key: "recruitment.approve", label: "Approve Aktivasi (Master)", desc: "Menyetujui aktivasi kandidat jadi karyawan" },
-  { key: "apps.email", label: "Apps · Email (Gmail)", desc: "Inbox Gmail Holding & aktivasi pengajuan via email (khusus Admin Pusat)" },
   { key: "apps.chat", label: "Apps · Diskusi/Chat", desc: "Chat internal Admin ⇄ Kadiv HR ⇄ Staff HR" },
   { key: "apps.calendar", label: "Apps · Calendar", desc: "Kalender proses rekrutmen & kaldik AL-WILDAN" },
   { key: "accounts", label: "Manajemen Akun & Hak Akses", desc: "Buat akun, atur role & izin berlapis" },

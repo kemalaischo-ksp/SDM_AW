@@ -3,7 +3,11 @@ const enc = (s) => new TextEncoder().encode(s);
 const b64ToBytes = (b64) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
 const bytesToB64 = (bytes) => btoa(String.fromCharCode(...bytes));
 
-export async function hashPassword(password, iterations = 50000) {
+// OWASP 2023: PBKDF2-HMAC-SHA256 minimal 600.000 iterasi. Hash lama (50.000)
+// tetap bisa diverifikasi & otomatis di-upgrade saat login berhasil (needsRehash).
+export const PBKDF2_ITERATIONS = 600000;
+
+export async function hashPassword(password, iterations = PBKDF2_ITERATIONS) {
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const km = await crypto.subtle.importKey("raw", enc(password), "PBKDF2", false, ["deriveBits"]);
   const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", salt, iterations, hash: "SHA-256" }, km, 256);
@@ -30,13 +34,36 @@ export async function verifyPassword(password, stored) {
   }
 }
 
+export function needsRehash(stored) {
+  if (typeof stored !== "string") return true;
+  const [scheme, iterStr] = stored.split("$");
+  return scheme !== "pbkdf2" || !(parseInt(iterStr, 10) >= PBKDF2_ITERATIONS);
+}
+
+// Hash tiruan: verifikasi username yang tidak ada tetap memakan waktu yang sama
+// (cegah enumerasi username lewat selisih waktu respons).
+let _dummyHash = null;
+export async function dummyVerify(password) {
+  if (!_dummyHash) _dummyHash = await hashPassword("dummy-password-0000");
+  await verifyPassword(password, _dummyHash);
+  return false;
+}
+
+// SHA-256 hex — dipakai utk menyimpan token sesi (DB hanya menyimpan hash-nya).
+export async function sha256Hex(s) {
+  const d = await crypto.subtle.digest("SHA-256", enc(String(s)));
+  return [...new Uint8Array(d)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 // Kebijakan sandi: min 12, wajib huruf+angka, bukan sandi umum.
 export function passwordPolicyError(pw) {
   if (!pw || pw.length < 12) return "Sandi minimal 12 karakter.";
+  if (pw.length > 128) return "Sandi maksimal 128 karakter.";
   if (!/[a-zA-Z]/.test(pw) || !/\d/.test(pw)) return "Sandi wajib memuat huruf dan angka.";
   const common = [
-    "password", "alwildan2026", "123456789", "qwerty", "alwildan",
+    "password", "alwildan2026", "123456789", "qwerty", "alwildan", "12345678", "abcdefgh", "sandi",
   ];
+  if (/^(.)\1+$/.test(pw)) return "Sandi tidak boleh satu karakter berulang.";
   if (common.some((c) => pw.toLowerCase().includes(c))) return "Sandi terlalu umum.";
   return null;
 }

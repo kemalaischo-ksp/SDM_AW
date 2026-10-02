@@ -27,7 +27,7 @@ export const PERM_KEYS = [
   "recruitment.view",
   "recruitment.edit",
   "recruitment.interview",
-  "apps.email", "apps.chat", "apps.calendar",
+  "apps.chat", "apps.calendar",
   "recruitment.approve",
   "accounts",
 ];

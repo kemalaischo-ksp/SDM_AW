@@ -588,6 +588,142 @@ tbody tr:last-child td{border-bottom:0}
   @page{margin:12mm}
 }
 #printArea{display:none}
+/* ========== PROFIL & KEAMANAN ========== */
+.hh{font-size:11px;color:var(--ink-3)}
+.must-change{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;margin-bottom:14px;border-radius:11px;background:var(--warn-bg);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);font-size:12.5px}
+.must-change svg{width:18px;height:18px;flex:none;margin-top:1px}
+.pw-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:8px 0 4px}
+.pw-bar i{height:5px;border-radius:3px;background:var(--line);transition:background .2s}
+.pw-rules{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;font-size:11.5px;color:var(--ink-3)}
+.pw-rules li{display:flex;gap:6px;align-items:center}
+.pw-rules li::before{content:'○';font-weight:800;width:12px;text-align:center}
+.pw-rules li.ok{color:var(--pos)}.pw-rules li.ok::before{content:'✓'}
+.pw-rules li em{font-style:normal;opacity:.7}
+.caps{display:block;color:var(--warn);margin-top:3px}.caps[hidden]{display:none}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.sec-facts{display:grid;grid-template-columns:1fr;gap:6px;padding:10px 12px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);font-size:12px}
+.sec-facts>div{display:flex;justify-content:space-between;gap:10px}.sec-facts .l{color:var(--ink-3)}.sec-facts b{text-align:right}
+.sec-h3{font-size:11px;font-weight:800;letter-spacing:.4px;color:var(--ink-3);text-transform:uppercase;margin:14px 0 7px}
+.sess-list{display:flex;flex-direction:column;gap:6px}
+.sess{display:flex;gap:10px;align-items:center;padding:9px 11px;border:1px solid var(--line);border-radius:10px}
+.sess.cur{border-color:color-mix(in srgb,var(--pos) 45%,transparent);background:color-mix(in srgb,var(--pos) 5%,transparent)}
+.sess-ic{width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;color:var(--ink-2);flex:none}.sess-ic svg{width:15px;height:15px}
+.sess-t{font-size:12.5px;font-weight:700}.sess-s{font-size:11px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sec-log{display:flex;flex-direction:column;gap:2px;max-height:260px;overflow-y:auto}
+.sl{display:flex;gap:9px;align-items:center;padding:6px 2px}
+.sl-ic{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex:none}
+.sl-t{font-size:12px;font-weight:600}.sl-r{font-weight:400;color:var(--ink-3)}.sl-s{font-size:10.5px;color:var(--ink-3)}
+.perm-chips{display:flex;flex-wrap:wrap;gap:6px}
+.perm-chips span{font-size:11.5px;padding:5px 10px;border-radius:20px;background:var(--surface-2);border:1px solid var(--line)}.perm-chips b{color:var(--pos)}
+.acct-sec{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--pos) 6%,transparent);border:1px solid color-mix(in srgb,var(--pos) 25%,transparent);font-size:12px;color:var(--ink-2);margin-bottom:14px}
+.acct-sec svg{width:17px;height:17px;color:var(--pos);flex:none;margin-top:1px}
+/* ========== DISKUSI ========== */
+.nav-badge{margin-left:auto;background:var(--neg);color:#fff;font-size:10px;font-weight:800;border-radius:10px;padding:1px 6px;min-width:18px;text-align:center}
+.chat-room{position:relative}
+.cr-main{flex:1;min-width:0}
+.cr-top{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.cr-tm{font-size:10px;color:var(--ink-3);flex:none}
+.chat-room .cr-sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr-badge{background:var(--neg);color:#fff;font-size:10px;font-weight:800;border-radius:10px;padding:2px 7px;flex:none}
+.chat-tips{margin-top:14px;padding:10px;border-radius:10px;border:1px dashed var(--line);font-size:10.5px;color:var(--ink-3);display:flex;flex-direction:column;gap:4px}
+kbd{font-family:inherit;font-size:10px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 4px;background:var(--surface)}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ink-3);margin-right:5px;vertical-align:1px}
+.live-dot.on{background:var(--pos);box-shadow:0 0 0 0 color-mix(in srgb,var(--pos) 60%,transparent);animation:livepulse 2s infinite}
+@keyframes livepulse{70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.chat-search,.cal-search{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:5px 11px;background:var(--surface);color:var(--ink-3)}
+.chat-search svg,.cal-search svg{width:14px;height:14px}
+.chat-search input,.cal-search input{border:0;outline:0;background:transparent;font-size:12.5px;width:140px;color:var(--ink);font-family:inherit}
+.chat-body-wrap{position:relative;flex:1;display:flex;flex-direction:column;min-height:0}
+.chat-body{gap:4px}
+.cb-row{max-width:78%;margin-top:8px;position:relative}
+.cb-row.grp{margin-top:0}
+.cb-row.flash .cb-bub{animation:cbflash 1.4s}
+@keyframes cbflash{0%,60%{box-shadow:0 0 0 3px color-mix(in srgb,var(--warn) 60%,transparent)}}
+.cb-wrap{display:flex;flex-direction:column;min-width:0;position:relative}
+.cb-row.me .cb-wrap{align-items:flex-end}
+.cb-bub{white-space:normal;word-break:break-word;min-width:0;max-width:100%;box-sizing:border-box;overflow:hidden}
+.cb-bub.del{background:transparent;border-style:dashed}.cb-bub.del .cb-t{color:var(--ink-3);font-style:italic;font-size:12px}
+.cb-row.me .cb-bub.del{background:transparent;border-color:var(--line)}.cb-row.me .cb-bub.del .cb-t,.cb-row.me .cb-bub.del .cb-ts{color:var(--ink-3)}
+.cb-rl{font-weight:500;opacity:.65;font-size:10px;margin-left:3px}
+.cb-t a{color:inherit;text-decoration:underline}
+.cb-t mark{background:#fde68a;color:#111;border-radius:3px;padding:0 1px}
+.cb-mention{font-weight:700;background:color-mix(in srgb,var(--info) 14%,transparent);border-radius:4px;padding:0 3px}
+.cb-row.me .cb-mention{background:rgba(255,255,255,.22)}
+.cb-quote{border-left:3px solid currentColor;padding:4px 8px;margin:2px 0 5px;border-radius:5px;background:rgba(0,0,0,.05);font-size:11.5px;cursor:pointer;display:flex;flex-direction:column;opacity:.9;max-width:min(320px,100%);min-width:0;box-sizing:border-box}
+.cb-quote span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cb-row.me .cb-quote{background:rgba(255,255,255,.16);color:#fff}
+.cb-rxs{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+.cb-rx{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:1px 7px;font-size:12px;cursor:pointer;color:var(--ink-2)}
+.cb-rx b{font-size:10.5px}.cb-rx.on{border-color:var(--info);background:var(--info-bg);color:var(--info)}
+.cb-act{position:absolute;top:4px;left:100%;margin-left:6px;display:none;gap:1px;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:2px;box-shadow:0 4px 14px rgba(15,23,42,.1);z-index:2}
+.cb-row.me .cb-act{left:auto;right:100%;margin:0 6px 0 0}
+.cb-row:hover .cb-act,.cb-act:focus-within{display:flex}
+.cb-act button{border:0;background:transparent;width:26px;height:24px;border-radius:6px;cursor:pointer;color:var(--ink-2);font-size:13px;display:flex;align-items:center;justify-content:center}
+.cb-act button:hover{background:var(--surface-2)}.cb-act svg{width:13px;height:13px}
+.cb-day{text-align:center;margin:12px 0 4px;font-size:10.5px;font-weight:700;color:var(--ink-3)}
+.cb-day span{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px 10px}
+.chat-picker{position:absolute;z-index:9999;display:flex;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:4px;box-shadow:0 8px 24px rgba(15,23,42,.16)}
+.chat-picker button{border:0;background:transparent;font-size:19px;width:34px;height:34px;border-radius:50%;cursor:pointer;transition:transform .12s}
+.chat-picker button:hover{transform:scale(1.25);background:var(--surface-2)}
+.chat-new{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);border:0;background:var(--info);color:#fff;font-size:12px;font-weight:700;border-radius:16px;padding:6px 14px;cursor:pointer;box-shadow:0 4px 14px rgba(15,23,42,.2)}
+.chat-ctx{display:flex;gap:10px;align-items:center;padding:8px 16px;border-top:1px solid var(--line);background:var(--surface-2);font-size:12px;color:var(--info)}
+.chat-ctx svg{width:15px;height:15px}
+.chat-ctx>div{flex:1;min-width:0;display:flex;flex-direction:column}.chat-ctx span{color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-ctx button{border:0;background:transparent;font-size:18px;cursor:pointer;color:var(--ink-3)}
+.chat-input{align-items:flex-end}
+.chat-input textarea{flex:1;border:1px solid var(--line);border-radius:20px;padding:10px 16px;font-size:13px;color:var(--ink);background:var(--surface);resize:none;font-family:inherit;line-height:1.45;max-height:140px;outline:0;overflow-y:auto;scrollbar-width:none}
+.chat-top .hint{font-size:11px;color:var(--ink-3)}
+.chat-input textarea:focus{border-color:var(--info)}
+.chat-empty{margin:auto;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink-3);font-size:12.5px;text-align:center}
+.chat-empty b{color:var(--ink);font-size:14px}
+.chat-starters{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.chat-starters button{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--ink-2);font-family:inherit}
+.chat-starters button:hover{border-color:var(--info);color:var(--info)}
+/* ========== CALENDAR ========== */
+.cal-top{flex-wrap:wrap}
+.cal-wrap{grid-template-columns:minmax(0,1fr) 320px}.cal-grid,.cal-grid-h{grid-template-columns:repeat(7,minmax(0,1fr))}.cal-cell,.cal-main{min-width:0}
+.cal-hint{font-size:11px;color:var(--ink-3);margin-top:10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer;color:var(--ink-3);font-family:inherit}
+.seg button.on{background:var(--brand);color:#fff}
+.cal-side{display:flex;flex-direction:column;gap:14px}.cal-side .cal-agenda{padding:14px 14px 10px}
+.cal-cell{cursor:pointer;transition:border-color .15s,background .15s;position:relative}
+.cal-cell:hover{border-color:color-mix(in srgb,var(--info) 50%,transparent)}
+.cal-cell.wknd{background:var(--surface-2)}
+.cal-cell.past .cal-d{opacity:.55}
+.cal-cell.dropok{border-color:var(--pos);background:color-mix(in srgb,var(--pos) 8%,transparent);box-shadow:inset 0 0 0 1px var(--pos)}
+.cal-dh{display:flex;justify-content:space-between;align-items:center}
+.cal-cell.today .cal-d{background:var(--info);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
+.cal-add{border:0;background:transparent;color:var(--ink-3);font-size:15px;line-height:1;width:20px;height:20px;border-radius:5px;cursor:pointer;opacity:0;transition:opacity .15s}
+.cal-cell:hover .cal-add{opacity:1}.cal-add:hover{background:var(--info-bg);color:var(--info)}
+.cal-ev{cursor:pointer;transition:transform .1s}
+.cal-ev:hover{transform:translateX(1px);filter:brightness(.95)}
+.cal-ev.drag{cursor:grab}.cal-ev.cont{opacity:.7;border-left-style:dashed!important}
+.cal-list{display:flex;flex-direction:column;gap:8px}
+.cal-lday{display:flex;gap:12px;padding:10px;border:1px solid var(--line);border-radius:10px}
+.cal-lday.today{border-color:var(--info);box-shadow:inset 0 0 0 1px var(--info)}
+.cal-ldate{width:46px;flex:none;text-align:center;cursor:pointer;display:flex;flex-direction:column}
+.cal-ldate b{font-size:20px;line-height:1.1}.cal-ldate span{font-size:11px;color:var(--ink-3);text-transform:capitalize}
+.cal-litems{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.cal-litem{display:flex;gap:9px;align-items:flex-start;padding:7px 9px;border-radius:8px;cursor:pointer}
+.cal-litem:hover{background:var(--surface-2)}
+.cal-litem i{width:9px;height:9px;border-radius:50%;margin-top:4px;flex:none}
+.cal-litem .t{font-size:13px;font-weight:600}.cal-litem .s{font-size:11px;color:var(--ink-3)}.cal-litem .n{font-size:11.5px;color:var(--ink-2);margin-top:2px;white-space:pre-wrap}
+.cal-litem .auto{font-size:10px;color:var(--ink-3)}
+.cd{font-size:10px;font-weight:800;padding:2px 7px;border-radius:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink-3);flex:none}
+.cd.soon{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent);background:var(--warn-bg)}
+.cd.now{color:#fff;background:var(--pos);border-color:var(--pos)}
+.cal-dayitem{display:flex;gap:9px;align-items:center;padding:9px 11px;border-radius:9px}
+.cal-kpick{display:flex;flex-wrap:wrap;gap:6px}
+.cal-kpick input{position:absolute;opacity:0;pointer-events:none}
+.cal-kpick span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:18px;padding:5px 11px;font-size:12px;cursor:pointer;color:var(--ink-2)}
+.cal-kpick span i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.cal-kpick input:checked+span{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--ink);font-weight:700}
+.cal-kpick input:focus-visible+span{outline:2px solid var(--c)}
+@media (max-width:1100px){.cal-wrap,.chat-shell{grid-template-columns:minmax(0,1fr)}.chat-main,.cal-side{min-width:0}}
+@media (max-width:700px){.chat-tips{display:none}#chatRooms{display:flex;overflow-x:auto;gap:6px;padding-bottom:2px}.chat-side-h{display:none}.chat-room{flex:0 0 auto;max-width:210px;margin:0}.chat-room .cr-sub{max-width:130px}.chat-top{flex-wrap:wrap}.chat-search{flex:1 1 100%}.chat-search input{width:100%}.chat-main{min-height:480px}.chat-body{max-height:56vh;padding:12px}.cb-act{position:static;margin:4px 0 0;display:none}.cb-row:hover .cb-act{display:flex}.cal-top .cal-search{flex:1 1 100%}.cal-grid,.cal-grid-h{gap:3px}.cal-cell{padding:3px}.cal-add{display:none}.must-change{font-size:12px}}
+@media (max-width:700px){.pw-rules{grid-template-columns:1fr}.cal-cell{min-height:64px}.cal-ev{font-size:9px}.chat-search input{width:90px}.cb-row{max-width:92%}}
+
 </style>
 
 <div class="app">
@@ -826,12 +962,11 @@ const VIEWS={
  payroll:{crumb:'Operasional',title:'Slip Gaji',sub:'Payroll & komponen gaji',render:renderPayroll},
  ticketing:{crumb:'Operasional',title:'Ticketing',sub:'Layanan & pengaduan SDM',render:renderTicketing},
  recruitment:{crumb:'Rekrutmen',title:'Panel Rekrutmen',sub:'Tracking kandidat, pantuhir, set gaji & aktivasi',render:renderRecruitment},
- email:{crumb:'Apps',title:'Email · Inbox Holding',sub:'Gmail HR & aktivasi pengajuan via email',render:renderEmail},
- chat:{crumb:'Apps',title:'Diskusi Tim HR',sub:'Chat Admin ⇄ Kadiv HR ⇄ Staff HR',render:renderChat},
- calendar:{crumb:'Apps',title:'Calendar',sub:'Proses rekrutmen & kaldik AL-WILDAN',render:renderCalendar},
+ chat:{crumb:'Apps',title:'Diskusi Tim HR',sub:'Chat Admin ⇄ Kadiv HR ⇄ Staff HR · balas, reaksi & cari pesan',render:renderChat},
+ calendar:{crumb:'Apps',title:'Calendar',sub:'Agenda tim HR, proses rekrutmen & kaldik AL-WILDAN',render:renderCalendar},
  health:{crumb:'Sistem',title:'Pencocokan Kesehatan',sub:'Cocokkan respons form kesehatan dengan data SDM',render:renderHealth},
  accounts:{crumb:'Sistem',title:'Manajemen Akun',sub:'Buat akun & atur hak akses berlapis',render:renderAccounts},
- profile:{crumb:'Akun Saya',title:'Profil Saya',sub:'Info akun & ganti kata sandi',render:renderProfile},
+ profile:{crumb:'Akun Saya',title:'Profil Saya',sub:'Kata sandi, perangkat aktif & riwayat keamanan',render:renderProfile},
  me:{crumb:'Portal Saya',title:'Portal Karyawan',sub:'Presensi, slip gaji, profil & layanan',render:renderMe},
 };
 const NAV=[['Utama',[['dashboard','grid','Dashboard HR'],['analytics','chart','Analitik SDM'],['network','share','Jaringan SDM'],['employees','users','Data Karyawan'],['manage','plus','Tambah / Update SDM']]],
@@ -1820,7 +1955,7 @@ function buildNav(){let nav;
    const utama=[];if(can('dashboard'))utama.push(['dashboard','grid','Dashboard HR']);if(can('analytics'))utama.push(['analytics','chart','Analitik SDM']);if(can('network'))utama.push(['network','share','Jaringan SDM']);if(can('employees.view'))utama.push(['employees','users','Data Karyawan']);if(can('employees.edit'))utama.push(['manage','plus','Tambah / Update SDM']);
    const op=[];if(can('attendance'))op.push(['attendance','clock','Presensi']);if(can('leave.view'))op.push(['leave','calendar','Cuti & Izin']);if(can('payroll'))op.push(['payroll','wallet','Slip Gaji']);if(can('ticketing.view'))op.push(['ticketing','ticket','Ticketing']);
    const rec=[];if(can('recruitment.view'))rec.push(['recruitment','userplus','Rekrutmen']);
-   const apps=[];if(can('apps.email'))apps.push(['email','mail','Email']);if(can('apps.chat'))apps.push(['chat','chat','Diskusi']);if(can('apps.calendar'))apps.push(['calendar','calendar','Calendar']);
+   const apps=[];if(can('apps.chat'))apps.push(['chat','chat','Diskusi']);if(can('apps.calendar'))apps.push(['calendar','calendar','Calendar']);
    const sys=[];if(can('accounts'))sys.push(['accounts','lock','Manajemen Akun']);if(can('accounts'))sys.push(['health','heart','Pencocokan Kesehatan']);
    nav=[];if(utama.length)nav.push(['Utama',utama]);if(op.length)nav.push(['Operasional',op]);if(rec.length)nav.push(['Rekrutmen',rec]);if(apps.length)nav.push(['Apps',apps]);nav.push(['Akun',[['profile','user','Profil Saya']]]);if(sys.length)nav.push(['Sistem',sys]);
  }
@@ -1845,12 +1980,12 @@ function paint(){if(!SESSION)return; // belum login, jangan render app
  if(RECNET){RECNET.stop=true;try{window.removeEventListener('mousemove',RECNET.mm);window.removeEventListener('mouseup',RECNET.mu);}catch(e){}RECNET=null;}
  // guard akses per role
  if(SESSION&&SESSION.role==='karyawan'&&state.view!=='me'&&state.view!=='profile')state.view='me';
- const need={dashboard:'dashboard',analytics:'analytics',network:'network',employees:'employees.view',manage:'employees.edit',attendance:'attendance',leave:'leave.view',payroll:'payroll',ticketing:'ticketing.view',recruitment:'recruitment.view',email:'apps.email',chat:'apps.chat',calendar:'apps.calendar',accounts:'accounts',health:'accounts'};
+ const need={dashboard:'dashboard',analytics:'analytics',network:'network',employees:'employees.view',manage:'employees.edit',attendance:'attendance',leave:'leave.view',payroll:'payroll',ticketing:'ticketing.view',recruitment:'recruitment.view',chat:'apps.chat',calendar:'apps.calendar',accounts:'accounts',health:'accounts'};
  if(SESSION&&SESSION.role!=='karyawan'&&need[state.view]&&!can(need[state.view]))state.view=firstAllowedView();
  if(!VIEWS[state.view])state.view=firstAllowedView();
  const v=VIEWS[state.view];document.getElementById('content').innerHTML=v.render();
  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
- buildTop();window.scrollTo(0,0);bindTips();}
+ buildTop();window.scrollTo(0,0);bindTips();if(typeof chatNavBadge==='function')chatNavBadge();}
 document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;state.view=b.dataset.view;toggleNav(false);paint();});
 function toggleNav(force){const sb=document.getElementById('sidebar'),sc=document.getElementById('scrim');const open=force===undefined?!sb.classList.contains('open'):force;sb.classList.toggle('open',open);sc.classList.toggle('on',open);}
 function go(v){state.view=v;paint();}
@@ -1867,7 +2002,7 @@ function collectNotif(){if(!SESSION)return [];const out=[];const role=SESSION.ro
    reqs.filter(r=>r.kind==='tiket'&&r.status==='Baru').forEach(r=>out.push({ic:'ticket',col:'var(--neg)',t:'Tiket baru: '+r.judul,s:r.nama.split(',')[0]+' · '+r.tgl,go:()=>go('ticketing')}));
  }
  if(isAdmin){
-   recMerged().filter(c=>c.aktivasi==='diajukan').forEach(c=>out.push({ic:'mail',col:'var(--warn)',t:'Email: aktivasi kandidat menunggu',s:c.nama.split(',')[0]+' · '+(c.unit||''),go:()=>{state.mailFolder='inbox';state.mailSel='akt-'+c.id;go('email');}}));
+   recMerged().filter(c=>c.aktivasi==='diajukan').forEach(c=>out.push({ic:'userplus',col:'var(--warn)',t:'Aktivasi kandidat menunggu persetujuan',s:c.nama.split(',')[0]+' · '+(c.unit||''),go:()=>{go('recruitment');}}));
  }
  if(isAdmin||isKadiv||isStaff){
    const need=recMerged().filter(c=>recStage(c)!=='Aktif'&&recStage(c)!=='Batal'&&!c.interview);
@@ -1931,7 +2066,6 @@ const PERMS=[
  {key:'recruitment.edit',label:'Edit Rekrutmen',desc:'Kelola kandidat, set gaji, ajukan aktivasi'},
  {key:'recruitment.interview',label:'Update Interview Akhir',desc:'Tetapkan hasil interview: Lanjut / Hold (nego) / Batal'},
  {key:'recruitment.approve',label:'Approve Aktivasi (Master)',desc:'Menyetujui aktivasi kandidat jadi karyawan'},
- {key:'apps.email',label:'Apps · Email (Gmail)',desc:'Inbox Gmail Holding & aktivasi pengajuan via email (khusus Admin Pusat)'},
  {key:'apps.chat',label:'Apps · Diskusi/Chat',desc:'Chat internal Admin ⇄ Kadiv HR ⇄ Staff HR'},
  {key:'apps.calendar',label:'Apps · Calendar',desc:'Kalender proses rekrutmen & kaldik AL-WILDAN'},
  {key:'accounts',label:'Manajemen Akun & Hak Akses',desc:'Buat akun, atur role & izin berlapis'},
@@ -1939,8 +2073,8 @@ const PERMS=[
 // preset izin per role (bisa dikustom master admin)
 const ROLE_PRESET={
  master:PERMS.reduce((o,p)=>(o[p.key]=true,o),{}),
- kadiv_hr:{dashboard:1,analytics:1,network:1,'employees.view':1,attendance:1,'leave.view':1,payroll:1,'ticketing.view':1,'ticketing.respond':1,'recruitment.view':1,'recruitment.edit':1,'recruitment.interview':1,'recruitment.approve':0,'employees.edit':0,'leave.approve':0,'apps.email':0,'apps.chat':1,'apps.calendar':1,accounts:0},
- staff_hr:{'recruitment.view':1,'recruitment.interview':1,'recruitment.edit':0,'dashboard':0,'apps.email':0,'apps.chat':1,'apps.calendar':1},
+ kadiv_hr:{dashboard:1,analytics:1,network:1,'employees.view':1,attendance:1,'leave.view':1,payroll:1,'ticketing.view':1,'ticketing.respond':1,'recruitment.view':1,'recruitment.edit':1,'recruitment.interview':1,'recruitment.approve':0,'employees.edit':0,'leave.approve':0,'apps.chat':1,'apps.calendar':1,accounts:0},
+ staff_hr:{'recruitment.view':1,'recruitment.interview':1,'recruitment.edit':0,'dashboard':0,'apps.chat':1,'apps.calendar':1},
  karyawan:{},
 };
 function roleLabelFull(r){return {master:'Master Admin (Holding)',kadiv_hr:'KADIV HR',staff_hr:'Staff HR',karyawan:'Karyawan'}[r]||r;}
@@ -1955,7 +2089,9 @@ const SESS_KEY='sdm-alwildan-session';
    Menghasilkan hash IDENTIK dengan crypto.subtle, jadi akun lama (yang ter-hash saat masih https/localhost) tetap bisa login. */
 function _sha256js(ascii){function rr(v,a){return (v>>>a)|(v<<(32-a));}var mp=Math.pow,maxWord=mp(2,32),i,j,result='',words=[];var asciiBitLength=ascii.length*8;var hash=_sha256js.h=_sha256js.h||[],k=_sha256js.k=_sha256js.k||[];var primeCounter=k.length,isComposite={};for(var candidate=2;primeCounter<64;candidate++){if(!isComposite[candidate]){for(i=0;i<313;i+=candidate){isComposite[i]=candidate;}hash[primeCounter]=(mp(candidate,.5)*maxWord)|0;k[primeCounter++]=(mp(candidate,1/3)*maxWord)|0;}}ascii+='\x80';while(ascii.length%64-56)ascii+='\x00';for(i=0;i<ascii.length;i++){j=ascii.charCodeAt(i);if(j>>8)return;words[i>>2]|=j<<((3-i)%4)*8;}words[words.length]=((asciiBitLength/maxWord)|0);words[words.length]=(asciiBitLength);for(j=0;j<words.length;){var w=words.slice(j,j+=16),oldHash=hash;hash=hash.slice(0,8);for(i=0;i<64;i++){var w15=w[i-15],w2=w[i-2];var a=hash[0],e=hash[4];var t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0;}for(i=0;i<8;i++){hash[i]=(hash[i]+oldHash[i])|0;}}for(i=0;i<8;i++){for(j=3;j+1;j--){var b=(hash[i]>>(j*8))&255;result+=((b<16)?0:'')+b.toString(16);}}return result;}
 async function sha256(s){try{if(typeof crypto!=='undefined'&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}}catch(e){}return _sha256js(unescape(encodeURIComponent(s)));}
-function loadAccts(){try{return JSON.parse(localStorage.getItem(ACC_KEY))||[]}catch(e){return[]}}
+let _srvAccts=null; // mode server: daftar akun dari /api/accounts (sandi TIDAK pernah dikirim ke browser)
+function loadAccts(){if(_srvAccts&&_backendReady)return _srvAccts;try{return JSON.parse(localStorage.getItem(ACC_KEY))||[]}catch(e){return[]}}
+async function refreshAccts(){try{_srvAccts=await apiGet('/api/accounts');}catch(e){if(!_srvAccts)_srvAccts=[];toast('⚠ Gagal memuat akun: '+((e&&e.message)||''),true);}if(state.view==='accounts')paint();}
 function saveAccts(a){try{localStorage.setItem(ACC_KEY,JSON.stringify(a))}catch(e){}}
 async function ensureSeedAccounts(){let accs=loadAccts();if(accs.length)return accs;
  // seed: 1 master admin. Password default: alwildan2026
@@ -2016,7 +2152,7 @@ async function doLogin(ev){ev.preventDefault();const lk=lockInfo();
  // Mode server: akun server yang menentukan (data SDM hanya dikirim ke sesi server).
  if(hasBackend()){
   try{const r=await apiPost('/api/login',{username:u,password:p});const su=(r&&r.user)||{};
-    setLock({n:0,until:0});SESSION={u:su.username||u,role:su.role,nama:su.nama,unit:su.unit,empId:su.empId};
+    setLock({n:0,until:0});SESSION={u:su.username||u,role:su.role,nama:su.nama,unit:su.unit,empId:su.empId,nip:su.nip,mustChange:!!su.mustChange};
     try{sessionStorage.setItem(SESS_KEY,JSON.stringify(SESSION))}catch(e){}
     if(window.__NEED_LOGIN){location.reload();return false;} // muat ulang → data diambil dgn sesi baru
     bootApp();return false;}
@@ -2043,40 +2179,101 @@ async function logout(){SESSION=null;try{sessionStorage.removeItem(SESS_KEY)}cat
 function bootApp(){const lr=document.getElementById('loginRoot');if(lr)lr.remove();
  document.querySelector('.app').style.display='';document.getElementById('topbar')&&(document.getElementById('topbar').style.display='');
  // role-based nav & default view
- state.view=firstAllowedView();
+ state.view=(SESSION.mustChange&&hasBackend())?'profile':firstAllowedView();
  buildNav();paint();
- setInterval(()=>{if(state.view==='chat'&&typeof chatPull==='function')chatPull();},5000);}
+ if(hasBackend()&&SESSION.role!=='karyawan'&&can('accounts'))refreshAccts();
+ // Diskusi: segarkan tiap 4 dtk saat dibuka; badge belum-dibaca tiap 20 dtk
+ chatSummaryTick();setInterval(()=>{CHAT.tick++;if(state.view==='chat'&&!document.hidden)chatRefresh(false);else if(CHAT.tick%5===0)chatSummaryTick();},4000);}
 
-/* ===================== PROFIL SAYA (ganti password) ===================== */
-function renderProfile(){const s=SESSION;const emp=currentEmp();
+/* ===================== PROFIL SAYA (kata sandi & keamanan) ===================== */
+let SEC={loading:false,data:null,err:''};
+function pwRules(pw,cf){const u=(SESSION&&SESSION.u||'').toLowerCase();return [
+ {ok:pw.length>=12,t:'Minimal 12 karakter'},
+ {ok:/[a-zA-Z]/.test(pw)&&/\d/.test(pw),t:'Memuat huruf dan angka'},
+ {ok:/[A-Z]/.test(pw)&&/[a-z]/.test(pw),t:'Huruf besar & kecil',opt:true},
+ {ok:/[^A-Za-z0-9]/.test(pw),t:'Simbol (!@#$…)',opt:true},
+ {ok:!!pw&&(!u||!pw.toLowerCase().includes(u)),t:'Tidak memuat username'},
+ {ok:!!pw&&pw===cf,t:'Konfirmasi cocok'}];}
+function pwStrength(pw){let s=0;if(pw.length>=8)s++;if(pw.length>=12)s++;if(/[A-Z]/.test(pw)&&/[a-z]/.test(pw))s++;if(/[0-9]/.test(pw))s++;if(/[^A-Za-z0-9]/.test(pw))s++;if(pw.length>=16)s=Math.min(5,s+1);return s;}
+function uaLabel(ua){ua=ua||'';const b=/Edg\//.test(ua)?'Edge':/OPR\//.test(ua)?'Opera':/Chrome\//.test(ua)?'Chrome':/Firefox\//.test(ua)?'Firefox':/Safari\//.test(ua)?'Safari':/curl/i.test(ua)?'curl':'Browser';
+ const o=/iPhone|iPad/.test(ua)?'iOS':/Android/.test(ua)?'Android':/Mac OS X|Macintosh/.test(ua)?'macOS':/Windows/.test(ua)?'Windows':/Linux/.test(ua)?'Linux':'';return b+(o?' · '+o:'');}
+function agoTxt(ts){if(!ts)return '—';const s=Math.round((Date.now()-ts)/1000);if(s<60)return 'baru saja';if(s<3600)return Math.floor(s/60)+' mnt lalu';if(s<86400)return Math.floor(s/3600)+' jam lalu';if(s<86400*30)return Math.floor(s/86400)+' hari lalu';return new Date(ts).toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});}
+async function loadSecurity(){if(!hasBackend()||SEC.loading)return;SEC.loading=true;
+ try{SEC.data=await apiGet('/api/me/security');SEC.err='';}catch(e){SEC.err=(e&&e.message)||'Gagal memuat';}
+ SEC.loading=false;const el=document.getElementById('secPanel');if(el&&state.view==='profile')el.innerHTML=secPanelHtml();}
+function secPanelHtml(){
+ if(!hasBackend())return `<p class="hh">Mode statik: info sesi hanya tersedia saat aplikasi berjalan di server.</p>`;
+ if(SEC.err)return `<div class="login-err">⚠ ${esc(SEC.err)}</div>`;
+ const d=SEC.data;if(!d)return `<div class="empty" style="padding:18px">Memuat info keamanan…</div>`;
+ const others=d.sessions.filter(s=>!s.current).length;
+ const lbl={login_ok:['Masuk berhasil','var(--pos)','✓'],login_gagal:['Percobaan masuk gagal','var(--warn)','!'],login_gagal_locked:['Akun dikunci 15 menit','var(--neg)','⛔'],ganti_sandi:['Kata sandi diganti','var(--info)','🔑'],logout_semua:['Keluar dari perangkat lain','var(--ink-2)','⎋'],cabut_sesi:['Sesi dicabut','var(--ink-2)','⎋']};
+ return `<div class="sec-facts">
+   <div><span class="l">Penyimpanan sandi</span><b>${esc(d.hashScheme)}</b></div>
+   <div><span class="l">Terakhir ganti sandi</span><b>${d.pwChangedAt?agoTxt(d.pwChangedAt):'Belum pernah'}</b></div>
+   <div><span class="l">Sesi aktif</span><b>${d.sessions.length} perangkat</b></div></div>
+ <div class="sec-h3">Perangkat yang sedang masuk</div>
+ <div class="sess-list">${d.sessions.map(s=>`<div class="sess${s.current?' cur':''}"><div class="sess-ic">${ic(/iOS|Android/.test(uaLabel(s.ua))?'user':'grid')}</div>
+   <div style="flex:1;min-width:0"><div class="sess-t">${esc(uaLabel(s.ua))}${s.current?' <span class="pill pos" style="font-size:10px">perangkat ini</span>':''}</div>
+   <div class="sess-s">${s.ip?esc(s.ip)+' · ':''}masuk ${agoTxt(s.createdAt)} · berakhir ${new Date(s.expiresAt).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}</div></div>
+   ${s.current?'':`<button class="btn ghost" style="padding:5px 10px;font-size:11px" onclick="revokeSession('${esc(s.id)}')">Cabut</button>`}</div>`).join('')}</div>
+ ${others?`<button class="btn ghost" style="margin-top:10px;width:100%;justify-content:center" onclick="revokeOthers(${others})">${ic('lock')} Keluarkan ${others} perangkat lain</button>`:''}
+ <div class="sec-h3" style="margin-top:16px">Riwayat keamanan</div>
+ <div class="sec-log">${d.log.length?d.log.map(l=>{const m=lbl[l.aksi]||[l.aksi,'var(--ink-3)','•'];return `<div class="sl"><span class="sl-ic" style="color:${m[1]};background:color-mix(in srgb,${m[1]} 12%,transparent)">${m[2]}</span><div style="flex:1;min-width:0"><div class="sl-t">${esc(m[0])}${l.rincian&&l.aksi!=='login_ok'?` <span class="sl-r">· ${esc(l.rincian)}</span>`:''}</div><div class="sl-s">${agoTxt(l.ts)}${l.ua?' · '+esc(uaLabel(l.ua)):''}${l.ip?' · '+esc(l.ip):''}</div></div></div>`;}).join(''):'<div class="hh">Belum ada catatan.</div>'}</div>`;}
+async function revokeSession(id){try{await apiPost('/api/me/sessions/'+encodeURIComponent(id)+'/revoke');toast('✓ Sesi dicabut');loadSecurity();}catch(e){toast('⚠ '+e.message,true);}}
+async function revokeOthers(n){if(!confirm('Keluarkan akun ini dari '+n+' perangkat lain?'))return;
+ try{const r=await apiPost('/api/me/sessions/revoke-others');toast('✓ '+(r.revoked||0)+' perangkat lain dikeluarkan');loadSecurity();}catch(e){toast('⚠ '+e.message,true);}}
+function renderProfile(){const s=SESSION;
  const p=permsFor(s);const active=PERMS.filter(x=>p[x.key]||s.role==='master');
- return `
+ if(hasBackend())setTimeout(loadSecurity,0);
+ return `${s.mustChange?`<div class="must-change">${ic('lock')}<div><b>Wajib ganti kata sandi.</b> Akun ini masih memakai sandi awal/reset dari admin. Buat sandi baru milik Anda sendiri sebelum melanjutkan.</div></div>`:''}
  <div class="emp-hero"><div class="avatar" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.3)">${initials(s.nama)}</div>
    <div><div class="nm">${esc(s.nama)}</div><div class="rl">${roleLabelFull(s.role)} · ${esc(s.unit||'Holding')}${s.nip?' · NIP '+esc(s.nip):''}</div></div>
    <div class="st"><div style="font-size:12px;opacity:.85">Username</div><div style="font-weight:800;font-size:16px">${esc(s.u)}</div></div></div>
- <div class="two-col" style="margin-top:16px">
+ <div class="two-col" style="margin-top:16px;align-items:start">
    <div class="card panel"><div class="panel-h"><h3>${ic('lock')} Ganti Kata Sandi</h3></div>
-     <div class="field"><label>Kata Sandi Lama</label><div class="pw-wrap"><input id="pf_old" type="password" placeholder="••••••••"><button type="button" onclick="pwToggle('pf_old',this)">Lihat</button></div></div>
-     <div class="field" style="margin-top:10px"><label>Kata Sandi Baru</label><div class="pw-wrap"><input id="pf_new" type="password" placeholder="min. 8 karakter"><button type="button" onclick="pwToggle('pf_new',this)">Lihat</button></div><span class="hh" id="pf_meter">Kekuatan: —</span></div>
-     <div class="field" style="margin-top:10px"><label>Konfirmasi Kata Sandi Baru</label><input id="pf_conf" type="password" placeholder="ulangi kata sandi baru"></div>
-     <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" onclick="changeMyPw()">${ic('lock')} Simpan Sandi Baru</button><button class="btn ghost" onclick="genMyPw()">Sarankan Sandi Kuat</button></div>
-     <p class="hh" style="margin-top:8px">Gunakan minimal 8 karakter kombinasi huruf besar/kecil, angka & simbol.</p>
+     <form onsubmit="event.preventDefault();changeMyPw()" autocomplete="on">
+     <input type="text" name="username" autocomplete="username" value="${esc(s.u)}" hidden>
+     <div class="field"><label>Kata Sandi Saat Ini</label><div class="pw-wrap"><input id="pf_old" type="password" autocomplete="current-password" placeholder="••••••••"><button type="button" onclick="pwToggle('pf_old',this)">Lihat</button></div></div>
+     <div class="field" style="margin-top:10px"><label>Kata Sandi Baru</label><div class="pw-wrap"><input id="pf_new" type="password" autocomplete="new-password" placeholder="min. 12 karakter, huruf + angka"><button type="button" onclick="pwToggle('pf_new',this)">Lihat</button></div>
+       <div class="pw-bar" id="pf_bar"><i></i><i></i><i></i><i></i><i></i></div><span class="hh" id="pf_meter">Kekuatan: —</span><span class="hh caps" id="pf_caps" hidden>⚠ Caps Lock aktif</span></div>
+     <div class="field" style="margin-top:10px"><label>Konfirmasi Kata Sandi Baru</label><div class="pw-wrap"><input id="pf_conf" type="password" autocomplete="new-password" placeholder="ulangi kata sandi baru"><button type="button" onclick="pwToggle('pf_conf',this)">Lihat</button></div></div>
+     <ul class="pw-rules" id="pf_rules">${pwRules('','').map(r=>`<li class="${r.opt?'opt':''}">${r.t}${r.opt?' <em>(disarankan)</em>':''}</li>`).join('')}</ul>
+     <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap"><button class="btn" type="submit" id="pf_save" disabled>${ic('lock')} Simpan Sandi Baru</button><button class="btn ghost" type="button" onclick="genMyPw()">Sarankan Sandi Kuat</button></div>
+     <p class="hh" style="margin-top:10px;font-size:11.5px;line-height:1.55">Sandi tidak pernah disimpan sebagai teks. Server hanya menyimpan <b>hash PBKDF2-SHA256</b> (600.000 iterasi + salt unik per akun), jadi admin pun tidak bisa melihatnya. Setelah diganti, perangkat lain otomatis dikeluarkan.</p>
+     </form>
    </div>
-   <div class="card panel"><div class="panel-h"><h3>Hak Akses Saya</h3></div>
-     <p style="font-size:12.5px;color:var(--ink-2);margin-bottom:8px">${active.length} modul aktif untuk peran <b>${roleLabelFull(s.role)}</b>:</p>
-     <div style="display:flex;flex-direction:column;gap:6px">${active.map(x=>`<div style="display:flex;gap:8px;align-items:center;font-size:12.5px"><span style="color:var(--pos)">✓</span> ${esc(x.label)}</div>`).join('')||'<span style="color:var(--ink-3)">—</span>'}</div>
+   <div class="card panel"><div class="panel-h"><h3>${ic('lock')} Keamanan Akun</h3>${hasBackend()?`<button class="btn ghost" style="padding:5px 10px;font-size:11px" onclick="loadSecurity()">Segarkan</button>`:''}</div>
+     <div id="secPanel">${secPanelHtml()}</div>
    </div>
+ </div>
+ <div class="card panel" style="margin-top:14px"><div class="panel-h"><h3>Hak Akses Saya</h3><span class="hint">${active.length} modul · ${roleLabelFull(s.role)}</span></div>
+   <div class="perm-chips">${active.map(x=>`<span title="${esc(x.desc||'')}"><b>✓</b> ${esc(x.label)}</span>`).join('')||'<span style="color:var(--ink-3)">—</span>'}</div>
  </div>`;
 }
 function pwToggle(id,btn){const p=document.getElementById(id);p.type=p.type==='password'?'text':'password';btn.textContent=p.type==='password'?'Lihat':'Tutup';}
-function pwStrength(pw){let s=0;if(pw.length>=8)s++;if(pw.length>=12)s++;if(/[A-Z]/.test(pw)&&/[a-z]/.test(pw))s++;if(/[0-9]/.test(pw))s++;if(/[^A-Za-z0-9]/.test(pw))s++;return s;}
-document.addEventListener('input',e=>{if(e.target&&e.target.id==='pf_new'){const m=document.getElementById('pf_meter');if(m){const s=pwStrength(e.target.value);m.textContent='Kekuatan: '+['—','Sangat lemah','Lemah','Sedang','Kuat','Sangat kuat'][s];m.style.color=s>=4?'var(--pos)':s>=3?'var(--warn)':'var(--neg)';}}});
-function genMyPw(){const pw=randPassword(12);document.getElementById('pf_new').value=pw;document.getElementById('pf_conf').value=pw;const m=document.getElementById('pf_meter');if(m){m.textContent='Kekuatan: Sangat kuat (disarankan)';m.style.color='var(--pos)';}toast('Sandi kuat dibuat — jangan lupa simpan');}
+function pfUpdate(){const nwEl=document.getElementById('pf_new');if(!nwEl)return;const nw=nwEl.value,cf=document.getElementById('pf_conf').value;
+ const s=pwStrength(nw);const m=document.getElementById('pf_meter');const col=s>=4?'var(--pos)':s>=3?'var(--warn)':'var(--neg)';
+ if(m){m.textContent='Kekuatan: '+(nw?['Sangat lemah','Sangat lemah','Lemah','Sedang','Kuat','Sangat kuat'][s]:'—');m.style.color=nw?col:'';}
+ document.querySelectorAll('#pf_bar i').forEach((b,i)=>{b.style.background=nw&&i<s?col:'';});
+ const rules=pwRules(nw,cf);document.querySelectorAll('#pf_rules li').forEach((li,i)=>li.classList.toggle('ok',!!rules[i].ok));
+ const sv=document.getElementById('pf_save');if(sv)sv.disabled=!rules.filter(r=>!r.opt).every(r=>r.ok)||!document.getElementById('pf_old').value;}
+document.addEventListener('input',e=>{if(e.target&&/^pf_/.test(e.target.id||''))pfUpdate();});
+document.addEventListener('keyup',e=>{const c=document.getElementById('pf_caps');if(c&&e.getModifierState&&/^pf_/.test((e.target&&e.target.id)||''))c.hidden=!e.getModifierState('CapsLock');});
+function genMyPw(){const pw=randPassword(16);['pf_new','pf_conf'].forEach(id=>{const el=document.getElementById(id);el.value=pw;el.type='text';});
+ document.querySelectorAll('.pw-wrap button').forEach(b=>{const i=b.previousElementSibling;if(i&&(i.id==='pf_new'||i.id==='pf_conf'))b.textContent='Tutup';});
+ pfUpdate();toast('Sandi kuat dibuat — simpan di pengelola sandi Anda');}
 async function changeMyPw(){const old=document.getElementById('pf_old').value,nw=document.getElementById('pf_new').value,cf=document.getElementById('pf_conf').value;
- if(!nw||nw.length<8){toast('Sandi baru minimal 8 karakter',true);return;}if(nw!==cf){toast('Konfirmasi tidak cocok',true);return;}
+ const bad=pwRules(nw,cf).find(r=>!r.opt&&!r.ok);if(bad){toast('⚠ '+bad.t,true);return;}
+ const sv=document.getElementById('pf_save');if(sv){sv.disabled=true;sv.textContent='Menyimpan…';}
+ const done=()=>{['pf_old','pf_new','pf_conf'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});SESSION.mustChange=false;try{sessionStorage.setItem(SESS_KEY,JSON.stringify(SESSION))}catch(e){}toast('✓ Kata sandi berhasil diubah · perangkat lain dikeluarkan');paint();};
+ if(hasBackend()){
+   try{await apiPost('/api/me/password',{current:old,password:nw});done();}
+   catch(e){toast('⚠ '+((e&&e.message)||'Gagal mengganti sandi'),true);if(sv){sv.disabled=false;sv.innerHTML=ic('lock')+' Simpan Sandi Baru';}}
+   return;}
+ // mode statik (tanpa server): akun lokal
  const accs=loadAccts();const a=accs.find(x=>x.u===SESSION.u);if(!a){toast('Akun tidak ditemukan',true);return;}
- const oldH=await sha256(old);if(a.ph!==oldH){toast('Kata sandi lama salah',true);return;}
- a.ph=await sha256(nw);a.mustChange=false;saveAccts(accs);document.getElementById('pf_old').value='';document.getElementById('pf_new').value='';document.getElementById('pf_conf').value='';toast('✓ Kata sandi berhasil diubah');}
+ if(a.ph!==await sha256(old)){toast('Kata sandi lama salah',true);if(sv)sv.disabled=false;return;}
+ a.ph=await sha256(nw);a.mustChange=false;saveAccts(accs);done();}
 
 /* ===================== EMPLOYEE LANDING ===================== */
 function renderMe(){const e=currentEmp();if(!e)return `<div class="empty">Data karyawan tidak ditemukan.</div>`;
@@ -2462,9 +2659,8 @@ function approveAktivasi(id){const c=recMerged().find(x=>x.id===id);recSet(id,{a
  recLog(id,'Aktivasi Disetujui → Karyawan','NIP '+e.nip);toast('✓ '+c.nama.split(',')[0]+' diaktivasi jadi karyawan (NIP '+e.nip+')');paint();}
 
 /* ============================================================
-   APPS: EMAIL (Gmail) · CHAT · CALENDAR   (gaya PaceUI)
+   APPS: DISKUSI · CALENDAR   (gaya PaceUI)
    ============================================================ */
-const MAIL_KEY='sdm-alwildan-mail';       // {inbox:[],sent:[],cfg:{finance,cc}}
 const CHAT_KEY='sdm-alwildan-chat';       // {roomId:[msg]}
 const CAL_KEY ='sdm-alwildan-calevents';  // kaldik tambahan manual
 
@@ -2474,6 +2670,7 @@ const CAL_KEY ='sdm-alwildan-calevents';  // kaldik tambahan manual
    (fallback lokal). Tidak perlu ganti flag manual lagi. */
 let _backendReady=(location.protocol==='http:'||location.protocol==='https:');
 async function probeBackend(){try{const r=await fetch('/api/health',{credentials:'same-origin'});const j=await r.json().catch(()=>({}));_backendReady=!!(r.ok&&j&&j.ok);}catch(_){_backendReady=false;}return _backendReady;}
+async function apiDelete(p){return _apiFetch('DELETE',p);}
 async function _apiFetch(method,p,body){
  if(!_backendReady)throw new Error('Backend belum tersedia (mode statik)');
  const opt={method,credentials:'same-origin',headers:{}};
@@ -2489,255 +2686,155 @@ async function apiGet(p){return _apiFetch('GET',p);}
 async function apiPost(p,b){return _apiFetch('POST',p,b===undefined?{}:b);}
 async function apiPatch(p,b){return _apiFetch('PATCH',p,b);}
 
-/* ---- Gmail OAuth (BACKEND: token singa di server, browser TIDAK lihat) ---- */
-let _gmailStatus={loaded:false,connected:false,email:''};
-async function refreshGmailStatus(){try{const r=await apiGet('/api/mail/status');_gmailStatus={loaded:true,connected:!!(r&&r.connected),email:(r&&r.email)||'',diag:(r&&r.diag)||null};if(_gmailStatus.connected){_gmailInbox.loaded||refreshGmailInbox();}else{_gmailInbox={loaded:true,msgs:[]};}if(state.view==='email')paint();}catch(e){_gmailStatus={loaded:true,connected:false,email:'',noSession:!!(e&&e.status===401)};_gmailInbox={loaded:true,msgs:[]};if(state.view==='email')paint();}}
-function gmailChip(){const g=_gmailStatus;
- if(g.connected)return `<span style="display:flex;align-items:center;gap:6px;color:var(--pos)">${ic('check')} Gmail tersambung: ${esc(g.email)}</span><button class="btn ghost" style="padding:8px 12px;font-size:12px" onclick="gmailDisconnect()">Putuskan</button>`;
- const staticMode=!hasBackend();
- return `<span style="display:flex;align-items:center;gap:6px;color:${staticMode?'var(--warn)':'var(--ink-3)'};font-size:11.5px">${staticMode?'● Butuh backend OAuth':g.noSession?'● Sesi server belum ada':'● Belum tersambung'}</span><button class="btn" style="padding:8px 12px;font-size:12px" onclick="gmailConnect()">${ic('mail')} Sambungkan Gmail</button>`;}
 function hasBackend(){return _backendReady;}
-function gmailConnect(){if(!hasBackend()){gmailWhyModal();return;}
- apiPost('/api/mail/auth-url').then(r=>{if(r&&r.url)location.href=r.url;else toast('⚠ '+(r&&r.error||'Backend belum siap'),true);})
-  .catch(e=>{if(e&&e.status===401)serverLoginModal();else toast('⚠ '+((e&&e.message)||'Gagal memulai OAuth'),true);});}
-function serverLoginModal(){closeModal();const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:420px">
-   <div class="modal-h"><div class="avatar">${ic('lock')}</div><div><div class="nm">Masuk ke server</div><div class="rl">Diperlukan sekali agar Gmail bisa disambungkan</div></div><button class="x" onclick="closeModal()">×</button></div>
-   <form style="padding:16px 18px;display:grid;gap:10px" onsubmit="event.preventDefault();serverLoginSubmit()">
-     <div id="slErr" style="color:var(--neg);font-size:12px" hidden></div>
-     <div class="field"><label>Username</label><input id="sl_u" value="${esc((SESSION&&SESSION.u)||'admin')}" autocomplete="username" required></div>
-     <div class="field"><label>Kata sandi akun server</label><input id="sl_p" type="password" autocomplete="current-password" required></div>
-     <button class="btn" type="submit">${ic('mail')} Masuk &amp; Sambungkan Gmail</button>
-   </form></div></div>`;
- const w=document.createElement('div');w.id='modalRoot';w.innerHTML=html;document.body.appendChild(w);document.body.style.overflow='hidden';
- setTimeout(()=>{const p=document.getElementById('sl_p');if(p)p.focus();},50);}
-async function serverLoginSubmit(){const u=document.getElementById('sl_u').value.trim().toLowerCase(),p=document.getElementById('sl_p').value;const er=document.getElementById('slErr');
- try{await apiPost('/api/login',{username:u,password:p});closeModal();toast('✓ Sesi server aktif');gmailConnect();}
- catch(e){er.hidden=false;er.textContent='⚠ '+((e&&e.message)||'Gagal masuk');}}
-function gmailWhyModal(){closeModal();const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:560px">
-   <div class="modal-h"><div class="avatar">${ic('mail')}</div><div><div class="nm">Kenapa Gmail belum bisa tersambung?</div><div class="rl">kemal.aischo@gmail.com</div></div><button class="x" onclick="closeModal()">×</button></div>
-   <div style="padding:16px 18px;font-size:13px;color:var(--ink-2);line-height:1.6">
-     <p><b>Kenapa belum tersambung?</b> Ada 2 sebab:</p>
-     <ol style="margin:6px 0 0;padding-left:20px">
-       <li><b>Belum dijalankan lewat server.</b> Gmail memakai <b>OAuth server-side</b> — token disimpan terenkripsi di server, tidak pernah di browser. Bila file ini dibuka statik (tanpa server <code>/api/*</code>), tombol sambung tidak aktif. Halaman ini otomatis aktif begitu di-serve oleh Docker/VPS.</li>
-       <li><b>Kredensial Google belum lengkap.</b> Butuh OAuth Client dari Google Cloud yang cocok dengan domain server.</li>
-     </ol>
-     <div style="background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px">
-       <b style="color:var(--brand)">Langkah agar Gmail aktif (Docker/VPS):</b>
-       <ol style="margin:8px 0 0;padding-left:20px">
-         <li>Deploy paket ini: <code>docker compose up -d --build</code> (server sediakan <code>/api/*</code>).</li>
-         <li>Google Cloud Console → <b>Gmail API</b> → OAuth Client (Web). <b>Authorized redirect URI</b>: <code>https://hr.office-alwildan.id/api/mail/oauth/callback</code> (harus sama persis).</li>
-         <li>OAuth consent screen → tambahkan scope <code>gmail.send</code> <b>dan</b> <code>gmail.readonly</code> (baca inbox), lalu jadikan <b>kemal.aischo@gmail.com</b> sebagai Test user.</li>
-         <li>Isi di <code>.env</code> server: <code>GOOGLE_CLIENT_ID</code>, <code>GOOGLE_CLIENT_SECRET</code>, <code>GOOGLE_REDIRECT_URI</code>, <code>PUBLIC_DOMAIN=hr.office-alwildan.id</code>.</li>
-         <li>Login sebagai Master Admin → panel Email → <b>Sambungkan Gmail</b> → setujui akses. Inbox nyata langsung tampil.</li>
-       </ol>
-     </div>
-     <p style="margin-top:10px;color:var(--ink-3);font-size:12px"><b>Catatan scope:</b> tanpa <code>gmail.readonly</code>, sistem hanya bisa <b>mengirim</b> atas nama Ustadz, <b>tidak membaca</b> Kotak Masuk. Jika Ustadz sudah pernah menyambung sebelum scope baca ditambahkan, klik <b>Putuskan</b> lalu <b>Sambungkan</b> ulang agar izin baca inbox diberikan.</p>
-   </div>
-   <div class="modal-foot"><button class="btn" onclick="closeModal()">Mengerti</button></div>
- </div></div>`;
- const w=document.createElement('div');w.id='modalRoot';w.innerHTML=html;document.body.appendChild(w);document.body.style.overflow='hidden';}
-function gmailDisconnect(){apiPost('/api/mail/disconnect').then(()=>{_gmailStatus={loaded:true,connected:false,email:''};toast('✓ Gmail disconect (server-side)');paint();}).catch(e=>toast(e.message,true));}
-async function gmailApiSend(to,cc,subj,body){const r=await apiPost('/api/mail/send',{to,cc,subj,body});if(!r||!r.ok)throw new Error((r&&r.error)||'Gmail gagal');return r;}
-
-function loadMail(){try{const m=JSON.parse(localStorage.getItem(MAIL_KEY));if(m&&m.inbox)return m;}catch(e){}return {inbox:[],sent:[],trash:[],cfg:{finance:'',cc:''},read:{}};}
-function saveMail(m){try{localStorage.setItem(MAIL_KEY,JSON.stringify(m));}catch(e){}}
-
-/* ---- inbox Gmail NYATA (butuh backend + scope gmail.readonly) ---- */
-let _gmailInbox={loaded:false,msgs:[]};
-async function refreshGmailInbox(){
- if(!hasBackend()||!_gmailStatus.connected){_gmailInbox={loaded:true,msgs:[]};return;}
- try{const r=await apiGet('/api/mail/inbox');_gmailInbox={loaded:true,msgs:(r&&r.messages)||[]};}
- catch(_){_gmailInbox={loaded:true,msgs:[]};}
- if(state.view==='email')paint();}
-function gmailInboxItems(){return (_gmailInbox.msgs||[]).map(x=>({
-  id:'gm-'+x.id, gmail:true, from:x.from||x.fromMail||'Gmail', fromMail:x.fromMail||'',
-  subj:x.subj||'(tanpa subjek)', date:(x.date||'').slice(0,16), body:x.snippet||''}));}
-
-/* ---- seed inbox: pengajuan aktivasi dari Kadiv (yang belum diapprove) muncul sbg email ---- */
-function mailInbox(){const m=loadMail();
- // email sistem: setiap kandidat 'diajukan' → 1 email pengajuan aktivasi
- const sys=recMerged().filter(c=>c.aktivasi==='diajukan').map(c=>({
-   id:'akt-'+c.id, cid:c.id, sys:'aktivasi',
-   from:'Kadiv HR', fromMail:'kadiv.hr@alwildan.sch.id',
-   subj:'Pengajuan Aktivasi Karyawan — '+(c.nama||'').split(',')[0]+' ('+(c.unit||'')+')',
-   date:c.ajuanTgl||new Date().toISOString().slice(0,10),
-   star:false,
-   body:`Assalamu'alaikum wr. wb.\n\nMohon persetujuan Bapak untuk aktivasi kandidat berikut menjadi karyawan AL-WILDAN:\n\n• Nama    : ${c.nama||'-'}\n• Cabang  : ${c.unit||'-'}\n• Mapel   : ${c.mapel||'-'}\n• THP Set : ${c.thpSet||c.thpBersih?rp(c.thpSet||c.thpBersih):'-'}\n• Pantuhir: ${c.pantuhir||'-'}\n${c.beritaAcara?'• Berita Acara: '+c.beritaAcara+'\n':''}\nHasil interview akhir: ${c.interview||'—'}.\n\nSilakan tekan tombol "Setujui & Aktivasi via Email" untuk memproses aktivasi sekaligus menyiapkan nota ke Finance.\n\nJazaakumullahu khairan.\nKadiv HR`
- }));
- // gabung: Gmail nyata (paling atas) + email sistem aktivasi + email manual/tersimpan
- const merged=[...gmailInboxItems(),...sys,...(m.inbox||[])];
- // hilangkan duplikat kandidat yg sudah approved
- return merged.filter(e=>!(e.sys==='aktivasi'&&recMerged().find(c=>c.id===e.cid&&c.aktivasi==='approved')));
-}
-
-function renderEmail(){const m=loadMail();const inbox=mailInbox();const sent=m.sent||[];
- if(!_gmailStatus.loaded)refreshGmailStatus();
- if(_gmailStatus.connected&&!_gmailInbox.loaded)refreshGmailInbox();
- const folder=state.mailFolder||'inbox';const list=folder==='sent'?sent:folder==='trash'?(m.trash||[]):inbox;
- const unread=inbox.filter(e=>!m.read[e.id]).length;
- const sel=state.mailSel;const cur=list.find(e=>e.id===sel)||list[0];
- const fMeta={finance:m.cfg.finance||'',cc:m.cfg.cc||''};
- const fbtn=(k,ic2,lbl,n)=>`<button class="mail-folder ${folder===k?'on':''}" onclick="mailFolder('${k}')">${ic(ic2)}<span>${lbl}</span>${n?`<span class="mf-badge">${n}</span>`:''}</button>`;
- const mailNote=_gmailStatus.connected
-   ?('Gmail '+esc(_gmailStatus.email||'')+' tersambung. Kotak Masuk menampilkan email nyata dari Gmail; email sistem aktivasi tetap tampil di bawahnya.')
-   :(hasBackend()
-     ?'Klik "Sambungkan Gmail" untuk login sekali dengan kemal.aischo@gmail.com. Setelah itu Kotak Masuk membaca inbox nyata & tombol kirim memakai Gmail.'
-     :'Mode statik (dibuka sbg file). Gmail butuh server backend; jalankan lewat Docker/Worker agar tombol Sambungkan Gmail aktif — klik untuk detail.');
- return `${devBanner(mailNote)}
- <div class="mail-cfg card" style="padding:12px 14px;margin-bottom:14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-   ${ic('mail')}<b style="font-size:13px">Tujuan Nota Aktivasi → Finance</b>
-   <input id="finMail" placeholder="email Finance (mis. finance@alwildan.sch.id)" value="${esc(fMeta.finance)}" style="flex:1;min-width:220px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--ink);background:var(--surface)">
-   <input id="finCc" placeholder="cc (opsional)" value="${esc(fMeta.cc)}" style="flex:.7;min-width:150px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12.5px;color:var(--ink);background:var(--surface)">
-   <button class="btn ghost" style="padding:8px 12px;font-size:12px" onclick="saveFinMail()">${ic('check')} Simpan Tujuan</button>
-    ${gmailChip()}${_gmailStatus.connected?`<button class="btn ghost" style="padding:8px 12px;font-size:12px" onclick="_gmailInbox.loaded=false;refreshGmailInbox();toast('Memuat inbox…')">↻ Muat Ulang Inbox</button>`:''}
- </div>
- <div class="mail-shell card">
-   <div class="mail-side">
-     <button class="btn" style="width:100%;justify-content:center;margin-bottom:12px" onclick="composeMail()">${ic('plus')} Tulis Email</button>
-     ${fbtn('inbox','mail','Kotak Masuk',unread)}
-     ${fbtn('sent','send','Terkirim',0)}
-     ${fbtn('trash','trash','Sampah',0)}
-     <div class="mail-tag-h">LABEL</div>
-     <div class="mail-tag"><span class="dotc" style="background:var(--warn)"></span>Aktivasi Rekrutmen</div>
-     <div class="mail-tag"><span class="dotc" style="background:var(--info)"></span>Finance</div>
-   </div>
-   <div class="mail-list">
-     <div class="mail-list-h">${folder==='inbox'?'Kotak Masuk':folder==='sent'?'Terkirim':'Sampah'} <span>${list.length}</span></div>
-     ${list.length?list.map(e=>{const rd=folder==='sent'||m.read[e.id];const who=folder==='sent'?('Ke: '+(e.to||'')):e.from;
-       return `<div class="mail-item ${(cur&&cur.id===e.id)?'on':''} ${rd?'':'unread'}" onclick="mailOpen('${e.id}')">
-         <div class="mi-av" style="background:${e.gmail?'var(--neg-bg)':e.sys==='aktivasi'?'var(--warn-bg)':'var(--info-bg)'};color:${e.gmail?'var(--neg)':e.sys==='aktivasi'?'var(--warn)':'var(--info)'}">${initials(who||'?')}</div>
-         <div class="mi-main"><div class="mi-top"><span class="mi-from">${esc((who||'').split(',')[0])}${e.gmail?' <span class="badge-new" style="background:var(--neg-bg);color:var(--neg)">GMAIL</span>':''}</span><span class="mi-date">${esc(e.date||'')}</span></div>
-         <div class="mi-subj">${e.gmail?'<span class="mi-tagdot" style="background:var(--neg)"></span>':e.sys==='aktivasi'?'<span class="mi-tagdot" style="background:var(--warn)"></span>':''}${esc(e.subj||'(tanpa subjek)')}</div>
-         <div class="mi-prev">${esc((e.body||'').replace(/\n/g,' ').slice(0,64))}…</div></div></div>`;}).join(''):'<div class="empty" style="padding:30px">Tidak ada email.</div>'}
-   </div>
-   <div class="mail-read">${cur?mailReadPane(cur,folder):'<div class="empty" style="margin:auto;padding:40px">Pilih email untuk dibaca</div>'}</div>
- </div>`;}
-
-function mailReadPane(e,folder){const m=loadMail();const c=e.cid?recMerged().find(x=>x.id===e.cid):null;
- const done=c&&c.aktivasi==='approved';
- const who=folder==='sent'?('Ke: '+esc(e.to||'')):esc(e.from||'')+' <'+esc(e.fromMail||'')+'>';
- let actions='';
- if(e.sys==='aktivasi'&&!done){
-   if(can('recruitment.approve')){actions=`<div class="mail-actionbar">
-     <button class="btn" onclick="approveViaEmail('${e.cid}')">${ic('check')} Setujui & Aktivasi via Email</button>
-     <button class="btn ghost" onclick="composeReply('${e.id}')">${ic('reply')} Balas Kadiv</button>
-     <span class="hint" style="margin-left:auto">Aktivasi akan otomatis menyusun nota ke Finance</span></div>`;}
-   else actions=`<div class="mail-actionbar"><span class="hint">Hanya Admin Pusat yang dapat menyetujui aktivasi ini.</span></div>`;
- } else if(done){actions=`<div class="mail-actionbar" style="background:var(--pos-bg)"><span style="color:var(--pos);font-weight:700">${ic('check')} Sudah diaktivasi menjadi karyawan.</span></div>`;}
- return `<div class="mr-h"><div><div class="mr-subj">${esc(e.subj||'')}</div>
-   <div class="mr-meta"><span class="mi-av" style="width:34px;height:34px;background:var(--info-bg);color:var(--info)">${initials(e.from||e.to||'?')}</span><div><div style="font-weight:700;font-size:13px">${who}</div><div class="hint">${esc(e.date||'')}</div></div></div></div>
-   ${folder!=='trash'?`<button class="iconbtn" title="Hapus" onclick="mailTrash('${e.id}')">${ic('trash')}</button>`:''}</div>
-   ${actions}
-   <div class="mr-body">${esc(e.body||'').replace(/\n/g,'<br>')}</div>`;}
-
-function mailFolder(f){state.mailFolder=f;state.mailSel=null;paint();}
-function mailOpen(id){const m=loadMail();m.read[id]=1;saveMail(m);state.mailSel=id;paint();}
-function saveFinMail(){const m=loadMail();m.cfg.finance=(document.getElementById('finMail').value||'').trim();m.cfg.cc=(document.getElementById('finCc').value||'').trim();saveMail(m);toast('✓ Tujuan Finance disimpan');}
-function mailTrash(id){const m=loadMail();const src=mailInbox().find(e=>e.id===id)||(m.sent||[]).find(e=>e.id===id);if(src){m.trash=m.trash||[];m.trash.unshift(src);m.inbox=(m.inbox||[]).filter(e=>e.id!==id);m.sent=(m.sent||[]).filter(e=>e.id!==id);}saveMail(m);state.mailSel=null;toast('Dipindah ke sampah');paint();}
-
-/* ---- Aktivasi via Email: approve + susun draft nota ke Finance, lalu kirim ---- */
-function approveViaEmail(cid){const c=recMerged().find(x=>x.id===cid);if(!c)return;
- const m=loadMail();
- if(!m.cfg.finance){toast('⚠ Set dulu email Finance di atas',true);const fm=document.getElementById('finMail');if(fm)fm.focus();return;}
- // 1) proses aktivasi (reuse logika utama)
- approveAktivasi(cid);
- // 2) susun draft nota ke Finance
- const emp=DATA.find(e=>e.nama===c.nama&&e._local)||{};
- const thp=c.thpSet||c.thpBersih||c.pengajuan||0;
- const draft={
-   to:m.cfg.finance, cc:m.cfg.cc||'',
-   subj:'Nota Aktivasi Karyawan Baru — '+(c.nama||'').split(',')[0]+' ('+(c.unit||'')+')',
-   body:`Kepada Tim Finance,\n\nBerikut aktivasi karyawan baru yang telah DISETUJUI untuk diproses penggajiannya:\n\n• Nama     : ${c.nama||'-'}\n• NIP      : ${emp.nip||'(otomatis)'}\n• Cabang   : ${c.unit||'-'}\n• Jabatan  : ${c.mapel?'Guru '+c.mapel:'Karyawan'}\n• THP      : ${rp(thp)}\n• Mulai    : ${c.estimasiAktif||c.estimasi||new Date().toISOString().slice(0,10)}\n• Rekening : (mohon konfirmasi ke ybs)\n\nMohon diproses untuk periode gaji terdekat.\n\nHormat kami,\n${(SESSION&&SESSION.nama)||'Admin Pusat SDM'}\nAL-WILDAN ISLAMIC SCHOOL HOLDING`
- };
- openComposeModal(draft,'nota-finance');
-}
-
-/* ---- Compose modal (draft + kirim) ---- */
-function composeMail(){openComposeModal({to:'',cc:'',subj:'',body:''},'baru');}
-function composeReply(id){const e=mailInbox().find(x=>x.id===id);if(!e)return;openComposeModal({to:e.fromMail||'',cc:'',subj:'Re: '+(e.subj||''),body:'\n\n---\n'+(e.body||'')},'balas');}
-function composeReplyFinance(){const m=loadMail();openComposeModal({to:m.cfg.finance||'',cc:m.cfg.cc||'',subj:'',body:''},'baru');}
-function openComposeModal(d,tag){closeModal();const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:620px">
-   <div class="modal-h"><div class="avatar">${ic('send')}</div><div><div class="nm">Tulis Email${tag==='nota-finance'?' — Nota ke Finance':''}</div><div class="rl">${tag==='nota-finance'?'Aktivasi sudah diproses. Tinjau lalu kirim nota.':'Email dikirim via Gmail (OAuth susun di panel Email — tanpa susun hanya disimpan di Terkirim)'}}</div></div><button class="x" onclick="closeModal()">×</button></div>
-   <div style="padding:16px 18px;display:flex;flex-direction:column;gap:10px">
-     <label class="cf-l">Kepada<input id="cmTo" value="${esc(d.to||'')}" placeholder="email tujuan"></label>
-     <label class="cf-l">Cc<input id="cmCc" value="${esc(d.cc||'')}" placeholder="cc (opsional)"></label>
-     <label class="cf-l">Subjek<input id="cmSubj" value="${esc(d.subj||'')}" placeholder="subjek email"></label>
-     <label class="cf-l">Isi<textarea id="cmBody" rows="11" style="font-family:inherit">${esc(d.body||'')}</textarea></label>
-   </div>
-   <div class="modal-foot"><button class="btn ghost" onclick="closeModal()">Batal</button><button class="btn" onclick="sendMail()">${ic('send')} Kirim Email</button></div>
- </div></div>`;
- const w=document.createElement('div');w.id='modalRoot';w.innerHTML=html;document.body.appendChild(w);document.body.style.overflow='hidden';}
-async function sendMail(){const to=(document.getElementById('cmTo').value||'').trim();if(!to){toast('⚠ Isi email tujuan',true);return;}
- const cc=(document.getElementById('cmCc').value||'').trim(),subj=document.getElementById('cmSubj').value||'',body=document.getElementById('cmBody').value||'';
- const m=loadMail();const rec={id:'sent-'+Date.now(),to,cc,subj,body,date:new Date().toISOString().slice(0,10),from:(SESSION&&SESSION.nama)||'Admin'};
- let via='local';
- if(!_gmailStatus.loaded){try{await refreshGmailStatus();}catch(_){}}
- if(_gmailStatus.connected){try{await gmailApiSend(to,cc,subj,body);via='gmail';}catch(e){toast('⚠ Gmail gagal: '+e.message,true);return;}}
- else{toast('⚠ Gmail belum susun — email hanya disimpan di Terkirim (klik Susun Gmail di panel Email)',true);}
- m.sent=m.sent||[];m.sent.unshift(rec);saveMail(m);
- pushActivity({ts:Date.now(),tgl:rec.date,aksi:'Kirim Email'+(via==='gmail'?' via Gmail':''),type:'mail',col:'var(--info)',nama:rec.subj,id:'',unit:to,ket:'Terkirim ke '+to+(via==='gmail'?' (Gmail)':''),by:rec.from});
- closeModal();toast(via==='gmail'?('✓ Email terkirim via Gmail ke '+to):('✓ Email disimpan ke Terkirim (lokal) · ke '+to));state.mailFolder='sent';state.mailSel=rec.id;paint();}
-
-/* ===================== APPS: CHAT ===================== */
+/* ===================== APPS: DISKUSI (chat tim HR) ===================== */
+/* Server-first (sinkron antar perangkat); mode statik → localStorage.
+   Fitur: belum-dibaca per room, balas, reaksi, edit/hapus pesan sendiri, cari, @mention. */
 const CHAT_ROOMS=[
  {id:'all',nama:'Grup Tim HR',sub:'Admin · Kadiv · Staff',grp:true},
  {id:'master',nama:'Master Admin (Holding)',sub:'Admin Pusat',role:'master'},
  {id:'kadiv_hr',nama:'Kadiv HR',sub:'Operasional & rekrutmen',role:'kadiv_hr'},
  {id:'staff_hr',nama:'Staff HR',sub:'Interview & proses',role:'staff_hr'},
 ];
-function loadChat(){try{const c=JSON.parse(localStorage.getItem(CHAT_KEY));if(c)return c;}catch(e){}
- // seed contoh (hanya utk mode statik / sebelum backend)
- return {all:[
-   {by:'Kadiv HR',role:'kadiv_hr',t:'Assalamualaikum, pengajuan aktivasi 3 kandidat AW20 sudah saya kirim ke email Admin ya.',ts:Date.now()-7200000},
-   {by:'Master Admin',role:'master',t:'Waalaikumsalam, siap saya cek & approve via email. Staff HR tolong pastikan hasil interview akhir sudah terisi.',ts:Date.now()-6900000},
-   {by:'Staff HR',role:'staff_hr',t:'Baik pak, 2 sudah "Lanjut", 1 masih "Hold" menunggu nego salary.',ts:Date.now()-6600000},
- ]};}
-function saveChat(c){try{localStorage.setItem(CHAT_KEY,JSON.stringify(c));}catch(e){}}
-function loadChatMerged(room){/* server-first, fallback localStorage (statik) */
- const local=loadChat()[room]||[];
- const srv=(window._chatSrv&&window._chatSrv[room])||[];
- const map=new Map();srv.forEach(m=>map.set(m.id||m.ts,m));local.forEach(m=>map.set('l'+m.ts,m));
- return [...map.values()].sort((a,b)=>(a.ts||0)-(b.ts||0));}
-async function chatPull(){if(!apiGet)return;const room=state.chatRoom||'all';
- try{const r=await apiGet('/api/chat?room='+encodeURIComponent(room));if(r&&Array.isArray(r.messages)){
-   window._chatSrv=window._chatSrv||{};window._chatSrv[room]=r.messages;if(state.view==='chat')paint();}}catch(_){}}
-function renderChat(){const room=state.chatRoom||'all';const msgs=loadChatMerged(room);
- if(apiGet)setTimeout(chatPull,0);
- const meRole=SESSION?SESSION.role:'master';const meName=roleLabelFull(meRole);
- const srvOn=!!(window._chatSrv&&window._chatSrv[room]);
- const roomInfo=CHAT_ROOMS.find(r=>r.id===room)||CHAT_ROOMS[0];
+const CHAT_EMOJI=['👍','❤️','😂','🙏','✅','👀'];
+const CHAT_SEEN_KEY='sdm-alwildan-chat-seen';
+let CHAT={msgs:{},sum:{},reply:null,edit:null,q:'',sig:'',pick:null,busy:false,tick:0};
+function roleColor(r){return {master:'#1F4E79',kadiv_hr:'#7a3b0a',staff_hr:'#16a34a',karyawan:'#6b7280'}[r]||'#6b7280';}
+function chatSeen(){try{return JSON.parse(localStorage.getItem(CHAT_SEEN_KEY))||{}}catch(e){return{}}}
+function chatMarkSeen(room){const s=chatSeen();const m=CHAT.msgs[room]||[];const last=m.length?m[m.length-1].ts:0;if(last>(s[room]||0)){s[room]=last;try{localStorage.setItem(CHAT_SEEN_KEY,JSON.stringify(s))}catch(e){}}if(CHAT.sum[room])CHAT.sum[room].unread=0;chatNavBadge();}
+function chatMine(m){return SESSION&&(m.u?m.u===SESSION.u:m.role===SESSION.role);}
+/* ---- penyimpanan lokal (mode statik) ---- */
+function chatLocal(){try{return JSON.parse(localStorage.getItem(CHAT_KEY))||{}}catch(e){return{}}}
+function chatLocalSave(c){try{localStorage.setItem(CHAT_KEY,JSON.stringify(c))}catch(e){}}
+function chatLocalOp(room,fn){const c=chatLocal();c[room]=(c[room]||[]).map(m=>Object.assign({id:'l'+m.ts,msg:m.msg||m.t,reactions:{}},m));fn(c[room]);chatLocalSave(c);}
+/* ---- data ---- */
+async function chatLoad(room){
+ if(hasBackend()){const r=await apiGet('/api/chat?room='+encodeURIComponent(room));CHAT.msgs[room]=r.messages||[];}
+ else{CHAT.msgs[room]=(chatLocal()[room]||[]).map(m=>Object.assign({id:'l'+m.ts,msg:m.msg||m.t,reactions:{}},m));}}
+async function chatLoadSummary(){
+ if(!hasBackend()){CHAT_ROOMS.forEach(r=>{const m=chatLocal()[r.id]||[];const l=m[m.length-1];CHAT.sum[r.id]={unread:0,last:l?{by:l.by,msg:l.msg||l.t,ts:l.ts}:null};});return;}
+ const r=await apiGet('/api/chat/summary?seen='+encodeURIComponent(JSON.stringify(chatSeen())));CHAT.sum=r.rooms||{};}
+async function chatRefresh(force){if(CHAT.busy)return;CHAT.busy=true;const room=state.chatRoom||'all';
+ try{await Promise.all([chatLoad(room),chatLoadSummary()]);}catch(_){}
+ CHAT.busy=false;if(state.view!=='chat'){chatNavBadge();return;}
+ const msgs=CHAT.msgs[room]||[];const sig=room+'|'+msgs.map(m=>m.id+':'+(m.edited?1:0)+(m.deleted?1:0)+JSON.stringify(m.reactions||{})).join(',');
+ const changed=force||sig!==CHAT.sig;CHAT.sig=sig;
+ const b=document.getElementById('chatBody');const atBottom=!b||(b.scrollHeight-b.scrollTop-b.clientHeight<80);
+ if(changed){chatDrawBody();if(atBottom||force)scrollChat();else{const nb=document.getElementById('chatNew');if(nb)nb.hidden=false;}}
+ if(atBottom||force)chatMarkSeen(room);chatDrawRooms();}
+async function chatSummaryTick(){if(!SESSION||SESSION.role==='karyawan'||!can('apps.chat')||!hasBackend())return;try{await chatLoadSummary();chatNavBadge();}catch(_){}}
+function chatNavBadge(){const btn=document.querySelector('#nav button[data-view="chat"]');if(!btn)return;const room=state.view==='chat'?(state.chatRoom||'all'):null;
+ const n=Object.entries(CHAT.sum||{}).reduce((a,[k,v])=>a+(k===room?0:(v&&v.unread)||0),0);
+ let b=btn.querySelector('.nav-badge');if(!n){if(b)b.remove();return;}if(!b){b=document.createElement('span');b.className='nav-badge';btn.appendChild(b);}b.textContent=n>99?'99+':n;}
+/* ---- render ---- */
+function chatFmtText(t){let h=esc(t||'');
+ h=h.replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+ h=h.replace(/(^|\s)@([A-Za-z0-9._-]{2,30})/g,'$1<span class="cb-mention">@$2</span>');
+ if(CHAT.q){const q=esc(CHAT.q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');h=h.replace(new RegExp('('+q+')(?![^<]*>)','gi'),'<mark>$1</mark>');}
+ return h.replace(/\n/g,'<br>');}
+function chatDayLbl(ts){const d=new Date(ts);const t=new Date();const y=new Date();y.setDate(t.getDate()-1);
+ if(d.toDateString()===t.toDateString())return 'Hari ini';if(d.toDateString()===y.toDateString())return 'Kemarin';
+ return d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
+function chatTime(ts){return new Date(ts).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});}
+function chatMsgHtml(m,prev,all){const mine=chatMine(m);const grouped=prev&&!prev.deleted&&(prev.u||prev.by)===(m.u||m.by)&&m.ts-prev.ts<5*60000&&new Date(prev.ts).toDateString()===new Date(m.ts).toDateString();
+ const col=roleColor(m.role);
+ if(m.deleted)return `<div class="cb-row ${mine?'me':''} ${grouped?'grp':''}" data-id="${esc(m.id)}"><div class="cb-av" style="${grouped?'visibility:hidden':''};background:${col}20;color:${col}">${initials(m.by)}</div><div class="cb-bub del"><div class="cb-t">🚫 Pesan ini telah dihapus</div><div class="cb-ts">${chatTime(m.ts)}</div></div></div>`;
+ const rep=m.replyTo?all.find(x=>String(x.id)===String(m.replyTo)):null;
+ const reacts=Object.entries(m.reactions||{}).filter(([,u])=>u&&u.length).map(([e,u])=>`<button class="cb-rx ${SESSION&&u.includes(SESSION.u)?'on':''}" title="${esc(u.join(', '))}" onclick="chatReact('${esc(m.id)}','${e}')">${e} <b>${u.length}</b></button>`).join('');
+ const canDel=mine||(SESSION&&SESSION.role==='master');
+ return `<div class="cb-row ${mine?'me':''} ${grouped?'grp':''}" data-id="${esc(m.id)}">
+  <div class="cb-av" style="${grouped?'visibility:hidden;height:0':''};background:${col}20;color:${col}" title="${esc(m.by)}">${initials(m.by)}</div>
+  <div class="cb-wrap">
+   <div class="cb-bub">${grouped?'':`<div class="cb-by" style="color:${mine?'#fff':col}">${esc(m.by)} <span class="cb-rl">${esc(roleLabelFull(m.role))}</span></div>`}
+    ${rep?`<div class="cb-quote" onclick="chatJump('${esc(rep.id)}')"><b>${esc(rep.by)}</b><span>${rep.deleted?'Pesan dihapus':esc(String(rep.msg||'').slice(0,90))}</span></div>`:''}
+    <div class="cb-t">${chatFmtText(m.msg)}</div>
+    <div class="cb-ts">${m.edited?'diedit · ':''}${chatTime(m.ts)}</div></div>
+   ${reacts?`<div class="cb-rxs">${reacts}</div>`:''}
+   <div class="cb-act">
+    <button title="Balas" onclick="chatSetReply('${esc(m.id)}')">${ic('reply')}</button>
+    <button title="Reaksi" onclick="chatPick('${esc(m.id)}',this)">😊</button>
+    ${mine?`<button title="Edit" onclick="chatSetEdit('${esc(m.id)}')">✎</button>`:''}
+    <button title="Salin" onclick="chatCopy('${esc(m.id)}')">⧉</button>
+    ${canDel?`<button title="Hapus" onclick="chatDel('${esc(m.id)}')">${ic('trash')}</button>`:''}
+   </div></div></div>`;}
+function chatBodyHtml(){const room=state.chatRoom||'all';let msgs=CHAT.msgs[room];
+ if(!msgs)return '<div class="empty" style="margin:auto">Memuat percakapan…</div>';
+ const all=msgs;if(CHAT.q){const q=CHAT.q.toLowerCase();msgs=msgs.filter(m=>!m.deleted&&(String(m.msg||'').toLowerCase().includes(q)||String(m.by||'').toLowerCase().includes(q)));}
+ if(!msgs.length)return `<div class="chat-empty">${CHAT.q?'Tidak ada pesan yang cocok dengan "'+esc(CHAT.q)+'".':`<div style="font-size:30px">💬</div><b>Belum ada pesan</b><span>Mulai diskusi — sapa tim dengan salam 👋</span><div class="chat-starters">${['Assalamualaikum, tim 👋','Update rekrutmen hari ini?','Mohon cek pengajuan aktivasi 🙏'].map(t=>`<button onclick="chatQuick(this.textContent)">${esc(t)}</button>`).join('')}</div>`}</div>`;
+ let h='',prevDay='';msgs.forEach((m,i)=>{const dl=chatDayLbl(m.ts);if(dl!==prevDay){h+=`<div class="cb-day"><span>${esc(dl)}</span></div>`;prevDay=dl;}h+=chatMsgHtml(m,CHAT.q?null:msgs[i-1],all);});return h;}
+function chatRoomsHtml(){const room=state.chatRoom||'all';
+ return CHAT_ROOMS.map(r=>{const s=CHAT.sum[r.id]||{};const l=s.last;const un=r.id===room?0:(s.unread||0);
+  return `<div class="chat-room ${room===r.id?'on':''}" onclick="chatRoom('${r.id}')">
+   <div class="cr-av ${r.grp?'grp':''}" ${r.role?`style="background:${roleColor(r.role)}20;color:${roleColor(r.role)}"`:''}>${r.grp?ic('users'):initials(r.nama)}</div>
+   <div class="cr-main"><div class="cr-top"><span class="cr-nm">${esc(r.nama)}</span>${l?`<span class="cr-tm">${chatTime(l.ts)}</span>`:''}</div>
+   <div class="cr-sub">${l?(l.deleted?'<i>Pesan dihapus</i>':esc((l.by||'').split(',')[0])+': '+esc(l.msg||'')):esc(r.sub)}</div></div>
+   ${un?`<span class="cr-badge">${un>99?'99+':un}</span>`:''}</div>`;}).join('');}
+function chatDrawBody(){const b=document.getElementById('chatBody');if(b)b.innerHTML=chatBodyHtml();}
+function chatDrawRooms(){const r=document.getElementById('chatRooms');if(r)r.innerHTML=chatRoomsHtml();}
+function chatComposerBar(){const room=state.chatRoom||'all';const all=CHAT.msgs[room]||[];
+ if(CHAT.edit){const m=all.find(x=>String(x.id)===String(CHAT.edit));return m?`<div class="chat-ctx">✎ <div><b>Mengedit pesan</b><span>${esc(String(m.msg||'').slice(0,90))}</span></div><button onclick="chatCancelCtx()" title="Batal (Esc)">×</button></div>`:'';}
+ if(CHAT.reply){const m=all.find(x=>String(x.id)===String(CHAT.reply));return m?`<div class="chat-ctx">${ic('reply')} <div><b>Membalas ${esc(m.by)}</b><span>${esc(String(m.msg||'').slice(0,90))}</span></div><button onclick="chatCancelCtx()" title="Batal (Esc)">×</button></div>`:'';}
+ return '';}
+function renderChat(){const room=state.chatRoom||'all';
+ const roomInfo=CHAT_ROOMS.find(r=>r.id===room)||CHAT_ROOMS[0];CHAT.sig='';
+ setTimeout(()=>chatRefresh(true),0);
  return `<div class="chat-shell card">
    <div class="chat-side">
-     <div class="chat-side-h">Percakapan</div>
-     ${CHAT_ROOMS.map(r=>`<div class="chat-room ${room===r.id?'on':''}" onclick="chatRoom('${r.id}')">
-       <div class="cr-av ${r.grp?'grp':''}" ${r.role?`style="background:${roleColor(r.role)}20;color:${roleColor(r.role)}"`:''}>${r.grp?ic('users'):initials(r.nama)}</div>
-       <div class="cr-main"><div class="cr-nm">${esc(r.nama)}</div><div class="cr-sub">${esc(r.sub)}</div></div></div>`).join('')}
+     <div class="chat-side-h">PERCAKAPAN</div>
+     <div id="chatRooms">${chatRoomsHtml()}</div>
+     <div class="chat-tips"><b>Tips</b><span><kbd>Enter</kbd> kirim · <kbd>Shift</kbd>+<kbd>Enter</kbd> baris baru</span><span><kbd>↑</kbd> edit pesan terakhir · <kbd>Esc</kbd> batal</span><span>Arahkan kursor ke pesan untuk balas / reaksi</span></div>
    </div>
    <div class="chat-main">
-     <div class="chat-top"><div class="cr-av ${roomInfo.grp?'grp':''}" ${roomInfo.role?`style="background:${roleColor(roomInfo.role)}20;color:${roleColor(roomInfo.role)}"`:''}>${roomInfo.grp?ic('users'):initials(roomInfo.nama)}</div><div><div style="font-weight:700">${esc(roomInfo.nama)}</div><div class="hint">${esc(roomInfo.sub)}${srvOn?' · tersinkron ke server':' · mode lokal (statik)'}</div></div></div>
-     <div class="chat-body" id="chatBody">${msgs.length?msgs.map(mm=>{const mine=mm.role===meRole;
-       return `<div class="cb-row ${mine?'me':''}"><div class="cb-av" style="background:${roleColor(mm.role)}20;color:${roleColor(mm.role)}">${initials(mm.by)}</div>
-       <div class="cb-bub"><div class="cb-by">${esc(mm.by)}</div><div class="cb-t">${esc(mm.t||mm.msg)}</div><div class="cb-ts">${chatTime(mm.ts)}</div></div></div>`;}).join(''):'<div class="empty" style="margin:auto">Belum ada pesan. Mulai diskusi.</div>'}</div>
-     <div class="chat-input"><input id="chatMsg" placeholder="Tulis pesan sebagai ${esc(meName)}…" onkeydown="if(event.key==='Enter')chatSend()"><button class="btn" onclick="chatSend()">${ic('send')}</button></div>
+     <div class="chat-top"><div class="cr-av ${roomInfo.grp?'grp':''}" ${roomInfo.role?`style="background:${roleColor(roomInfo.role)}20;color:${roleColor(roomInfo.role)}"`:''}>${roomInfo.grp?ic('users'):initials(roomInfo.nama)}</div>
+       <div style="flex:1;min-width:0"><div style="font-weight:700">${esc(roomInfo.nama)}</div><div class="hint"><span class="live-dot ${hasBackend()?'on':''}"></span>${hasBackend()?'Tersinkron · diperbarui otomatis':'Mode lokal (statik)'}</div></div>
+       <div class="chat-search">${ic('search')}<input id="chatQ" placeholder="Cari pesan…" value="${esc(CHAT.q)}" oninput="CHAT.q=this.value.trim();chatDrawBody()"></div></div>
+     <div class="chat-body-wrap"><div class="chat-body" id="chatBody" onscroll="chatOnScroll()">${chatBodyHtml()}</div>
+       <button class="chat-new" id="chatNew" hidden onclick="scrollChat();chatMarkSeen(state.chatRoom||'all')">Pesan baru ↓</button></div>
+     <div id="chatCtx">${chatComposerBar()}</div>
+     <div class="chat-input"><textarea id="chatMsg" rows="1" maxlength="2000" placeholder="Tulis pesan…  (@nama untuk menyebut)" onkeydown="chatKey(event)" oninput="chatGrow(this)"></textarea><button class="btn" onclick="chatSend()" title="Kirim (Enter)">${ic('send')}</button></div>
    </div>
  </div>`;}
-function roleColor(r){return {master:'#1F4E79',kadiv_hr:'#7a3b0a',staff_hr:'#16a34a',karyawan:'#6b7280'}[r]||'#6b7280';}
-function chatTime(ts){const d=new Date(ts);return d.toLocaleString('id-ID',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});}
-function chatRoom(id){state.chatRoom=id;paint();setTimeout(scrollChat,50);setTimeout(chatPull,80);}
-function scrollChat(){const b=document.getElementById('chatBody');if(b)b.scrollTop=b.scrollHeight;}
+/* ---- interaksi ---- */
+function scrollChat(){const b=document.getElementById('chatBody');if(b)b.scrollTop=b.scrollHeight;const nb=document.getElementById('chatNew');if(nb)nb.hidden=true;}
+function chatOnScroll(){const b=document.getElementById('chatBody');if(b&&b.scrollHeight-b.scrollTop-b.clientHeight<40){const nb=document.getElementById('chatNew');if(nb&&!nb.hidden){nb.hidden=true;chatMarkSeen(state.chatRoom||'all');}}chatClosePick();}
+function chatRoom(id){state.chatRoom=id;CHAT.reply=null;CHAT.edit=null;CHAT.q='';paint();}
+function chatGrow(t){t.style.height='auto';t.style.height=Math.min(t.scrollHeight,140)+'px';}
+function chatKey(e){const t=e.target;
+ if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();chatSend();return;}
+ if(e.key==='Escape'){chatCancelCtx();return;}
+ if(e.key==='ArrowUp'&&!t.value){const mine=(CHAT.msgs[state.chatRoom||'all']||[]).filter(m=>chatMine(m)&&!m.deleted);if(mine.length){e.preventDefault();chatSetEdit(mine[mine.length-1].id);}}}
+function chatQuick(t){const i=document.getElementById('chatMsg');if(i){i.value=t;i.focus();}}
+function chatSetReply(id){CHAT.reply=id;CHAT.edit=null;document.getElementById('chatCtx').innerHTML=chatComposerBar();const i=document.getElementById('chatMsg');if(i)i.focus();}
+function chatSetEdit(id){const m=(CHAT.msgs[state.chatRoom||'all']||[]).find(x=>String(x.id)===String(id));if(!m)return;CHAT.edit=id;CHAT.reply=null;
+ document.getElementById('chatCtx').innerHTML=chatComposerBar();const i=document.getElementById('chatMsg');if(i){i.value=m.msg||'';chatGrow(i);i.focus();}}
+function chatCancelCtx(){const wasEdit=!!CHAT.edit;CHAT.reply=null;CHAT.edit=null;const c=document.getElementById('chatCtx');if(c)c.innerHTML='';if(wasEdit){const i=document.getElementById('chatMsg');if(i){i.value='';chatGrow(i);}}}
+function chatJump(id){const el=document.querySelector('#chatBody .cb-row[data-id="'+CSS.escape(String(id))+'"]');if(!el)return;el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1400);}
+function chatCopy(id){const m=(CHAT.msgs[state.chatRoom||'all']||[]).find(x=>String(x.id)===String(id));if(m&&navigator.clipboard)navigator.clipboard.writeText(m.msg||'').then(()=>toast('✓ Pesan disalin'));}
+function chatClosePick(){const p=document.getElementById('chatPicker');if(p)p.remove();}
+function chatPick(id,btn){chatClosePick();const p=document.createElement('div');p.id='chatPicker';p.className='chat-picker';
+ p.innerHTML=CHAT_EMOJI.map(e=>`<button onclick="chatReact('${esc(id)}','${e}');chatClosePick()">${e}</button>`).join('');
+ document.body.appendChild(p);const r=btn.getBoundingClientRect();p.style.top=(r.top+window.scrollY-46)+'px';p.style.left=Math.max(8,Math.min(r.left+window.scrollX-90,window.innerWidth-260))+'px';}
+document.addEventListener('click',e=>{if(!e.target.closest('#chatPicker')&&!e.target.closest('.cb-act'))chatClosePick();});
 async function chatSend(){const inp=document.getElementById('chatMsg');if(!inp)return;const t=(inp.value||'').trim();if(!t)return;
- const room=state.chatRoom||'all';
- const pushLocal=()=>{const c=loadChat();c[room]=c[room]||[];c[room].push({by:roleLabelFull(SESSION.role),role:SESSION.role,t,ts:Date.now()});saveChat(c);inp.value='';paint();setTimeout(scrollChat,30);};
- const ok=apiPost&&await apiPost('/api/chat',{room,text:t}).then(r=>r&&r.ok).catch(()=>false);
- if(ok){inp.value='';chatPull();}else pushLocal();
- if(!ok&&window._chatSrv)toast('Chat tersimpan lokal (server off)','');}
-function roleColor(r){return {master:'#1F4E79',kadiv_hr:'#7a3b0a',staff_hr:'#16a34a',karyawan:'#6b7280'}[r]||'#6b7280';}
-function chatTime(ts){const d=new Date(ts);return d.toLocaleString('id-ID',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});}
-function chatRoom(id){state.chatRoom=id;paint();setTimeout(scrollChat,30);}
-function scrollChat(){const b=document.getElementById('chatBody');if(b)b.scrollTop=b.scrollHeight;}
-function chatSend(){const inp=document.getElementById('chatMsg');if(!inp)return;const t=(inp.value||'').trim();if(!t)return;
- const c=loadChat();const room=state.chatRoom||'all';c[room]=c[room]||[];
- c[room].push({by:roleLabelFull(SESSION.role),role:SESSION.role,t,ts:Date.now()});saveChat(c);inp.value='';paint();setTimeout(scrollChat,30);}
+ const room=state.chatRoom||'all';const reply=CHAT.reply,edit=CHAT.edit;inp.value='';chatGrow(inp);chatCancelCtx();
+ try{
+  if(hasBackend()){
+    if(edit)await _apiFetch('PATCH','/api/chat/'+encodeURIComponent(edit),{text:t});
+    else await apiPost('/api/chat',{room,text:t,replyTo:reply||undefined});
+  }else chatLocalOp(room,arr=>{if(edit){const m=arr.find(x=>String(x.id)===String(edit));if(m){m.msg=t;m.t=t;m.edited=true;}}
+    else{const ts=Date.now();arr.push({id:'l'+ts,by:SESSION.nama||roleLabelFull(SESSION.role),u:SESSION.u,role:SESSION.role,msg:t,t,ts,replyTo:reply||null,reactions:{}});}});
+ }catch(e){inp.value=t;toast('⚠ Gagal mengirim: '+((e&&e.message)||''),true);return;}
+ await chatRefresh(true);inp.focus();}
+async function chatReact(id,emoji){const room=state.chatRoom||'all';
+ // optimistis
+ const m=(CHAT.msgs[room]||[]).find(x=>String(x.id)===String(id));if(m){m.reactions=m.reactions||{};const u=m.reactions[emoji]=m.reactions[emoji]||[];const i=u.indexOf(SESSION.u);if(i>=0)u.splice(i,1);else u.push(SESSION.u);chatDrawBody();}
+ try{if(hasBackend())await apiPost('/api/chat/'+encodeURIComponent(id)+'/react',{emoji});
+   else chatLocalOp(room,arr=>{const x=arr.find(y=>String(y.id)===String(id));if(x&&m)x.reactions=m.reactions;});}
+ catch(e){toast('⚠ '+((e&&e.message)||'Gagal'),true);}chatRefresh(false);}
+async function chatDel(id){if(!confirm('Hapus pesan ini untuk semua anggota?'))return;const room=state.chatRoom||'all';
+ try{if(hasBackend())await _apiFetch('DELETE','/api/chat/'+encodeURIComponent(id));
+   else chatLocalOp(room,arr=>{const x=arr.find(y=>String(y.id)===String(id));if(x){x.deleted=true;x.msg='';x.t='';}});
+   toast('Pesan dihapus');}catch(e){toast('⚠ '+((e&&e.message)||'Gagal'),true);}chatRefresh(true);}
 
 /* ===================== APPS: CALENDAR ===================== */
 /* Kaldik AL-WILDAN 2026/2027 (contoh, bisa diedit) */
@@ -2754,109 +2851,179 @@ const KALDIK=(Array.isArray(window.KALDIK_DATA)&&window.KALDIK_DATA.length)?wind
  {d:'2027-06-08',t:'Penilaian Akhir Tahun',k:'ujian'},
  {d:'2027-06-20',t:'Pembagian Rapor & Akhir Tahun Ajaran',k:'kaldik'},
 ];
-function loadCalEv(){try{return JSON.parse(localStorage.getItem(CAL_KEY))||[]}catch(e){return[]}}
-function saveCalEv(a){try{localStorage.setItem(CAL_KEY,JSON.stringify(a))}catch(e){}}
-function calEvents(y,mo){/* kumpulkan event utk bulan (y,mo 0-based) */
- let evs=[];
- // 1) kaldik
- KALDIK.forEach(e=>{const dt=new Date(e.d);if(dt.getFullYear()===y&&dt.getMonth()===mo)evs.push({day:dt.getDate(),t:e.t,k:e.k});});
- // 2) rekrutmen: estimasi selesai & tanggal aktif & deadline pengajuan
- recMerged().forEach(c=>{
-   const push=(ds,label,k)=>{if(!ds)return;const dt=new Date(ds);if(!isNaN(dt)&&dt.getFullYear()===y&&dt.getMonth()===mo)evs.push({day:dt.getDate(),t:label,k});};
-   const nm=(c.nama||'').split(',')[0];
-   if(c.aktivasi!=='approved'){push(c.estimasi,'🎯 Est. selesai: '+nm+' ('+(c.unit||'')+')','rekrut');}
-   push(c.estimasiAktif,'✅ Aktif: '+nm+' ('+(c.unit||'')+')','aktif');
- });
- // 3) agenda manual (tersimpan lokal, bisa dihapus)
- loadCalEv().forEach(e=>{const dt=new Date(e.d);if(dt.getFullYear()===y&&dt.getMonth()===mo)evs.push({day:dt.getDate(),t:e.t,k:e.k||'agenda',id:e.id});});
- // filter kategori aktif
- if(state.calFilter&&state.calFilter.length)evs=evs.filter(e=>state.calFilter.includes(e.k));
- return evs;}
-function renderCalendar(){const now=new Date();const y=state.calY!=null?state.calY:2026;const mo=state.calM!=null?state.calM:6; // default Juli 2026
+const CAL_MON=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const CAL_KCOL={agenda:'var(--c4)',rapat:'var(--c1)',deadline:'var(--c5)',kaldik:'var(--info)',libur:'var(--neg)',ujian:'#7a3b0a',rekrut:'var(--warn)',aktif:'var(--pos)'};
+const CAL_KLBL={agenda:'Agenda HR',rapat:'Rapat',deadline:'Deadline',kaldik:'Kaldik',libur:'Libur',ujian:'Ujian/PTS',rekrut:'Estimasi Rekrutmen',aktif:'Tgl Aktif'};
+const CAL_MANUAL_K=['agenda','rapat','deadline','libur','ujian','kaldik'];
+let CAL={ev:null,loading:false,err:''};
+const calDs=(y,mo,d)=>y+'-'+String(mo+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+const calParse=ds=>{const [y,m,d]=String(ds).split('-').map(Number);return new Date(y,m-1,d);};
+const calAddDays=(ds,n)=>{const d=calParse(ds);d.setDate(d.getDate()+n);return calDs(d.getFullYear(),d.getMonth(),d.getDate());};
+const calDiff=(a,b)=>Math.round((calParse(b)-calParse(a))/86400000);
+function calCanEdit(e){return !hasBackend()||!e.by||(SESSION&&(e.by===SESSION.u||SESSION.role==='master'));}
+/* ---- data agenda manual: server (sinkron tim) atau localStorage (statik) ---- */
+function calLocal(){try{return JSON.parse(localStorage.getItem(CAL_KEY))||[]}catch(e){return[]}}
+function calLocalSave(a){try{localStorage.setItem(CAL_KEY,JSON.stringify(a))}catch(e){}}
+async function calLoad(){if(CAL.loading)return;CAL.loading=true;
+ try{CAL.ev=hasBackend()?((await apiGet('/api/calendar')).events||[]):calLocal();CAL.err='';}
+ catch(e){CAL.err=(e&&e.message)||'Gagal memuat agenda';CAL.ev=CAL.ev||[];}
+ CAL.loading=false;if(state.view==='calendar')paint();}
+function calManual(){return CAL.ev||[];}
+async function calSave(id,data){
+ if(hasBackend()){return id?_apiFetch('PATCH','/api/calendar/'+encodeURIComponent(id),data):apiPost('/api/calendar',data);}
+ const arr=calLocal();if(id){const e=arr.find(x=>x.id===id);if(e)Object.assign(e,data);}else arr.push(Object.assign({id:'ev'+Date.now(),by:SESSION&&SESSION.u,byNama:SESSION&&SESSION.nama},data));calLocalSave(arr);}
+async function calRemove(id){if(hasBackend())return _apiFetch('DELETE','/api/calendar/'+encodeURIComponent(id));calLocalSave(calLocal().filter(e=>e.id!==id));}
+/* ---- kumpulan event untuk bulan (y,mo 0-based) ---- */
+function calAllEvents(){const out=[];
+ KALDIK.forEach(e=>out.push({d:e.d,t:e.t,k:e.k,auto:true,src:'Kalender akademik'}));
+ recMerged().forEach(c=>{const nm=(c.nama||'').split(',')[0];
+   if(c.aktivasi!=='approved'&&c.estimasi)out.push({d:String(c.estimasi).slice(0,10),t:'🎯 Est. selesai: '+nm+' ('+(c.unit||'')+')',k:'rekrut',auto:true,src:'Rekrutmen · '+(c.mapel||'')});
+   if(c.estimasiAktif)out.push({d:String(c.estimasiAktif).slice(0,10),t:'✅ Aktif: '+nm+' ('+(c.unit||'')+')',k:'aktif',auto:true,src:'Rekrutmen · '+(c.unit||'')});});
+ calManual().forEach(e=>out.push(Object.assign({},e,{k:e.k||'agenda',auto:false})));
+ const q=(state.calQ||'').toLowerCase();const f=state.calFilter||[];
+ return out.filter(e=>/^\d{4}-\d{2}-\d{2}$/.test(e.d)&&(!f.length||f.includes(e.k))&&(!q||String(e.t).toLowerCase().includes(q)||String(e.note||'').toLowerCase().includes(q)));}
+function calEvents(y,mo){const res=[];const first=calDs(y,mo,1),last=calDs(y,mo,new Date(y,mo+1,0).getDate());
+ calAllEvents().forEach(e=>{const end=e.end&&e.end>e.d?e.end:e.d;if(end<first||e.d>last)return;
+   let ds=e.d<first?first:e.d;const stop=end>last?last:end;
+   while(ds<=stop){res.push(Object.assign({},e,{day:calParse(ds).getDate(),cont:ds!==e.d,multi:end!==e.d}));ds=calAddDays(ds,1);}});
+ return res.sort((a,b)=>(a.jam||'99').localeCompare(b.jam||'99'));}
+function calEvChip(e,y,mo){const col=CAL_KCOL[e.k]||'var(--ink-3)';const drag=!e.auto&&calCanEdit(e);
+ const label=(e.jam&&!e.cont?e.jam+' ':'')+e.t;
+ return `<div class="cal-ev${e.cont?' cont':''}${drag?' drag':''}" ${drag?`draggable="true" ondragstart="calDragStart(event,'${esc(e.id)}')"`:''} onclick="event.stopPropagation();${e.auto?`calDay(${y},${mo},${e.day})`:`calForm('${esc(e.id)}')`}" style="background:color-mix(in srgb,${col} 15%,transparent);color:${col};border-left:2px solid ${col}" title="${esc(e.t)}${e.jam?' · '+e.jam:''}${e.note?'\n'+esc(e.note):''}${drag?'\n(seret untuk memindah tanggal)':''}">${esc(label)}</div>`;}
+function calCountdown(ds){const n=calDiff(calDs(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()),ds);return n===0?'<span class="cd now">Hari ini</span>':n===1?'<span class="cd soon">Besok</span>':n<=7?`<span class="cd soon">H-${n}</span>`:`<span class="cd">H-${n}</span>`;}
+function renderCalendar(){const now=new Date();const y=state.calY!=null?state.calY:now.getFullYear();const mo=state.calM!=null?state.calM:now.getMonth();
+ if(CAL.ev===null&&!CAL.loading)setTimeout(calLoad,0);
+ const mode=state.calMode||'month';
  const first=new Date(y,mo,1);const startDow=(first.getDay()+6)%7; // Senin=0
  const days=new Date(y,mo+1,0).getDate();
  const evs=calEvents(y,mo);const byDay={};evs.forEach(e=>{(byDay[e.day]=byDay[e.day]||[]).push(e);});
- const monNames=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
- const kcol={kaldik:'var(--info)',libur:'var(--neg)',ujian:'#7a3b0a',rekrut:'var(--warn)',aktif:'var(--pos)',agenda:'var(--c4)'};
+ const todayDs=calDs(now.getFullYear(),now.getMonth(),now.getDate());
  let cells='';for(let i=0;i<startDow;i++)cells+='<div class="cal-cell out"></div>';
- for(let d=1;d<=days;d++){const list=byDay[d]||[];const today=(y===now.getFullYear()&&mo===now.getMonth()&&d===now.getDate());
-   cells+=`<div class="cal-cell${today?' today':''}" onclick="calDay(${y},${mo},${d})" style="cursor:pointer"><div class="cal-d">${d}</div>${list.slice(0,3).map(e=>`<div class="cal-ev" style="background:color-mix(in srgb,${kcol[e.k]||'var(--ink-3)'} 15%,transparent);color:${kcol[e.k]||'var(--ink-2)'};border-left:2px solid ${kcol[e.k]||'var(--ink-3)'}" title="${esc(e.t)}">${esc(e.t.length>22?e.t.slice(0,22)+'…':e.t)}</div>`).join('')}${list.length>3?`<div class="cal-more">+${list.length-3} lagi</div>`:''}</div>`;}
- // agenda mendatang (rekrutmen + manual)
- const upcoming=[];const t0=new Date(now.toDateString());
- recMerged().forEach(c=>{if(c.aktivasi==='approved')return;const nm=(c.nama||'').split(',')[0];[['estimasi','🎯 Estimasi selesai','rekrut'],['estimasiAktif','✅ Tanggal aktif','aktif']].forEach(([f,lb,k])=>{if(c[f]){const dt=new Date(c[f]);if(!isNaN(dt)&&dt>=t0)upcoming.push({dt,t:lb+': '+nm,sub:(c.unit||'')+' · '+(c.mapel||''),k});}});});
- loadCalEv().forEach(e=>{const dt=new Date(e.d);if(!isNaN(dt)&&dt>=t0)upcoming.push({dt,t:e.t,sub:'Agenda manual',k:e.k||'agenda'});});
- upcoming.sort((a,b)=>a.dt-b.dt);
- const catLbl={kaldik:'Kaldik',libur:'Libur',ujian:'Ujian/PTS',rekrut:'Estimasi Rekrutmen',aktif:'Tgl Aktif',agenda:'Agenda HR'};
- const sel=state.calFilter||[];
- const catCount=(k)=>evs.filter(e=>e.k===k).length;
- const chip=(k)=>`<button class="cal-fchip ${sel.includes(k)||!sel.length?'on':''}" onclick="calToggleCat('${k}')"><i style="background:${kcol[k]}"></i>${catLbl[k]} <b class="tnum" style="opacity:.65">${catCount(k)}</b></button>`;
+ for(let d=1;d<=days;d++){const list=byDay[d]||[];const ds=calDs(y,mo,d);const dow=(startDow+d-1)%7;
+   cells+=`<div class="cal-cell${ds===todayDs?' today':''}${dow>=5?' wknd':''}${ds<todayDs?' past':''}" data-ds="${ds}" onclick="calDay(${y},${mo},${d})" ondragover="calDragOver(event)" ondragleave="this.classList.remove('dropok')" ondrop="calDrop(event,'${ds}')">
+     <div class="cal-dh"><span class="cal-d">${d}</span><button class="cal-add" title="Tambah agenda ${d} ${CAL_MON[mo]}" onclick="event.stopPropagation();calForm(null,'${ds}')">+</button></div>
+     ${list.slice(0,3).map(e=>calEvChip(e,y,mo)).join('')}${list.length>3?`<div class="cal-more">+${list.length-3} lagi</div>`:''}</div>`;}
+ // daftar per hari (mode list)
+ const listHtml=Object.keys(byDay).map(Number).sort((a,b)=>a-b).map(d=>{const ds=calDs(y,mo,d);const dt=calParse(ds);
+   return `<div class="cal-lday${ds===todayDs?' today':''}"><div class="cal-ldate" onclick="calDay(${y},${mo},${d})"><b>${d}</b><span>${dt.toLocaleDateString('id-ID',{weekday:'short'})}</span></div>
+   <div class="cal-litems">${byDay[d].map(e=>`<div class="cal-litem" onclick="${e.auto?`calDay(${y},${mo},${d})`:`calForm('${esc(e.id)}')`}"><i style="background:${CAL_KCOL[e.k]}"></i><div style="flex:1;min-width:0"><div class="t">${esc(e.t)}</div><div class="s">${e.jam?e.jam+' · ':''}${esc(CAL_KLBL[e.k]||e.k)}${e.multi?' · '+esc(e.d.slice(8))+'–'+esc((e.end||'').slice(8))+' '+CAL_MON[mo].slice(0,3):''}${e.byNama?' · oleh '+esc(e.byNama.split(',')[0]):''}${e.src?' · '+esc(e.src):''}</div>${e.note?`<div class="n">${esc(e.note)}</div>`:''}</div>${e.auto?'<span class="auto">otomatis</span>':''}</div>`).join('')}</div></div>`;}).join('');
+ // agenda hari ini & mendatang (30 hari)
+ const all=calAllEvents();const lim=calAddDays(todayDs,45);
+ const todayList=all.filter(e=>e.d<=todayDs&&(e.end||e.d)>=todayDs);
+ const upcoming=all.filter(e=>e.d>todayDs&&e.d<=lim).sort((a,b)=>a.d.localeCompare(b.d)||(a.jam||'').localeCompare(b.jam||''));
+ const sel=state.calFilter||[];const catCount=k=>evs.filter(e=>e.k===k&&!e.cont).length;
+ const chip=k=>`<button class="cal-fchip ${sel.includes(k)||!sel.length?'on':''}" onclick="calToggleCat('${k}')"><i style="background:${CAL_KCOL[k]}"></i>${CAL_KLBL[k]} <b class="tnum" style="opacity:.65">${catCount(k)}</b></button>`;
  const selStyle="border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12.5px;background:var(--surface);color:var(--ink);font-weight:700;font-family:inherit;cursor:pointer";
- return `${devBanner('Kalender akademik (kaldik) + estimasi rekrutmen + agenda HR manual. Klik tanggal untuk menamb/menghapus agenda.')}
+ const agItem=(e,showCd)=>`<div class="ag-item" style="border-left:3px solid ${CAL_KCOL[e.k]||'var(--ink-3)'};cursor:pointer" onclick="${e.auto?`calGoto(${calParse(e.d).getFullYear()},${calParse(e.d).getMonth()},${calParse(e.d).getDate()})`:`calForm('${esc(e.id)}')`}"><div class="ag-dt">${calParse(e.d).toLocaleDateString('id-ID',{day:'2-digit',month:'short'})}${e.jam?`<br><span style="font-weight:600;color:var(--ink-3)">${e.jam}</span>`:''}</div><div style="flex:1;min-width:0"><div class="ag-t">${esc(e.t)}</div><div class="ag-sub">${esc(CAL_KLBL[e.k]||e.k)}${e.byNama?' · '+esc(e.byNama.split(',')[0]):''}</div></div>${showCd?calCountdown(e.d):''}</div>`;
+ const yrs=[];for(let yy=Math.min(2025,y);yy<=Math.max(now.getFullYear()+2,y);yy++)yrs.push(yy);
+ return `${CAL.err?`<div class="login-err" style="margin-bottom:10px">⚠ ${esc(CAL.err)}</div>`:''}
  <div class="cal-wrap">
    <div class="cal-main card">
      <div class="cal-top"><button class="iconbtn" onclick="calNav(-1)" title="Bulan sebelumnya (←)">‹</button>
-       <select style="${selStyle}" title="Pilih bulan" onchange="calJump(this.value,${y})">${monNames.map((nm,i)=>`<option value="${i}" ${i===mo?'selected':''}>${nm}</option>`).join('')}</select>
-       <select style="${selStyle}" title="Pilih tahun" onchange="calJump(${mo},this.value)">${[2025,2026,2027,2028].map(yy=>`<option value="${yy}" ${yy===y?'selected':''}>${yy}</option>`).join('')}</select>
+       <select style="${selStyle}" title="Pilih bulan" onchange="calJump(this.value,${y})">${CAL_MON.map((nm,i)=>`<option value="${i}" ${i===mo?'selected':''}>${nm}</option>`).join('')}</select>
+       <select style="${selStyle}" title="Pilih tahun" onchange="calJump(${mo},this.value)">${yrs.map(yy=>`<option value="${yy}" ${yy===y?'selected':''}>${yy}</option>`).join('')}</select>
        <button class="iconbtn" onclick="calNav(1)" title="Bulan berikutnya (→)">›</button>
-       <span class="pill info" style="font-size:11px" title="Agenda bulan ini">${evs.length} agenda</span>
+       <div class="seg"><button class="${mode==='month'?'on':''}" onclick="state.calMode='month';paint()">Bulan</button><button class="${mode==='list'?'on':''}" onclick="state.calMode='list';paint()">Daftar</button></div>
+       <div class="cal-search">${ic('search')}<input id="calQ" placeholder="Cari agenda…" value="${esc(state.calQ||'')}" oninput="calSearch(this.value)"></div>
        <button class="btn ghost" style="margin-left:auto;padding:6px 11px;font-size:12px" onclick="calToday()" title="Ke bulan ini (T)">Hari ini</button>
        <button class="btn ghost" style="padding:6px 11px;font-size:12px" onclick="calExport(${y},${mo})" title="Unduh agenda bulan ini (CSV)">⭳ CSV</button>
-       <button class="btn" style="padding:6px 11px;font-size:12px" onclick="calAddModal(${y},${mo})">${ic('plus')} Tambah Agenda</button></div>
-     <div class="cal-legend" style="gap:6px">${Object.keys(catLbl).map(chip).join('')}${sel.length?`<button class="cal-fchip" onclick="state.calFilter=[];paint()" style="border-style:dashed">Semua</button>`:''}</div>
-     <div class="cal-grid-h">${['Sen','Sel','Rab','Kam','Jum','Sab','Min'].map(d=>`<div>${d}</div>`).join('')}</div>
+       <button class="btn" style="padding:6px 11px;font-size:12px" onclick="calForm(null,'${y===now.getFullYear()&&mo===now.getMonth()?todayDs:calDs(y,mo,1)}')" title="Agenda baru (N)">${ic('plus')} Agenda</button></div>
+     <div class="cal-legend" style="gap:6px">${Object.keys(CAL_KLBL).map(chip).join('')}${sel.length?`<button class="cal-fchip" onclick="state.calFilter=[];paint()" style="border-style:dashed">Semua</button>`:''}</div>
+     ${mode==='month'?`<div class="cal-grid-h">${['Sen','Sel','Rab','Kam','Jum','Sab','Min'].map(d=>`<div>${d}</div>`).join('')}</div>
      <div class="cal-grid">${cells}</div>
+     <div class="cal-hint">Klik tanggal untuk detail · tombol <b>+</b> untuk agenda baru · seret agenda untuk memindah tanggal · <kbd>←</kbd>/<kbd>→</kbd> ganti bulan · <kbd>T</kbd> hari ini · <kbd>N</kbd> agenda baru</div>`
+     :`<div class="cal-list">${listHtml||`<div class="empty">Tidak ada agenda di ${CAL_MON[mo]} ${y}${state.calQ?' yang cocok dengan pencarian':''}.</div>`}</div>`}
    </div>
-   <div class="cal-agenda card"><div class="panel-h"><h3>Agenda Mendatang</h3><span class="hint">rekrutmen + HR</span></div>
-     ${upcoming.length?upcoming.slice(0,14).map(u=>`<div class="ag-item" style="border-left:3px solid ${kcol[u.k]||'var(--ink-3)'};cursor:pointer" title="Buka tanggal ini" onclick="calGoto(${u.dt.getFullYear()},${u.dt.getMonth()},${u.dt.getDate()})"><div class="ag-dt">${u.dt.toLocaleDateString('id-ID',{day:'2-digit',month:'short'})}</div><div><div class="ag-t">${esc(u.t)}</div><div class="ag-sub">${esc(u.sub)}</div></div></div>`).join(''):'<div class="empty" style="padding:24px">Belum ada agenda. Klik tanggal atau "Tambah Agenda".</div>'}
+   <div class="cal-side">
+     <div class="cal-agenda card"><div class="panel-h"><h3>Hari Ini</h3><span class="hint">${now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'})}</span></div>
+       ${todayList.length?todayList.map(e=>agItem(e,false)).join(''):'<div class="hh" style="padding:6px 2px 4px">Tidak ada agenda hari ini. 🌿</div>'}
+       <button class="btn ghost" style="width:100%;justify-content:center;margin-top:6px;padding:7px;font-size:12px" onclick="calForm(null,'${todayDs}')">${ic('plus')} Tambah untuk hari ini</button></div>
+     <div class="cal-agenda card"><div class="panel-h"><h3>Mendatang</h3><span class="hint">45 hari ke depan</span></div>
+       ${upcoming.length?upcoming.slice(0,12).map(e=>agItem(e,true)).join('')+(upcoming.length>12?`<div class="hh" style="text-align:center">+${upcoming.length-12} agenda lain</div>`:''):'<div class="empty" style="padding:20px">Belum ada agenda mendatang.</div>'}
+     </div>
    </div>
  </div>`;}
-function calToggleCat(k){let s=state.calFilter||[];if(!s.length){/* dari "semua" → pilih hanya k yang lain */s=Object.keys({kaldik:1,libur:1,ujian:1,rekrut:1,aktif:1,agenda:1}).filter(x=>x!==k);}
+let _calQT=null;function calSearch(v){state.calQ=v;clearTimeout(_calQT);_calQT=setTimeout(()=>{paint();const i=document.getElementById('calQ');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}},250);}
+function calToggleCat(k){const keys=Object.keys(CAL_KLBL);let s=state.calFilter||[];if(!s.length)s=keys.filter(x=>x!==k);
  else if(s.includes(k))s=s.filter(x=>x!==k);else s=[...s,k];
- if(s.length===6)s=[];state.calFilter=s;paint();}
-function calNav(delta){let y=state.calY!=null?state.calY:2026,m=(state.calM!=null?state.calM:6)+delta;if(m<0){m=11;y--;}if(m>11){m=0;y++;}state.calY=y;state.calM=m;paint();}
+ if(s.length===keys.length||!s.length)s=[];state.calFilter=s;paint();}
+function calCur(){const n=new Date();return [state.calY!=null?state.calY:n.getFullYear(),state.calM!=null?state.calM:n.getMonth()];}
+function calNav(delta){let [y,m]=calCur();m+=delta;if(m<0){m=11;y--;}if(m>11){m=0;y++;}state.calY=y;state.calM=m;paint();}
 function calToday(){const n=new Date();state.calY=n.getFullYear();state.calM=n.getMonth();paint();}
 function calJump(m,y){state.calM=parseInt(m,10);state.calY=parseInt(y,10);paint();}
 function calGoto(y,mo,d){state.calY=y;state.calM=mo;paint();setTimeout(()=>calDay(y,mo,d),40);}
-function calExport(y,mo){const monNames=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
- const catLbl={kaldik:'Kaldik',libur:'Libur',ujian:'Ujian/PTS',rekrut:'Estimasi Rekrutmen',aktif:'Tgl Aktif',agenda:'Agenda HR'};
- const evs=calEvents(y,mo).slice().sort((a,b)=>a.day-b.day);
+function calExport(y,mo){
+ const evs=calEvents(y,mo).filter(e=>!e.cont).slice().sort((a,b)=>a.day-b.day);
  if(!evs.length){toast('Tidak ada agenda di bulan ini',true);return;}
- const rows=evs.map(e=>{const ds=y+'-'+String(mo+1).padStart(2,'0')+'-'+String(e.day).padStart(2,'0');return ['"'+ds+'"','"'+(catLbl[e.k]||e.k||'')+'"','"'+String(e.t||'').replace(/"/g,'""')+'"'].join(',');});
- const csv='TANGGAL,KATEGORI,AGENDA\n'+rows.join('\n');
- const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');
- a.href=url;a.download='Agenda_'+monNames[mo]+'_'+y+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+ const q=v=>'"'+String(v||'').replace(/"/g,'""')+'"';
+ const rows=evs.map(e=>[q(e.d),q(e.end||''),q(e.jam||''),q(CAL_KLBL[e.k]||e.k),q(e.t),q(e.note||''),q(e.byNama||'')].join(','));
+ const csv='TANGGAL,SAMPAI,JAM,KATEGORI,AGENDA,CATATAN,DIBUAT OLEH\n'+rows.join('\n');
+ const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');
+ a.href=url;a.download='Agenda_'+CAL_MON[mo]+'_'+y+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
  toast('✓ '+evs.length+' agenda diekspor (CSV)');}
 if(!window._calKeyBound){window._calKeyBound=true;document.addEventListener('keydown',function(e){
  if(state.view!=='calendar'||document.getElementById('modalRoot'))return;
  const tag=(e.target&&e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea'||tag==='select')return;
- if(e.key==='ArrowLeft'){e.preventDefault();calNav(-1);}else if(e.key==='ArrowRight'){e.preventDefault();calNav(1);}else if(e.key==='t'||e.key==='T'){calToday();}});}
-function calDay(y,mo,d){const evs=calEvents(y,mo).filter(e=>e.day===d);const kcol={kaldik:'var(--info)',libur:'var(--neg)',ujian:'#7a3b0a',rekrut:'var(--warn)',aktif:'var(--pos)',agenda:'var(--c4)'};
- const monNames=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
- const ds=y+'-'+String(mo+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
- const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:460px"><div class="modal-h"><div class="avatar">${ic('calendar')}</div><div><div class="nm">${d} ${monNames[mo]} ${y}</div><div class="rl">${evs.length} agenda</div></div><button class="x" onclick="closeModal()">×</button></div>
+ if(e.key==='ArrowLeft'){e.preventDefault();calNav(-1);}else if(e.key==='ArrowRight'){e.preventDefault();calNav(1);}else if(e.key==='t'||e.key==='T'){calToday();}
+ else if(e.key==='n'||e.key==='N'){e.preventDefault();const n=new Date();calForm(null,calDs(n.getFullYear(),n.getMonth(),n.getDate()));}});}
+/* ---- drag & drop: pindah tanggal agenda manual ---- */
+function calDragStart(ev,id){ev.dataTransfer.setData('text/plain',id);ev.dataTransfer.effectAllowed='move';}
+function calDragOver(ev){ev.preventDefault();ev.currentTarget.classList.add('dropok');}
+async function calDrop(ev,ds){ev.preventDefault();ev.currentTarget.classList.remove('dropok');const id=ev.dataTransfer.getData('text/plain');
+ const e=calManual().find(x=>x.id===id);if(!e||e.d===ds)return;const span=e.end?calDiff(e.d,e.end):0;
+ const patch={d:ds,end:span?calAddDays(ds,span):(e.end?ds:undefined)};
+ Object.assign(e,patch);paint(); // optimistis
+ try{await calSave(id,patch);toast('✓ "'+e.t+'" dipindah ke '+calParse(ds).toLocaleDateString('id-ID',{day:'numeric',month:'long'}));}
+ catch(err){toast('⚠ '+((err&&err.message)||'Gagal memindah'),true);}calLoad();}
+/* ---- modal: detail hari ---- */
+function calDay(y,mo,d){const ds=calDs(y,mo,d);const evs=calEvents(y,mo).filter(e=>e.day===d);const dt=calParse(ds);
+ const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:480px"><div class="modal-h"><div class="avatar">${ic('calendar')}</div><div><div class="nm">${dt.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div><div class="rl">${evs.length} agenda</div></div><button class="x" onclick="closeModal()">×</button></div>
    <div style="padding:14px 18px;display:flex;flex-direction:column;gap:8px">
-     ${evs.length?evs.map(e=>`<div style="display:flex;gap:9px;align-items:center;padding:9px 11px;border-radius:9px;background:color-mix(in srgb,${kcol[e.k]||'var(--ink-3)'} 8%,transparent)"><span class="d" style="width:9px;height:9px;border-radius:50%;background:${kcol[e.k]||'var(--ink-3)'}"></span><span style="font-size:13px;flex:1">${esc(e.t)}</span>${e.id?`<button class="iconbtn" title="Hapus agenda" style="width:26px;height:26px" onclick="calDelEv('${e.id}',${y},${mo},${d})">${ic('trash')}</button>`:'<span style="font-size:10px;color:var(--ink-3)">otomatis</span>'}</div>`).join(''):'<div class="empty" style="padding:14px">Belum ada agenda tanggal ini.</div>'}
-     <div style="border-top:1px dashed var(--line);margin-top:6px;padding-top:12px">
-       <label class="cf-l" style="font-size:12px;font-weight:700">Tambah agenda tanggal ini</label>
-       <input id="cev_t" placeholder="cth: Rapat pleno HR, Deadline kontrak…" style="width:100%;margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12.5px;background:var(--surface);color:var(--ink)">
-       <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
-         <select id="cev_k" style="border:1px solid var(--line);border-radius:8px;padding:8px;font-size:12px;background:var(--surface);color:var(--ink)"><option value="agenda">Agenda HR</option><option value="libur">Libur</option><option value="ujian">Ujian/PTS</option><option value="kaldik">Kaldik</option></select>
-         <button class="btn" style="flex:1;justify-content:center" onclick="calSaveEv('${ds}')">${ic('plus')} Simpan Agenda</button>
-       </div>
-     </div>
+     ${evs.length?evs.map(e=>{const col=CAL_KCOL[e.k]||'var(--ink-3)';return `<div class="cal-dayitem" style="background:color-mix(in srgb,${col} 8%,transparent);border-left:3px solid ${col}">
+       <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">${e.jam?`<span style="color:${col}">${e.jam}</span> · `:''}${esc(e.t)}</div>
+       <div style="font-size:11px;color:var(--ink-3)">${esc(CAL_KLBL[e.k]||e.k)}${e.multi?' · '+calParse(e.d).toLocaleDateString('id-ID',{day:'numeric',month:'short'})+' – '+calParse(e.end).toLocaleDateString('id-ID',{day:'numeric',month:'short'}):''}${e.byNama?' · oleh '+esc(e.byNama.split(',')[0]):''}${e.src?' · '+esc(e.src):''}</div>
+       ${e.note?`<div style="font-size:12px;color:var(--ink-2);margin-top:4px;white-space:pre-wrap">${esc(e.note)}</div>`:''}</div>
+       ${e.auto?'<span style="font-size:10px;color:var(--ink-3)">otomatis</span>':calCanEdit(e)?`<button class="iconbtn" title="Edit" style="width:28px;height:28px" onclick="calForm('${esc(e.id)}')">✎</button>`:''}</div>`;}).join(''):'<div class="empty" style="padding:14px">Belum ada agenda di tanggal ini.</div>'}
+     <button class="btn" style="justify-content:center;margin-top:6px" onclick="calForm(null,'${ds}')">${ic('plus')} Tambah agenda di tanggal ini</button>
    </div></div></div>`;
- const w=document.createElement('div');w.id='modalRoot';w.innerHTML=html;document.body.appendChild(w);document.body.style.overflow='hidden';}
-function calAddModal(y,mo){const n=new Date();const d=(y===n.getFullYear()&&mo===n.getMonth())?n.getDate():1;calDay(y,mo,d);}
-function calSaveEv(ds){const t=(document.getElementById('cev_t').value||'').trim();const k=document.getElementById('cev_k').value||'agenda';
- if(!t){toast('Isi nama agenda dulu',true);return;}
- const arr=loadCalEv();arr.push({id:'ev'+Date.now(),d:ds,t,k});saveCalEv(arr);toast('✓ Agenda ditambahkan');closeModal();paint();}
-function calDelEv(id,y,mo,d){const arr=loadCalEv().filter(e=>e.id!==id);saveCalEv(arr);toast('Agenda dihapus');closeModal();paint();setTimeout(()=>calDay(y,mo,d),60);}
+ closeModal();const w=document.createElement('div');w.id='modalRoot';w.innerHTML=html;document.body.appendChild(w);document.body.style.overflow='hidden';}
+/* ---- modal: buat / edit agenda ---- */
+function calForm(id,ds){const e=id?calManual().find(x=>x.id===id):null;if(id&&!e){toast('Agenda tidak ditemukan',true);return;}
+ const ro=e&&!calCanEdit(e);const v=e||{d:ds,t:'',k:'agenda',jam:'',end:'',note:''};
+ const inp="width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13px;background:var(--surface);color:var(--ink);font-family:inherit";
+ const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:500px"><div class="modal-h"><div class="avatar">${ic('calendar')}</div><div><div class="nm">${e?(ro?'Detail Agenda':'Edit Agenda'):'Agenda Baru'}</div><div class="rl">${e&&e.byNama?'Dibuat oleh '+esc(e.byNama.split(',')[0]):hasBackend()?'Tersimpan di server · terlihat oleh tim HR':'Tersimpan lokal di perangkat ini'}</div></div><button class="x" onclick="closeModal()">×</button></div>
+   <form style="padding:14px 18px;display:grid;gap:11px" onsubmit="event.preventDefault();calSubmit(${e?`'${esc(e.id)}'`:'null'})">
+     <label class="cf-l">Judul agenda<input id="cf_t" style="${inp}" maxlength="160" required placeholder="cth: Rapat pleno HR, Deadline kontrak…" value="${esc(v.t)}" ${ro?'disabled':''}></label>
+     <div class="cal-kpick">${CAL_MANUAL_K.map(k=>`<label><input type="radio" name="cf_k" value="${k}" ${v.k===k?'checked':''} ${ro?'disabled':''}><span style="--c:${CAL_KCOL[k]}"><i></i>${CAL_KLBL[k]}</span></label>`).join('')}</div>
+     <div style="display:grid;grid-template-columns:1fr 1fr 110px;gap:9px">
+       <label class="cf-l">Mulai<input id="cf_d" type="date" style="${inp}" required value="${esc(v.d||'')}" ${ro?'disabled':''}></label>
+       <label class="cf-l">Sampai (opsional)<input id="cf_end" type="date" style="${inp}" value="${esc(v.end||'')}" ${ro?'disabled':''}></label>
+       <label class="cf-l">Jam<input id="cf_jam" type="time" style="${inp}" value="${esc(v.jam||'')}" ${ro?'disabled':''}></label></div>
+     <label class="cf-l">Catatan<textarea id="cf_note" rows="3" maxlength="1000" style="${inp}" placeholder="Lokasi, peserta, tautan…" ${ro?'disabled':''}>${esc(v.note||'')}</textarea></label>
+     <div style="display:flex;gap:9px;align-items:center;margin-top:4px">
+       ${e&&!ro?`<button type="button" class="btn ghost" style="color:var(--neg);border-color:var(--neg)" onclick="calDelete('${esc(e.id)}')">${ic('trash')} Hapus</button>`:''}
+       <span style="flex:1"></span><button type="button" class="btn ghost" onclick="closeModal()">${ro?'Tutup':'Batal'}</button>${ro?'':`<button class="btn" type="submit" id="cf_save">${ic('check')} Simpan</button>`}</div>
+     ${ro?'<div class="hh">Hanya pembuat agenda atau Master Admin yang dapat mengubah.</div>':''}
+   </form></div></div>`;
+ closeModal();const w=document.createElement('div');w.id='modalRoot';w.innerHTML=html;document.body.appendChild(w);document.body.style.overflow='hidden';
+ setTimeout(()=>{const t=document.getElementById('cf_t');if(t&&!ro)t.focus();},40);}
+async function calSubmit(id){const g=i=>(document.getElementById(i).value||'').trim();
+ const data={t:g('cf_t'),d:g('cf_d'),end:g('cf_end')||'',jam:g('cf_jam')||'',note:g('cf_note'),k:(document.querySelector('input[name=cf_k]:checked')||{}).value||'agenda'};
+ if(!data.t){toast('Isi judul agenda dulu',true);return;}if(!data.d){toast('Pilih tanggal',true);return;}
+ if(data.end&&data.end<data.d){toast('Tanggal "sampai" tidak boleh sebelum tanggal mulai',true);return;}
+ if(data.end===data.d)data.end='';
+ const b=document.getElementById('cf_save');if(b){b.disabled=true;b.textContent='Menyimpan…';}
+ try{await calSave(id,data);closeModal();toast(id?'✓ Agenda diperbarui':'✓ Agenda ditambahkan');const dt=calParse(data.d);state.calY=dt.getFullYear();state.calM=dt.getMonth();await calLoad();}
+ catch(e){toast('⚠ '+((e&&e.message)||'Gagal menyimpan'),true);if(b){b.disabled=false;b.innerHTML=ic('check')+' Simpan';}}}
+async function calDelete(id){const e=calManual().find(x=>x.id===id);if(!confirm('Hapus agenda "'+((e&&e.t)||'')+'"?'))return;
+ try{await calRemove(id);closeModal();toast('Agenda dihapus');await calLoad();}catch(err){toast('⚠ '+((err&&err.message)||'Gagal menghapus'),true);}}
 
 /* ===================== ACCOUNT PANEL (Holding) ===================== */
-function renderAccounts(){const accs=loadAccts();
- const rows=accs.map(a=>`<tr><td><b>${esc(a.nama||'—')}</b></td><td><code onclick="copyText('${esc(a.nip||'')}')" title="klik salin NIP" style="cursor:pointer">${esc(a.nip||'—')}</code></td><td><code onclick="copyText('${esc(a.u)}')" title="klik salin username" style="cursor:pointer">${esc(a.u)}</code></td><td>${roleLabelFull(a.role)}</td><td>${esc(a.unit||'—')}</td><td style="white-space:nowrap"><button class="btn ghost" style="padding:4px 9px;font-size:11px" onclick="copyOneAcct('${esc(a.u)}')">Salin</button> ${a.role!=='master'?`<button class="btn ghost" style="padding:4px 9px;font-size:11px" onclick="resetPw('${esc(a.u)}')">Reset Sandi</button> <button class="btn ghost" style="padding:4px 9px;font-size:11px" onclick="delAcct('${esc(a.u)}')">Hapus</button>`:'<span style="color:var(--ink-3);font-size:11px">akun utama</span>'}</td></tr>`).join('');
+function renderAccounts(){if(hasBackend()&&!_srvAccts){refreshAccts();return '<div class="empty">Memuat daftar akun dari server…</div>';}
+ const accs=loadAccts();const meMaster=SESSION&&SESSION.role==='master';
+ const rows=accs.map(a=>`<tr><td><b>${esc(a.nama||'—')}</b></td><td><code onclick="copyText('${esc(a.nip||'')}')" title="klik salin NIP" style="cursor:pointer">${esc(a.nip||'—')}</code></td><td><code onclick="copyText('${esc(a.u)}')" title="klik salin username" style="cursor:pointer">${esc(a.u)}</code></td><td>${roleLabelFull(a.role)}</td><td>${esc(a.unit||'—')}</td><td>${a.mustChange?'<span class="pill warn" title="Masih memakai sandi awal/reset dari admin">Belum ganti sandi</span>':'<span class="pill pos">Aktif</span>'}</td><td style="white-space:nowrap"><button class="btn ghost" style="padding:4px 9px;font-size:11px" onclick="copyOneAcct('${esc(a.u)}')">Salin</button> ${SESSION&&a.u===SESSION.u?'<span style="color:var(--ink-3);font-size:11px">akun Anda</span>':a.role!=='master'?`<button class="btn ghost" style="padding:4px 9px;font-size:11px" onclick="resetPw('${esc(a.u)}')">Reset Sandi</button> <button class="btn ghost" style="padding:4px 9px;font-size:11px;color:var(--neg)" onclick="delAcct('${esc(a.u)}')">Hapus</button>`:meMaster?`<button class="btn ghost" style="padding:4px 9px;font-size:11px" onclick="resetPw('${esc(a.u)}')">Reset Sandi</button>`:'<span style="color:var(--ink-3);font-size:11px">akun master</span>'}</td></tr>`).join('');
  const noAcc=DATA.filter(e=>!accs.some(a=>a.empId===e.id));
- return `${devBanner('Prototipe keamanan: sandi di-hash SHA-256 & disimpan lokal. Saat di-host di server Ustadz, ganti ke Better Auth + D1 untuk keamanan penuh (anti-retas, sesi server-side).')}
+ return `${hasBackend()?`<div class="acct-sec">${ic('lock')}<div><b>Keamanan sandi server:</b> setiap sandi disimpan sebagai <b>hash PBKDF2-SHA256 (600.000 iterasi + salt unik per akun)</b> — tidak ada yang bisa membaca sandi asli, termasuk admin. Sandi acak hanya ditampilkan <b>sekali</b> saat dibuat/reset, dan pemilik akun wajib menggantinya saat login pertama. Token sesi juga hanya disimpan sebagai hash.</div></div>`:devBanner('Mode statik (tanpa server): akun tersimpan lokal di browser ini. Jalankan di server agar sandi di-hash PBKDF2 & sesi aman.')}
  <div class="grid tiles">
    ${tile('Total Akun',fmtID.format(accs.length),{color:'var(--c1)',meta:'aktif di sistem'})}
    ${tile('Belum Punya Akun',fmtID.format(noAcc.length),{color:'var(--warn)',meta:'dari '+TOTAL+' karyawan'})}
@@ -2895,7 +3062,7 @@ function renderAccounts(){const accs=loadAccts();
    </div>
  </div>
  <div class="sec-h"><h2>Daftar Akun</h2><span class="hint">${accs.length} akun</span></div>
- <div class="tbl-wrap acct-tbl"><table><thead><tr><th>Nama</th><th>NIP</th><th>Username</th><th>Peran</th><th>Unit</th><th>Aksi</th></tr></thead><tbody>${rows||'<tr><td colspan=6><div class="empty">Belum ada akun.</div></td></tr>'}</tbody></table></div>`;
+ <div class="tbl-wrap acct-tbl"><table><thead><tr><th>Nama</th><th>NIP</th><th>Username</th><th>Peran</th><th>Unit</th><th>Status</th><th>Aksi</th></tr></thead><tbody>${rows||'<tr><td colspan=7><div class="empty">Belum ada akun.</div></td></tr>'}</tbody></table></div>`;
 }
 /* ---- role picker modal (subscription-style) ---- */
 const ROLE_META={
@@ -2916,7 +3083,7 @@ function openRolePicker(){pickRole='kadiv_hr';
  const html=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" style="max-width:820px">
    <div class="modal-h"><div><div class="nm">Pilih Peran Akun Tim HR</div><div class="rl">Pilih paket akses, sesuaikan izin, lalu isi identitas</div></div><button class="x" onclick="closeModal()">×</button></div>
    <div style="padding:18px">
-     <div class="role-cards" id="roleCards">${['kadiv_hr','staff_hr','master'].map(card).join('')}</div>
+     <div class="role-cards" id="roleCards">${(SESSION&&SESSION.role==='master'?['kadiv_hr','staff_hr','master']:['kadiv_hr','staff_hr']).map(card).join('')}</div>
      <div id="roleDetail"></div>
    </div></div></div>`;
  const el=document.createElement('div');el.id='modalRoot';el.innerHTML=html;document.body.appendChild(el);document.body.style.overflow='hidden';renderRoleDetail();}
@@ -2936,6 +3103,7 @@ function renderRoleDetail(){const d=document.getElementById('roleDetail');if(!d)
 async function submitRoleAcct(){const g=i=>{const el=document.getElementById(i);return el?el.value.trim():'';};const nama=g('rp_nama'),u=g('rp_user').toLowerCase(),unit=g('rp_unit');
  if(!nama||!u){toast('Nama & username wajib',true);return;}const accs=loadAccts();if(accs.some(a=>a.u===u)){toast('Username sudah dipakai',true);return;}
  const perms={};PERMS.forEach(pm=>{const cb=document.getElementById('rp_perm_'+pm.key.replace(/\./g,'_'));if(cb&&cb.checked)perms[pm.key]=true;});
+ if(hasBackend()){try{const r=await apiPost('/api/accounts',{username:u,nama,role:pickRole,unit,perms:Object.keys(perms)});_srvAccts=r.accounts||_srvAccts;closeModal();showCreds([r.cred],'Akun '+roleLabelFull(pickRole)+' — '+u+' dibuat');paint();}catch(e){toast('⚠ '+((e&&e.message)||'Gagal membuat akun'),true);}return;}
  const pw=randPassword(12);accs.push({u,ph:await sha256(pw),role:pickRole,nama,unit,empId:null,perms:pickRole==='master'?null:perms,mustChange:true});saveAccts(accs);
  closeModal();showCreds([{nama,u,pw,nip:''}],'Akun '+roleLabelFull(pickRole)+' — '+u+' dibuat');paint();}
 function hasAccount(empId){return loadAccts().some(a=>a.empId===empId);}
@@ -2951,6 +3119,7 @@ function acctSection(e){const ac=acctOf(e.id);
 function genOneNIP(empId){const e=DATA.find(x=>x.id==empId);if(!e)return;if(e.nip){toast('Sudah punya NIP: '+e.nip);return;}e.nip=genNIP(e,allNIPs());e._local=true;saveLocal(e);toast('✓ NIP: '+e.nip);paint();}
 /* buat akun untuk 1 karyawan (dari baris tabel) — password random unik + NIP */
 async function createAcctFor(empId){const e=DATA.find(x=>x.id==empId);if(!e){toast('Karyawan tidak ada',true);return;}
+ if(hasBackend()){try{const r=await apiPost('/api/accounts',{empId:e.id});_srvAccts=r.accounts||_srvAccts;if(r.cred&&r.cred.nip&&!e.nip)e.nip=r.cred.nip;showCreds([r.cred],'Akun untuk '+e.nama.split(',')[0]+' dibuat');paint();}catch(err){toast('⚠ '+((err&&err.message)||'Gagal membuat akun'),true);}return;}
  const accs=loadAccts();if(accs.some(a=>a.empId===e.id)){toast('Karyawan ini sudah punya akun',true);return;}
  if(!e.nip){e.nip=genNIP(e,allNIPs());e._local=true;saveLocal(e);}
  const u=e.nip; // username = NIP (panjang & sulit ditebak)
@@ -2958,6 +3127,10 @@ async function createAcctFor(empId){const e=DATA.find(x=>x.id==empId);if(!e){toa
  const pw=randPassword(12);accs.push({u,ph:await sha256(pw),role:'karyawan',nama:e.nama,unit:e.unit,empId:e.id,nip:e.nip,mustChange:true});saveAccts(accs);
  showCreds([{nama:e.nama,u,pw,nip:e.nip}],'Akun untuk '+e.nama.split(',')[0]+' dibuat');paint();}
 async function generateBulk(){const only=document.getElementById('ac_bulkunit').value;
+ if(hasBackend()){if(!confirm('Buat akun untuk semua karyawan'+(only?' di '+only:'')+' yang belum punya akun?\nSandi acak hanya ditampilkan sekali.'))return;toast('Membuat akun… (sandi di-hash di server)');
+   try{const r=await apiPost('/api/accounts/bulk',{unit:only});_srvAccts=r.accounts||_srvAccts;lastCreds=r.creds||[];(r.creds||[]).forEach(c=>{const e=DATA.find(x=>x.nama===c.nama);if(e&&!e.nip)e.nip=c.nip;});paint();
+     if(r.count)showCreds(r.creds.slice(0,300),r.count+' akun dibuat (password acak unik). Salin/ekspor sekarang — password tidak ditampilkan lagi.');else toast('Semua karyawan sudah punya akun');}
+   catch(e){toast('⚠ '+((e&&e.message)||'Gagal'),true);}return;}
  const accs=loadAccts();let n=0;const used=new Set(accs.map(a=>a.u));const nips=allNIPs();const creds=[];
  const list=DATA.filter(e=>(!only||e.unit===only)&&!accs.some(a=>a.empId===e.id));
  for(const e of list){if(!e.nip){e.nip=genNIP(e,nips);nips.add(e.nip);e._local=true;saveLocal(e);}
@@ -2984,8 +3157,13 @@ function showCreds(creds,title){
  window._creds=creds;const el=document.createElement('div');el.id='modalRoot';el.innerHTML=html;document.body.appendChild(el);document.body.style.overflow='hidden';}
 function copyCreds(){const c=window._creds||[];const csv='nama,nip,username,password\n'+c.map(x=>['"'+x.nama+'"',x.nip||'',x.u,x.pw].join(',')).join('\n');
  navigator.clipboard&&navigator.clipboard.writeText(csv).then(()=>toast('✓ Kredensial disalin (CSV)')).catch(()=>toast('Gagal menyalin',true));}
-async function resetPw(u){const accs=loadAccts();const a=accs.find(x=>x.u===u);if(!a)return;const pw=randPassword(12);a.ph=await sha256(pw);a.mustChange=true;saveAccts(accs);showCreds([{nama:a.nama||u,u,pw,nip:a.nip||''}],'Password direset');}
-function delAcct(u){let accs=loadAccts();accs=accs.filter(a=>a.u!==u);saveAccts(accs);toast('Akun '+u+' dihapus');paint();}
+async function resetPw(u){
+ if(hasBackend()){if(!confirm('Reset sandi akun '+u+'?\nSandi lama langsung tidak berlaku, semua sesinya dikeluarkan, dan pemilik wajib mengganti sandi saat login.'))return;
+   try{const r=await apiPost('/api/accounts/'+encodeURIComponent(u)+'/reset');_srvAccts=r.accounts||_srvAccts;closeModal();showCreds([r.cred],'Sandi '+u+' direset');}catch(e){toast('⚠ '+((e&&e.message)||'Gagal reset'),true);}return;}
+ const accs=loadAccts();const a=accs.find(x=>x.u===u);if(!a)return;const pw=randPassword(12);a.ph=await sha256(pw);a.mustChange=true;saveAccts(accs);showCreds([{nama:a.nama||u,u,pw,nip:a.nip||''}],'Password direset');}
+async function delAcct(u){if(!confirm('Hapus akun '+u+'? Pemilik tidak bisa login lagi.'))return;
+ if(hasBackend()){try{const r=await apiDelete('/api/accounts/'+encodeURIComponent(u));_srvAccts=r.accounts||_srvAccts;toast('Akun '+u+' dihapus');paint();}catch(e){toast('⚠ '+((e&&e.message)||'Gagal'),true);}return;}
+ let accs=loadAccts();accs=accs.filter(a=>a.u!==u);saveAccts(accs);toast('Akun '+u+' dihapus');paint();}
 function exportAccts(){const accs=loadAccts();const csv='nip,username,nama,peran,unit\n'+accs.map(a=>[a.nip||'',a.u,'"'+(a.nama||'')+'"',a.role,a.unit||''].join(',')).join('\n');
  navigator.clipboard&&navigator.clipboard.writeText(csv).then(()=>toast('✓ Daftar akun disalin (CSV) — tanpa password')).catch(()=>toast('Salin manual dari console',true));}
 function copyText(t){if(!t)return;navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>toast('✓ Disalin: '+t)).catch(()=>toast('Gagal menyalin',true));}
@@ -2997,7 +3175,5 @@ function copyOneAcct(u){if(!can('accounts')){toast('Hanya admin pusat yang dapat
  try{const j=sessionStorage.getItem(SESS_KEY);if(j)SESSION=JSON.parse(j);}catch(e){}
  if(window.__NEED_LOGIN){SESSION=null;try{sessionStorage.removeItem(SESS_KEY)}catch(e){}} // sesi server habis → data tidak dimuat
  if(SESSION){bootApp();}else{renderLogin();}
- // jika halaman dibuka setelah OAuth callback (?mail=connected) → segarkan status Gmail
- try{const q=new URLSearchParams(location.search);if(q.get('mail')&&hasBackend()){refreshGmailStatus();if(q.get('mail')==='connected'){toast('✓ Gmail tersambung');}else if(q.get('mail')==='oauth-err'){const w=q.get('why')||'';const map={no_secret:'GOOGLE_CLIENT_SECRET belum diisi di .env server',state_expired:'sesi login Google kedaluwarsa — ulangi',no_refresh_token:'Google tidak memberi refresh token — ulangi Sambungkan','google:access_denied':'akses ditolak (akun belum jadi Test user di consent screen?)','exchange:invalid_client':'Client ID/Secret di .env server tidak cocok','exchange:redirect_uri_mismatch':'GOOGLE_REDIRECT_URI tidak sama dengan yang terdaftar','exchange:invalid_grant':'kode OAuth kedaluwarsa/dipakai — ulangi'};toast('⚠ Gmail gagal tersambung: '+(map[w]||w||'cek Client ID/Secret & redirect URI'),true);}history.replaceState({},'',location.pathname);}}catch(_){}
 })();
 </script>
