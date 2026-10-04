@@ -1,0 +1,15 @@
+# Jangan ikutkan artefak lokal/rahasia ke image
+**/.DS_Store
+**/node_modules
+.git
+.env
+.env.*
+!.env.prod.example
+data/
+backup/
+api/data/
+api/backup/
+db/backup/
+1. UPD/
+2. troubleshooting/
+z_info/

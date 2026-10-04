@@ -19,6 +19,8 @@ export function createAssets(dir) {
     async fetch(req) {
       const url = new URL(req.url);
       let p = decodeURIComponent(url.pathname);
+      // tolak dotfile (.DS_Store, .env, .git, …) — jangan pernah disajikan
+      if (p.split("/").some((seg) => seg.startsWith("."))) return new Response("Not found", { status: 404 });
       if (p === "/" || p.endsWith("/")) p += "index.html";
       // cegah path traversal
       const file = path.normalize(path.join(root, p));

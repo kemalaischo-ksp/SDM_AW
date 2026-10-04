@@ -81,6 +81,35 @@ export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
     await next();
   });
 
+  // ===== data SDM (PII) — hanya untuk sesi yang sudah login =====
+  // data.js (NIK, alamat, gaji, rekening), recruit.js, kesehatan.js tidak boleh publik,
+  // dan hanya untuk pengguna dengan izin terkait (preset: master & kadiv_hr; karyawan tidak).
+  const PII_FILES = new Map([
+    ["/data.js", "employees.view"],
+    ["/kesehatan.js", "employees.view"],
+    ["/recruit.js", "recruitment.view"],
+  ]);
+
+  // Wajib ganti sandi (mis. admin dgn sandi awal): tolak semua API & data SDM
+  // kecuali yang dibutuhkan untuk mengganti sandi, sampai sandi diganti.
+  const MUST_CHANGE_OK = new Set(["/api/login", "/api/logout", "/api/me", "/api/me/password", "/api/me/security", "/api/health"]);
+  app.use("*", async (c, next) => {
+    const user = c.get("user");
+    if (!user?.mustChange) return next();
+    let p = c.req.path;
+    try { p = posix.normalize(decodeURIComponent(new URL(c.req.url).pathname)); } catch { return c.text("Bad request", 400); }
+    if (p.startsWith("/api/") && !MUST_CHANGE_OK.has(p)) {
+      return c.json({ error: "Ganti kata sandi awal terlebih dahulu.", mustChange: true }, 403);
+    }
+    if (PII_FILES.has(p)) {
+      return c.text("/* 403: ganti kata sandi terlebih dahulu */", 403, {
+        "content-type": "text/javascript; charset=utf-8",
+        "cache-control": "no-store",
+      });
+    }
+    await next();
+  });
+
   // ===== routes =====
   app.route("/", authRoutes(pool, { secure }));
   app.route("/", employeesRoutes(pool));
@@ -95,14 +124,7 @@ export function createApp(pool, { secure = false, allowedOrigins = [] } = {}) {
 
   app.get("/api/health", (c) => c.json({ ok: true, service: "hr30-v31", time: new Date().toISOString() }));
 
-  // ===== data SDM (PII) — hanya untuk sesi yang sudah login =====
-  // data.js (NIK, alamat, gaji, rekening), recruit.js, kesehatan.js tidak boleh publik,
-  // dan hanya untuk pengguna dengan izin terkait (preset: master & kadiv_hr; karyawan tidak).
-  const PII_FILES = new Map([
-    ["/data.js", "employees.view"],
-    ["/kesehatan.js", "employees.view"],
-    ["/recruit.js", "recruitment.view"],
-  ]);
+  // gerbang berkas PII: wajib login + izin terkait
   app.use("*", async (c, next) => {
     // normalisasi spt adapter aset (decode %xx, //, ../) agar tidak bisa dilewati
     let p = c.req.path;
